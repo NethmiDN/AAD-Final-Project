@@ -1,0 +1,5 @@
+2025-08-18T00:33:55.610+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T00:33:55.722+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T00:33:55.768+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T00:33:55.831+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T00:33:55.844+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
