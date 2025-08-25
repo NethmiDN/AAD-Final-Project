@@ -55,58 +55,82 @@
   <div class="sidebar d-flex flex-column">
     <h4>🐶 <strong>Bark Buddy</strong></h4>
     <nav class="nav flex-column mt-4">
-      <a class="nav-link active" href="#">🏠 Dashboard</a>
-      <a class="nav-link" href="#">💛 Adopt a Friend</a>
-      <a class="nav-link" href="#">📍 Lost & Found</a>
-      <a class="nav-link" href="#">🐕 My Dogs</a>
-      <a class="nav-link" href="#">📄 Listings & Requests</a>
-      <a class="nav-link mt-auto" href="#">⚙️ Settings</a>
+  <a class="nav-link active" href="#">🏠 Dashboard</a>
+  <a class="nav-link" href="#">💛 Adopt a Friend</a>
+  <a class="nav-link" href="#">📍 Lost & Found</a>
+  <a class="nav-link" href="#" id="myDogsBtn">🐕 My Dogs</a>
+  <a class="nav-link" href="#">📄 Listings & Requests</a>
+  <a class="nav-link mt-auto" href="#">⚙️ Settings</a>
     </nav>
   </div>
 
   <!-- Main Content -->
   <div class="main">
-    <div class="text-center mb-5">
-      <h2><strong>Welcome to <span style="color: #FEC83C;">Bark Buddy</span> 🐶</strong></h2>
-      <p>Find your furry friend, report lost dogs, or sell/adopt responsibly!</p>
-      <div class="welcome-buttons">
-        <button class="btn btn-warning">💛 Adopt a Dog</button>
-        <button class="btn btn-primary">🔍 Lost & Found</button>
+    <div id="dashboard-content">
+      <div class="text-center mb-5">
+        <h2><strong>Welcome to <span style="color: #FEC83C;">Bark Buddy</span> 🐶</strong></h2>
+        <p>Find your furry friend, report lost dogs, or sell/adopt responsibly!</p>
+        <div class="welcome-buttons">
+          <button class="btn btn-warning">💛 Adopt a Dog</button>
+          <button class="btn btn-primary">🔍 Lost & Found</button>
+        </div>
       </div>
-    </div>
 
-    <div>
-      <h3 class="text-center fw-bold mb-4">🐾 Featured Dogs for Adoption</h3>
-      <div class="row justify-content-center g-4">
-        <!-- Dog 1 -->
-        <div class="col-md-3">
-          <div class="dog-card">
-            <img src="https://images.unsplash.com/photo-1601758174623-0c6f152c3b02" class="card-img-top rounded" alt="Buddy">
-            <h5 class="mt-3">Buddy</h5>
-            <p class="text-muted">Golden Retriever · 2 Years</p>
-            <button class="btn btn-warning">Adopt Me!</button>
+      <div>
+        <h3 class="text-center fw-bold mb-4">🐾 Featured Dogs for Adoption</h3>
+        <div class="row justify-content-center g-4">
+          <!-- Dog 1 -->
+          <div class="col-md-3">
+            <div class="dog-card">
+              <img src="https://images.unsplash.com/photo-1601758174623-0c6f152c3b02" class="card-img-top rounded" alt="Buddy">
+              <h5 class="mt-3">Buddy</h5>
+              <p class="text-muted">Golden Retriever · 2 Years</p>
+              <button class="btn btn-warning">Adopt Me!</button>
+            </div>
           </div>
-        </div>
-        <!-- Dog 2 -->
-        <div class="col-md-3">
-          <div class="dog-card">
-            <img src="https://images.unsplash.com/photo-1598133894009-c6f0a1efb5bb" class="card-img-top rounded" alt="Max">
-            <h5 class="mt-3">Max</h5>
-            <p class="text-muted">Labrador · 1.5 Years</p>
-            <button class="btn btn-warning">Adopt Me!</button>
+          <!-- Dog 2 -->
+          <div class="col-md-3">
+            <div class="dog-card">
+              <img src="https://images.unsplash.com/photo-1598133894009-c6f0a1efb5bb" class="card-img-top rounded" alt="Max">
+              <h5 class="mt-3">Max</h5>
+              <p class="text-muted">Labrador · 1.5 Years</p>
+              <button class="btn btn-warning">Adopt Me!</button>
+            </div>
           </div>
-        </div>
-        <!-- Dog 3 -->
-        <div class="col-md-3">
-          <div class="dog-card">
-            <img src="https://images.unsplash.com/photo-1603349206294-95e70dfe3d1c" class="card-img-top rounded" alt="Bella">
-            <h5 class="mt-3">Bella</h5>
-            <p class="text-muted">Beagle · 3 Years</p>
-            <button class="btn btn-warning">Adopt Me!</button>
+          <!-- Dog 3 -->
+          <div class="col-md-3">
+            <div class="dog-card">
+              <img src="https://images.unsplash.com/photo-1603349206294-95e70dfe3d1c" class="card-img-top rounded" alt="Bella">
+              <h5 class="mt-3">Bella</h5>
+              <p class="text-muted">Beagle · 3 Years</p>
+              <button class="btn btn-warning">Adopt Me!</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div id="content-area"></div>
+</body>
+<script>
+// Load mydog.html into the right side when My Dogs is clicked
+document.getElementById('myDogsBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  fetch('mydog.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('dashboard-content').style.display = 'none';
+      document.getElementById('content-area').innerHTML = html;
+    });
+});
+
+// Sidebar active state: highlight the clicked nav-link
+document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
   </div>
 
 </body>

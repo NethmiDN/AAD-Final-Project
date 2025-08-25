@@ -1,10 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Bark Buddy Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #c3dafe, #e0c3fc);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .signup-card {
+            border-radius: 15px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        .form-container {
+            padding: 3rem;
+        }
+        .google-btn {
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        .dropdown-toggle::after {
+            transition: transform 0.3s ease;
+        }
+        .dropdown-toggle.show::after {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 <body>
-$END$
+
+<div class="card signup-card d-flex flex-row">
+    <!-- Image Section -->
+    <div class="col-md-6 d-none d-md-block p-0">
+        <img src="/assets/images/signup.jpg" 
+             alt="Bark Buddy Signup" 
+             class="img-fluid h-100 w-100" 
+             style="object-fit: cover; border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+    </div>
+
+    <!-- Form Section -->
+    <div class="col-md-6 bg-white form-container">
+        <h3 class="fw-bold">Join the Bark Buddy Family!</h3>
+        <p class="text-muted">Sign up to get started on your dog’s nutrition journey.</p>
+
+        <form>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" placeholder="name@gmail.com">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="********">
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="roleDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span id="selectedRole">Select your role</span>
+                    </button>
+                    <ul class="dropdown-menu w-100" aria-labelledby="roleDropdown">
+                        <li><a class="dropdown-item" href="#" data-value="admin">ADMIN</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="user">USER</a></li>
+                    </ul>
+                    <input type="hidden" id="role" name="role" value="">
+                </div>
+            </div>
+            <button class="btn btn-primary w-100 mb-3">Register</button>
+            <button type="button" class="btn google-btn w-100 mb-3" id="googleSignupBtn">
+                <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" width="20" height="20" alt="Google">
+                SIGN UP WITH GOOGLE
+            </button>
+            <div class="text-center">
+                <small>Already have an account? <a href="login.html">Log in</a></small>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const dropdownButton = document.getElementById('roleDropdown');
+
+    // Handle dropdown show/hide events for arrow rotation
+    dropdownButton.addEventListener('show.bs.dropdown', function () {
+        this.classList.add('show');
+    });
+
+    dropdownButton.addEventListener('hide.bs.dropdown', function () {
+        this.classList.remove('show');
+    });
+
+    // Handle dropdown selection
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const selectedText = this.textContent;
+            const selectedValue = this.getAttribute('data-value');
+
+            // Update the button text
+            document.getElementById('selectedRole').textContent = selectedText;
+
+            // Update the hidden input value
+            document.getElementById('role').value = selectedValue;
+
+            // Close the dropdown
+            const dropdown = bootstrap.Dropdown.getInstance(dropdownButton);
+            if (dropdown) {
+                dropdown.hide();
+            }
+        });
+    });
+
+    // Form submit
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/barkbuddy/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password, role })
+                });
+                const result = await response.json();
+                if (response.ok && result.data) {
+                    alert('Registration successful!');
+                    window.location.href = 'pages/login.html';
+                } else {
+                    alert('Registration failed: ' + (result.status || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Error connecting to server.');
+            }
+        });
+    });
+
+    // Login link redirect
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginLink = document.querySelector('a[href="pages/login.html"]');
+        if (loginLink) {
+            loginLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.href = 'pages/login.html';
+            });
+        }
+    });
+
+    // Google signup
+    document.getElementById('googleSignupBtn').addEventListener('click', function () {
+        window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    });
+</script>
 </body>
 </html>

@@ -1,24 +1,25 @@
 package com.example.barkbuddy_backend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("/api/hello")
+@CrossOrigin(origins = "*")
 public class HelloController {
-    @GetMapping
-    public String sayHello() {
-        return "Hello, World!";
+
+    @GetMapping("/public")
+    public ResponseEntity<String> publicEndpoint() {
+        return ResponseEntity.ok("Hello! This is a public endpoint - no authentication required.");
     }
 
-    @GetMapping("/admin")
-    public String sayHelloAdmin() {
-        return "Hello, Admin!";
+    @GetMapping("/test")
+    public ResponseEntity<String> testEndpoint() {
+        return ResponseEntity.ok("Hello World! API is working correctly.");
     }
 
-    @GetMapping("/user")
-    public String sayHelloUser() {
-        return "Hello, User!";
+    @PostMapping("/ping")
+    public ResponseEntity<String> pingEndpoint(@RequestBody(required = false) String message) {
+        return ResponseEntity.ok("Pong! Received: " + (message != null ? message : "no message"));
     }
 }

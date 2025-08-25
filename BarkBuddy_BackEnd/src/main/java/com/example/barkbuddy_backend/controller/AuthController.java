@@ -3,7 +3,7 @@ package com.example.barkbuddy_backend.controller;
 import com.example.barkbuddy_backend.dto.APIResponse;
 import com.example.barkbuddy_backend.dto.AuthDTO;
 import com.example.barkbuddy_backend.dto.UserDTO;
-import com.example.barkbuddy_backend.service.UserService;
+import com.example.barkbuddy_backend.service.Impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth/barkbuddy")
 @RequiredArgsConstructor
 public class AuthController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @PostMapping("/register")
     public ResponseEntity<APIResponse> registerUser(

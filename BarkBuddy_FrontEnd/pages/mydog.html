@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Dog Management</h2>
+
+    <!-- Add Dog Form -->
+    <form id="addDogForm" class="mb-4" autocomplete="off">
+        <div class="row g-2">
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="dogName" placeholder="Dog Name" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="breed" placeholder="Breed" required>
+            </div>
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="age" placeholder="Age" required>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select" id="status" required>
+                    <option value="AVAILABLE">Available</option>
+                    <option value="ADOPTED">Adopted</option>
+                    <option value="PENDING">Pending</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Add Dog</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Dog List Table -->
+    <table class="table table-bordered" id="dogsTable">
+        <thead class="table-light">
+        <tr>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Dog rows will be inserted here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+const API_URL = "http://localhost:8080/api/dogs";
+const token = localStorage.getItem("jwtToken");
+
+if (!token) {
+    alert("You must log in first!");
+    window.location.href = "login.html";
+}
+
+// ===== Add Dog =====
+document.addEventListener('DOMContentLoaded', function () {
+    const dogForm = document.getElementById('dogForm');
+
+    dogForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            alert("Please login first!");
+            return;
+        }
+
+        const name = document.getElementById('dogName').value;
+        const breed = document.getElementById('dogBreed').value;
+        const age = document.getElementById('dogAge').value;
+
+        try {
+            const response = await fetch('http://localhost:8080/api/dogs/saveDog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({ name, breed, age })
+            });
+
+            if (response.ok) {
+                alert("Dog saved successfully!");
+                dogForm.reset();
+            } else {
+                const errData = await response.json();
+                alert("Failed: " + (errData.message || "Unknown error"));
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error saving dog.");
+        }
+    });
+});
+
+
+// ===== Load Dogs =====
+async function loadDogs() {
+    try {
+        const response = await fetch(API_URL, {
+            headers: { "Authorization": "Bearer " + token }
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(errText || "Failed to fetch dogs");
+        }
+
+        const dogs = await response.json();
+        renderDogs(dogs);
+
+    } catch (err) {
+        console.error("🚨 Load Error:", err);
+        alert("Error loading dogs: " + err.message);
+    }
+}
+
+// ===== Render Table =====
+function renderDogs(dogs) {
+    const tbody = document.querySelector("#dogsTable tbody");
+    tbody.innerHTML = "";
+
+    dogs.forEach(dog => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${dog.dogName}</td>
+            <td>${dog.breed}</td>
+            <td>${dog.age}</td>
+            <td>${dog.status}</td>
+            <td>
+                <button class="btn btn-sm btn-warning me-2" onclick="editDog(${dog.id})">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteDog(${dog.id})">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// ===== Edit Dog =====
+async function editDog(id) {
+    const dogName = prompt("Enter new dog name:");
+    const breed = prompt("Enter new breed:");
+    const age = prompt("Enter new age:");
+    const status = prompt("Enter new status (AVAILABLE, ADOPTED, PENDING):");
+
+    if (!dogName || !breed || !age || !status) {
+        alert("All fields are required!");
+        return;
+    }
+
+    const updatedDog = { dogName, breed, age: parseInt(age), status };
+
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(updatedDog)
+        });
+
+        if (!response.ok) {
+            const err = await response.text();
+            throw new Error(err || "Failed to update dog");
+        }
+
+        alert("Dog updated successfully!");
+        loadDogs();
+
+    } catch (err) {
+        console.error("🚨 Edit Error:", err);
+        alert("Error: " + err.message);
+    }
+}
+
+// ===== Delete Dog =====
+async function deleteDog(id) {
+    if (!confirm("Are you sure you want to delete this dog?")) return;
+
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+            headers: { "Authorization": "Bearer " + token }
+        });
+
+        if (!response.ok) {
+            const err = await response.text();
+            throw new Error(err || "Failed to delete dog");
+        }
+
+        alert("Dog deleted successfully!");
+        loadDogs();
+
+    } catch (err) {
+        console.error("🚨 Delete Error:", err);
+        alert("Error: " + err.message);
+    }
+}
+
+// Load dogs when page starts
+loadDogs();
+</script>
+</body>
+</html>

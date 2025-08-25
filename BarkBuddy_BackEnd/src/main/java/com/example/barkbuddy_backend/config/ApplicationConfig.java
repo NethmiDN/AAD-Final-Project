@@ -33,43 +33,31 @@ public class ApplicationConfig {
                         .map(user ->
                                 new org.springframework.security
                                         .core.userdetails.User(
-                                        user.getUsername(),
+                                        user.getEmail(), // Use email instead of username
                                         user.getPassword(),
                                         List.of(new SimpleGrantedAuthority
-                                                ("ROLE_"+user.getRole()
-                                                        .name()))
+                                                ("ROLE_" + user.getRole().name()))
                                 )).orElseThrow(
-                                ()->new UsernameNotFoundException
+                                () -> new UsernameNotFoundException
                                         ("User not found")
                         );
     }
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Collections.singletonList("*"));
+        configuration.setAllowedOriginPatterns(List.of("*"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
-
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:63342", "http://localhost:8080")
-                        .allowedMethods("*");
-            }
-        };
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

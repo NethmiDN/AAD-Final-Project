@@ -21,10 +21,6 @@
       width: 100%;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
-    .login-img {
-      background: url('/Final_Project/BarkBuddy_FrontEnd/assets/images/img1.jpg') center/cover no-repeat;
-      min-height: 500px;
-    }
     .form-container {
       padding: 3rem;
     }
@@ -41,7 +37,15 @@
 <body>
 
 <div class="card login-card d-flex flex-row">
-  <div class="col-md-6 login-img d-none d-md-block"></div>
+  <!-- Image Section -->
+  <div class="col-md-6 d-none d-md-block p-0">
+    <img src="/assets/images/img1.jpg" 
+         alt="Bark Buddy" 
+         class="img-fluid h-100 w-100" 
+         style="object-fit: cover; border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+  </div>
+
+  <!-- Form Section -->
   <div class="col-md-6 bg-white form-container">
     <h3 class="fw-bold text-primary">Welcome Back!</h3>
     <p class="text-muted">Login to your Bark Buddy account</p>
@@ -64,7 +68,7 @@
         SIGN IN WITH GOOGLE
       </button>
       <div class="text-center">
-        <small>Not registered? <a href="/index.html" class="text-primary">Create account</a></small>
+  <small>Not registered? <a href="signup.html" class="text-primary">Create account</a></small>
       </div>
     </form>
   </div>
@@ -73,31 +77,41 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const form = document.querySelector('form');
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-            try {
-                const response = await fetch('http://localhost:8080/auth/barkbuddy/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                const result = await response.json();
-                if (response.ok && result.data && result.data.accessToken) {
-                    // Save token (e.g. localStorage) and redirect
-                    localStorage.setItem('accessToken', result.data.accessToken);
-                    alert('Login successful!');
-                    window.location.href = 'dashboard.html';
-                } else {
-                    alert('Login failed: ' + (result.status || 'Unknown error'));
-                }
-            } catch (err) {
-                alert('Error connecting to server.');
+        try {
+            const response = await fetch('http://localhost:8080/auth/barkbuddy/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const result = await response.json();
+            // Use the correct token key and localStorage key
+            if (response.ok && result.data && result.data.token) {
+                localStorage.setItem('jwtToken', result.data.token);
+                alert('Login successful!');
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Login failed: ' + (result.data?.message || 'Unknown error'));
             }
-        });
+        } catch (err) {
+           alert('Error connecting to server.');
+        }
+    });
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const createAccountLink = document.querySelector('a[href="pages/signup.html"]');
+        if (createAccountLink) {
+            createAccountLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.href = 'pages/signup.html';
+            });
+        }
     });
 </script>
 

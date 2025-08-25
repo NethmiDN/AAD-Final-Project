@@ -3,3 +3,687 @@
 2025-08-18T00:33:55.768+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-08-18T00:33:55.831+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-08-18T00:33:55.844+05:30  INFO 13020 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T09:58:32.276+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 12244 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T09:58:32.279+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T09:58:32.334+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T09:58:32.334+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T09:58:33.257+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T09:58:33.332+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 1 JPA repository interface.
+2025-08-18T09:58:34.154+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T09:58:34.171+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T09:58:34.173+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T09:58:34.229+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T09:58:34.229+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1894 ms
+2025-08-18T09:58:34.431+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T09:58:34.514+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T09:58:34.565+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T09:58:34.973+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T09:58:35.018+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T09:58:35.750+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4387c47d
+2025-08-18T09:58:35.752+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T09:58:36.038+05:30  WARN 12244 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T09:58:36.075+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T09:58:37.096+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T09:58:37.245+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T09:58:37.803+05:30  WARN 12244 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T09:58:37.857+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T09:58:37.858+05:30  WARN 12244 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T09:58:38.086+05:30 DEBUG 12244 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T09:58:38.195+05:30 DEBUG 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T09:58:38.266+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T09:58:38.299+05:30 DEBUG 12244 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T09:58:38.372+05:30 DEBUG 12244 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T09:58:38.546+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T09:58:38.586+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T09:58:38.594+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 7.154 seconds (process running for 8.324)
+2025-08-18T09:59:41.225+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T09:59:41.231+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T09:59:41.239+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T09:59:41.246+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T09:59:41.260+05:30  INFO 12244 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T09:59:44.447+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 12228 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T09:59:44.449+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T09:59:44.492+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T09:59:44.493+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T09:59:45.336+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T09:59:45.403+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 1 JPA repository interface.
+2025-08-18T09:59:46.119+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T09:59:46.134+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T09:59:46.135+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T09:59:46.188+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T09:59:46.189+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1695 ms
+2025-08-18T09:59:46.361+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T09:59:46.422+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T09:59:46.461+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T09:59:46.768+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T09:59:46.797+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T09:59:47.260+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44e91e57
+2025-08-18T09:59:47.262+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T09:59:47.337+05:30  WARN 12228 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T09:59:47.354+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T09:59:48.190+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T09:59:48.251+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T09:59:48.692+05:30  WARN 12228 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T09:59:48.735+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T09:59:48.735+05:30  WARN 12228 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T09:59:48.848+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T09:59:48.954+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T09:59:49.016+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T09:59:49.039+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T09:59:49.084+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T09:59:49.252+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T09:59:49.290+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T09:59:49.301+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 5.324 seconds (process running for 6.071)
+2025-08-18T10:00:32.213+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-18T10:00:32.213+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-18T10:00:32.213+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-08-18T10:00:32.213+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-08-18T10:00:32.213+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-08-18T10:00:32.218+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7f59a650
+2025-08-18T10:00:32.218+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@2c009e6a
+2025-08-18T10:00:32.218+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-18T10:00:32.218+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-08-18T10:00:32.338+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-08-18T10:00:32.338+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-08-18T10:00:32.515+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=admin1@gmail.com, password=admin123)]
+2025-08-18T10:00:33.165+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-18T10:00:33.165+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(code=200, status=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ (truncated)...]
+2025-08-18T10:00:33.180+05:30 DEBUG 12228 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-08-18T10:06:13.011+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T10:06:13.024+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T10:06:13.037+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:06:13.054+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T10:06:13.072+05:30  INFO 12228 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T10:06:17.063+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 15252 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T10:06:17.065+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T10:06:17.117+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T10:06:17.118+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T10:06:18.157+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T10:06:18.254+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 1 JPA repository interface.
+2025-08-18T10:06:19.019+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T10:06:19.037+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T10:06:19.038+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T10:06:19.108+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T10:06:19.109+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1991 ms
+2025-08-18T10:06:19.293+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T10:06:19.386+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T10:06:19.441+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T10:06:19.780+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T10:06:19.818+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T10:06:20.411+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@11b1d7b4
+2025-08-18T10:06:20.413+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T10:06:20.524+05:30  WARN 15252 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T10:06:20.562+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T10:06:21.607+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T10:06:21.717+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:06:22.185+05:30  WARN 15252 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T10:06:22.232+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T10:06:22.232+05:30  WARN 15252 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T10:06:22.361+05:30 DEBUG 15252 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T10:06:22.490+05:30 DEBUG 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T10:06:22.561+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T10:06:22.591+05:30 DEBUG 15252 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T10:06:22.653+05:30 DEBUG 15252 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T10:06:22.869+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T10:06:22.911+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T10:06:22.920+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 6.444 seconds (process running for 7.445)
+2025-08-18T10:07:37.922+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T10:07:37.938+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T10:07:37.938+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:07:37.954+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T10:07:37.954+05:30  INFO 15252 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T10:07:41.238+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 19304 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T10:07:41.240+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T10:07:41.281+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T10:07:41.282+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T10:07:42.091+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T10:07:42.156+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 1 JPA repository interface.
+2025-08-18T10:07:42.987+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T10:07:43.006+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T10:07:43.007+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T10:07:43.055+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T10:07:43.057+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1775 ms
+2025-08-18T10:07:43.219+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T10:07:43.312+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T10:07:43.359+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T10:07:43.719+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T10:07:43.761+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T10:07:44.227+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@21e7fd5f
+2025-08-18T10:07:44.230+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T10:07:44.302+05:30  WARN 19304 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T10:07:44.328+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T10:07:45.304+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T10:07:45.374+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:07:45.850+05:30  WARN 19304 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T10:07:45.895+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T10:07:45.896+05:30  WARN 19304 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T10:07:46.027+05:30 DEBUG 19304 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T10:07:46.149+05:30 DEBUG 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T10:07:46.224+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T10:07:46.258+05:30 DEBUG 19304 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T10:07:46.306+05:30 DEBUG 19304 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T10:07:46.499+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T10:07:46.540+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T10:07:46.551+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 5.758 seconds (process running for 6.529)
+2025-08-18T10:09:44.499+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T10:09:44.510+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T10:09:44.518+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:09:44.522+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T10:09:44.559+05:30  INFO 19304 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T10:09:47.538+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 3328 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T10:09:47.541+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T10:09:47.614+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T10:09:47.614+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T10:09:48.338+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T10:09:48.408+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interface.
+2025-08-18T10:09:49.009+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T10:09:49.023+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T10:09:49.024+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T10:09:49.073+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T10:09:49.073+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1458 ms
+2025-08-18T10:09:49.223+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T10:09:49.283+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T10:09:49.321+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T10:09:49.611+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T10:09:49.644+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T10:09:50.004+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53846366
+2025-08-18T10:09:50.007+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T10:09:50.066+05:30  WARN 3328 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T10:09:50.082+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T10:09:50.882+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T10:09:50.942+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:09:51.377+05:30  WARN 3328 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T10:09:51.416+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T10:09:51.417+05:30  WARN 3328 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T10:09:51.542+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T10:09:51.652+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T10:09:51.724+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T10:09:51.753+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T10:09:51.812+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T10:09:51.981+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T10:09:52.020+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T10:09:52.029+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 5.297 seconds (process running for 6.263)
+2025-08-18T10:12:23.178+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-18T10:12:23.178+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-18T10:12:23.187+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-08-18T10:12:23.187+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-08-18T10:12:23.187+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-08-18T10:12:23.203+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@70fce1a9
+2025-08-18T10:12:23.203+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@4c808803
+2025-08-18T10:12:23.203+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-18T10:12:23.203+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2025-08-18T10:12:23.299+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-08-18T10:12:23.299+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-08-18T10:12:23.410+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=admin1@gmail.com, password=admin123)]
+2025-08-18T10:12:23.871+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-18T10:12:23.871+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(code=200, status=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ (truncated)...]
+2025-08-18T10:12:23.871+05:30 DEBUG 3328 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-08-18T10:14:28.938+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T10:14:28.951+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T10:14:28.951+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:14:28.951+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T10:14:28.981+05:30  INFO 3328 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T10:14:32.075+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 14896 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T10:14:32.077+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T10:14:32.141+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T10:14:32.141+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T10:14:33.042+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T10:14:33.109+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 1 JPA repository interface.
+2025-08-18T10:14:33.902+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T10:14:33.925+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T10:14:33.926+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T10:14:33.987+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T10:14:33.988+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1847 ms
+2025-08-18T10:14:34.174+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T10:14:34.252+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T10:14:34.308+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T10:14:34.649+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T10:14:34.686+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T10:14:35.210+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e79d47a
+2025-08-18T10:14:35.213+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T10:14:35.293+05:30  WARN 14896 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T10:14:35.320+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T10:14:36.387+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T10:14:36.451+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:14:36.916+05:30  WARN 14896 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T10:14:36.961+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T10:14:36.962+05:30  WARN 14896 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T10:14:37.111+05:30 DEBUG 14896 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T10:14:37.236+05:30 DEBUG 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T10:14:37.312+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T10:14:37.346+05:30 DEBUG 14896 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T10:14:37.409+05:30 DEBUG 14896 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T10:14:37.597+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T10:14:37.639+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T10:14:37.652+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 6.182 seconds (process running for 7.05)
+2025-08-18T10:15:42.247+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T10:15:42.266+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T10:15:42.274+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:15:42.284+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T10:15:42.304+05:30  INFO 14896 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T10:15:45.502+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 13184 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T10:15:45.506+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T10:15:45.563+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T10:15:45.564+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T10:15:46.425+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T10:15:46.493+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 1 JPA repository interface.
+2025-08-18T10:15:47.127+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T10:15:47.145+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T10:15:47.145+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T10:15:47.202+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T10:15:47.203+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1638 ms
+2025-08-18T10:15:47.376+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T10:15:47.423+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T10:15:47.452+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T10:15:47.756+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T10:15:47.788+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T10:15:48.154+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b4742c8
+2025-08-18T10:15:48.157+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T10:15:48.222+05:30  WARN 13184 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T10:15:48.242+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T10:15:49.052+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T10:15:49.112+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T10:15:49.527+05:30  WARN 13184 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T10:15:49.566+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T10:15:49.566+05:30  WARN 13184 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T10:15:49.716+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T10:15:49.825+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T10:15:49.894+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T10:15:49.919+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T10:15:49.974+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T10:15:50.161+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T10:15:50.199+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T10:15:50.208+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 5.249 seconds (process running for 6.209)
+2025-08-18T10:18:35.448+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-18T10:18:35.448+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-18T10:18:35.448+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-08-18T10:18:35.448+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-08-18T10:18:35.448+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-08-18T10:18:35.448+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4d477b31
+2025-08-18T10:18:35.455+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@30c6970f
+2025-08-18T10:18:35.457+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-18T10:18:35.457+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2025-08-18T10:18:35.535+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-08-18T10:18:35.537+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-08-18T10:18:35.656+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=admin1@gmail.com, password=admin123)]
+2025-08-18T10:18:36.203+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-18T10:18:36.207+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(code=200, status=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ (truncated)...]
+2025-08-18T10:18:36.216+05:30 DEBUG 13184 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-08-18T11:12:03.251+05:30  WARN 13184 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m24s53ms521µs800ns).
+2025-08-18T11:22:26.980+05:30  WARN 13184 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m54s751ms173µs600ns).
+2025-08-18T11:23:19.577+05:30  WARN 13184 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=57s610ms955µs900ns).
+2025-08-18T11:29:39.592+05:30  WARN 13184 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m24s839ms215µs).
+2025-08-18T11:42:23.785+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T11:42:23.816+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T11:42:23.849+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T11:42:23.880+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T11:42:23.896+05:30  INFO 13184 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T11:42:32.364+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 4168 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T11:42:32.365+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T11:42:32.397+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T11:42:32.397+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T11:42:33.061+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T11:42:33.124+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 1 JPA repository interface.
+2025-08-18T11:42:33.681+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T11:42:33.695+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T11:42:33.696+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T11:42:33.737+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T11:42:33.738+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1341 ms
+2025-08-18T11:42:33.897+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T11:42:33.963+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T11:42:33.996+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T11:42:34.257+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T11:42:34.280+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T11:42:34.626+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@66b2e438
+2025-08-18T11:42:34.627+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T11:42:34.729+05:30  WARN 4168 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T11:42:34.744+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T11:42:35.424+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T11:42:35.504+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T11:42:35.823+05:30  WARN 4168 --- [BarkBuddy_BackEnd] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'securityConfig' defined in file [D:\Final_Project\BarkBuddy_BackEnd\target\classes\com\example\barkbuddy_backend\config\SecurityConfig.class]: Failed to instantiate [com.example.barkbuddy_backend.config.SecurityConfig$$SpringCGLIB$$0]: Constructor threw exception
+2025-08-18T11:42:35.823+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T11:42:35.826+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T11:42:35.836+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T11:42:35.840+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-08-18T11:42:35.850+05:30  INFO 4168 --- [BarkBuddy_BackEnd] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-18T11:42:35.863+05:30 ERROR 4168 --- [BarkBuddy_BackEnd] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'securityConfig' defined in file [D:\Final_Project\BarkBuddy_BackEnd\target\classes\com\example\barkbuddy_backend\config\SecurityConfig.class]: Failed to instantiate [com.example.barkbuddy_backend.config.SecurityConfig$$SpringCGLIB$$0]: Constructor threw exception
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:321) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:309) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.9.jar:6.2.9]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.9.jar:6.2.9]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.4.jar:3.5.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.4.jar:3.5.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.4.jar:3.5.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.4.jar:3.5.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.4.jar:3.5.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
+	at com.example.barkbuddy_backend.BarkBuddyBackEndApplication.main(BarkBuddyBackEndApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.5.4.jar:3.5.4]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.barkbuddy_backend.config.SecurityConfig$$SpringCGLIB$$0]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:223) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:146) ~[spring-beans-6.2.9.jar:6.2.9]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:318) ~[spring-beans-6.2.9.jar:6.2.9]
+	... 24 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problem: 
+
+	at com.example.barkbuddy_backend.config.SecurityConfig.<init>(SecurityConfig.java:22) ~[classes/:na]
+	at com.example.barkbuddy_backend.config.SecurityConfig$$SpringCGLIB$$0.<init>(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[na:na]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:210) ~[spring-beans-6.2.9.jar:6.2.9]
+	... 26 common frames omitted
+
+2025-08-18T11:43:05.050+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 9912 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T11:43:05.055+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T11:43:05.107+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T11:43:05.108+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T11:43:05.796+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T11:43:05.852+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 1 JPA repository interface.
+2025-08-18T11:43:06.366+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T11:43:06.379+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T11:43:06.379+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T11:43:06.420+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T11:43:06.420+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1312 ms
+2025-08-18T11:43:06.639+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T11:43:06.709+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T11:43:06.740+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T11:43:06.988+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T11:43:07.008+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T11:43:07.348+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5fa53588
+2025-08-18T11:43:07.349+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T11:43:07.392+05:30  WARN 9912 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T11:43:07.405+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T11:43:07.998+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T11:43:08.033+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T11:43:08.354+05:30  WARN 9912 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T11:43:08.428+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T11:43:08.500+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T11:43:08.525+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T11:43:08.525+05:30  WARN 9912 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T11:43:08.636+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T11:43:08.653+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T11:43:08.696+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T11:43:08.797+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T11:43:08.842+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T11:43:08.848+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 4.311 seconds (process running for 5.059)
+2025-08-18T11:43:35.586+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-18T11:43:35.600+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-18T11:43:35.601+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-08-18T11:43:35.601+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-08-18T11:43:35.602+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-08-18T11:43:35.603+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@22fc77bb
+2025-08-18T11:43:35.604+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@764b5a18
+2025-08-18T11:43:35.604+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-18T11:43:35.605+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-08-18T13:25:53.080+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-08-18T13:25:53.096+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-08-18T13:25:53.527+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=admin1@gmail.com, password=admin123)]
+2025-08-18T13:25:54.662+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-18T13:25:54.666+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(code=200, status=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ (truncated)...]
+2025-08-18T13:25:54.698+05:30 DEBUG 9912 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-08-18T13:51:48.758+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T13:51:48.958+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T13:51:49.071+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T13:51:49.308+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T13:51:49.334+05:30  INFO 9912 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T13:51:53.725+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 12004 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T13:51:53.725+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T13:51:53.758+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T13:51:53.758+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T13:51:54.460+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T13:51:54.547+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 1 JPA repository interface.
+2025-08-18T13:51:55.111+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T13:51:55.126+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T13:51:55.126+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T13:51:55.162+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T13:51:55.162+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1404 ms
+2025-08-18T13:51:55.323+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T13:51:55.387+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T13:51:55.434+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T13:51:55.706+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T13:51:55.736+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T13:51:56.101+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ecb487f
+2025-08-18T13:51:56.102+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T13:51:56.205+05:30  WARN 12004 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T13:51:56.222+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T13:51:56.825+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T13:51:56.909+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T13:51:57.235+05:30  WARN 12004 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T13:51:57.312+05:30 DEBUG 12004 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T13:51:57.377+05:30 DEBUG 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T13:51:57.396+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T13:51:57.397+05:30  WARN 12004 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T13:51:57.492+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T13:51:57.509+05:30 DEBUG 12004 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T13:51:57.557+05:30 DEBUG 12004 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T13:51:57.649+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T13:51:57.676+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T13:51:57.683+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 4.451 seconds (process running for 5.514)
+2025-08-18T13:53:15.165+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T13:53:15.180+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T13:53:15.189+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T13:53:15.195+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T13:53:15.195+05:30  INFO 12004 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T13:53:18.019+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 22084 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T13:53:18.022+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T13:53:18.054+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T13:53:18.055+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T13:53:18.588+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T13:53:18.622+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 1 JPA repository interface.
+2025-08-18T13:53:19.034+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T13:53:19.045+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T13:53:19.045+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T13:53:19.076+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T13:53:19.077+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1022 ms
+2025-08-18T13:53:19.199+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T13:53:19.268+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T13:53:19.314+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T13:53:19.553+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T13:53:19.585+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T13:53:20.171+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e4183c9
+2025-08-18T13:53:20.174+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T13:53:20.343+05:30  WARN 22084 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T13:53:20.381+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T13:53:21.324+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T13:53:21.393+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T13:53:21.949+05:30  WARN 22084 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T13:53:22.075+05:30 DEBUG 22084 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T13:53:22.170+05:30 DEBUG 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T13:53:22.191+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T13:53:22.192+05:30  WARN 22084 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T13:53:22.304+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T13:53:22.319+05:30 DEBUG 22084 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T13:53:22.353+05:30 DEBUG 22084 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T13:53:22.448+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T13:53:22.492+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T13:53:22.500+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 4.826 seconds (process running for 5.543)
+2025-08-18T13:55:40.449+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T13:55:40.470+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T13:55:40.470+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T13:55:40.470+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T13:55:40.494+05:30  INFO 22084 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T13:55:43.180+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 10436 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T13:55:43.181+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T13:55:43.224+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T13:55:43.225+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T13:55:44.082+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T13:55:44.133+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 1 JPA repository interface.
+2025-08-18T13:55:44.608+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T13:55:44.620+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T13:55:44.621+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T13:55:44.695+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T13:55:44.696+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1470 ms
+2025-08-18T13:55:44.893+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T13:55:44.947+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T13:55:44.974+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T13:55:45.220+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T13:55:45.242+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T13:55:45.551+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d1f3297
+2025-08-18T13:55:45.553+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T13:55:45.607+05:30  WARN 10436 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T13:55:45.620+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T13:55:46.246+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T13:55:46.314+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T13:55:46.628+05:30  WARN 10436 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T13:55:46.693+05:30 DEBUG 10436 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T13:55:46.769+05:30 DEBUG 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T13:55:46.786+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T13:55:46.787+05:30  WARN 10436 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T13:55:46.872+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T13:55:46.889+05:30 DEBUG 10436 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T13:55:46.924+05:30 DEBUG 10436 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T13:55:47.016+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T13:55:47.047+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T13:55:47.054+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 4.375 seconds (process running for 5.182)
+2025-08-18T14:01:43.252+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T14:01:43.271+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T14:01:43.289+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T14:01:43.304+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T14:01:43.319+05:30  INFO 10436 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-18T14:01:46.286+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 14280 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project)
+2025-08-18T14:01:46.288+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-08-18T14:01:46.323+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-18T14:01:46.323+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-18T14:01:47.332+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-18T14:01:47.396+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 1 JPA repository interface.
+2025-08-18T14:01:47.948+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-18T14:01:47.960+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-18T14:01:47.961+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-18T14:01:47.993+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-18T14:01:47.993+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1670 ms
+2025-08-18T14:01:48.128+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-18T14:01:48.177+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-18T14:01:48.240+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-18T14:01:48.466+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-18T14:01:48.495+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-18T14:01:48.817+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41e4b911
+2025-08-18T14:01:48.819+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-18T14:01:48.868+05:30  WARN 14280 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-18T14:01:48.879+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-18T14:01:49.473+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-18T14:01:49.521+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T14:01:49.838+05:30  WARN 14280 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-18T14:01:49.901+05:30 DEBUG 14280 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-08-18T14:01:49.964+05:30 DEBUG 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-18T14:01:49.981+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-18T14:01:49.981+05:30  WARN 14280 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-18T14:01:50.078+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-18T14:01:50.114+05:30 DEBUG 14280 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-18T14:01:50.152+05:30 DEBUG 14280 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-18T14:01:50.247+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-18T14:01:50.277+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-18T14:01:50.283+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 4.405 seconds (process running for 4.983)
+2025-08-18T14:20:14.483+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-18T14:20:14.601+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-08-18T14:20:14.705+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-18T14:20:14.853+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-18T14:20:14.957+05:30  INFO 14280 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

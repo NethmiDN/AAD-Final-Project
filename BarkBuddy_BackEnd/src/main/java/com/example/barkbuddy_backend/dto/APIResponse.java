@@ -1,12 +1,13 @@
 package com.example.barkbuddy_backend.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@AllArgsConstructor
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class APIResponse {
-    private int code;
-    private String status;
+    private int status;
+    private String message;
     private Object data;
 }

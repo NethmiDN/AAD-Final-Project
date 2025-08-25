@@ -1,11 +1,14 @@
 package com.example.barkbuddy_backend.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 @Data
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class AuthResponseDTO {
-    private String accessToken;
-
+    private String token;
+    private String message;
+    private Long userId;
+    private String email;
 }
