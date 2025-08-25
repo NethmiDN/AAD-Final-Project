@@ -5,13 +5,13 @@ import com.example.barkbuddy_backend.service.DogService;
 import com.example.barkbuddy_backend.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/dogs")
+@CrossOrigin(origins = "http://localhost:5500") // frontend URL
 @RequiredArgsConstructor
 public class DogController {
 
@@ -30,34 +30,19 @@ public class DogController {
         return userId;
     }
 
-    //     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')") // Temporarily commented out to fix 403
     @PostMapping("/saveDog")
     public ResponseEntity<DogDTO> addDog(@RequestBody DogDTO dogDTO,
                                          @RequestHeader("Authorization") String authHeader) {
-
         Long ownerId = getUserIdFromToken(authHeader);
-
-        if (dogDTO.getDogName() == null || dogDTO.getBreed() == null
-                || dogDTO.getAge() == null || dogDTO.getStatus() == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
         DogDTO createdDog = dogService.createDog(dogDTO, ownerId);
-        if (createdDog == null || createdDog.getId() == null) {
-            return ResponseEntity.internalServerError().build();
-        }
         return ResponseEntity.ok(createdDog);
     }
 
     @GetMapping
     public ResponseEntity<List<DogDTO>> getMyDogs(@RequestHeader("Authorization") String authHeader) {
         Long ownerId = getUserIdFromToken(authHeader);
-        return ResponseEntity.ok(dogService.getDogsByOwnerId(ownerId));
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<DogDTO>> getAllDogs() {
-        return ResponseEntity.ok(dogService.getAllDogs());
+        List<DogDTO> dogs = dogService.getDogsByOwnerId(ownerId);
+        return ResponseEntity.ok(dogs);
     }
 
     @PutMapping("/{id}")
@@ -65,7 +50,8 @@ public class DogController {
                                             @RequestBody DogDTO dogDTO,
                                             @RequestHeader("Authorization") String authHeader) {
         Long ownerId = getUserIdFromToken(authHeader);
-        return ResponseEntity.ok(dogService.updateDog(id, dogDTO, ownerId));
+        DogDTO updatedDog = dogService.updateDog(id, dogDTO, ownerId);
+        return ResponseEntity.ok(updatedDog);
     }
 
     @DeleteMapping("/{id}")
@@ -75,4 +61,11 @@ public class DogController {
         dogService.deleteDog(id, ownerId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<DogDTO>> getAllDogs() {
+        List<DogDTO> dogs = dogService.getAllDogs();
+        return ResponseEntity.ok(dogs);
+    }
+
 }

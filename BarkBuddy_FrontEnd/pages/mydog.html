@@ -1,366 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BarkBuddy - Dog Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #4e73df;
-            --secondary-color: #f8f9fc;
-            --success-color: #1cc88a;
-            --warning-color: #f6c23e;
-            --danger-color: #e74a3b;
-        }
-        
-        body {
-            background-color: #f8f9fc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            color: white !important;
-        }
-        
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .status-available {
-            background-color: rgba(28, 200, 138, 0.2);
-            color: var(--success-color);
-        }
-        
-        .status-unavailable {
-            background-color: rgba(231, 74, 59, 0.2);
-            color: var(--danger-color);
-        }
-        
-        .status-pending {
-            background-color: rgba(246, 194, 62, 0.2);
-            color: var(--warning-color);
-        }
-        
-        .dog-table {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 5px;
-            color: white;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.3s, transform 0.3s;
-            z-index: 1000;
-        }
-        
-        .notification.success {
-            background-color: var(--success-color);
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .notification.error {
-            background-color: var(--danger-color);
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .card {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bark Buddy - My Dogs</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to bottom right, #FFDCA6, #FBB8E5); margin:0; }
+  .sidebar { background-color: #2C2A7B; color: white; height: 100vh; padding:1rem; position: fixed; width: 220px; }
+  .sidebar .nav-link { color:white; margin:0.5rem 0; }
+  .sidebar .nav-link.active { background-color:#FEC83C; color:#000; border-radius:8px; font-weight:bold; }
+  .main { margin-left: 240px; padding:2rem; }
+  .dog-table { background:white; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  .status-badge { padding:4px 8px; border-radius:12px; font-size:0.85rem; font-weight:600; }
+  .status-AVAILABLE { background-color: rgba(28, 200, 138, 0.2); color:#1cc88a; }
+  .status-ADOPTED { background-color: rgba(231, 74, 59,0.2); color:#e74a3b; }
+  .status-PENDING { background-color: rgba(246, 194, 62,0.2); color:#f6c23e; }
+  .notification { position:fixed; top:20px; right:20px; padding:12px 18px; border-radius:5px; color:white; opacity:0; transform:translateY(-20px); transition: opacity 0.3s, transform 0.3s; z-index:1000; }
+  .notification.show { opacity:1; transform:translateY(0); }
+  .notification.success { background-color:#1cc88a; }
+  .notification.error { background-color:#e74a3b; }
+</style>
 </head>
 <body>
-    <nav class="navbar navbar-dark mb-4" style="background: linear-gradient(135deg, var(--primary-color) 0%, #2a3e9d 100%);">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-paw me-2"></i>BarkBuddy - Dog Management
-            </a>
-        </div>
-    </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title mb-4">Add a New Dog</h5>
-                        <form id="dogForm">
-                            <div class="row g-3">
-                                <div class="col-md-3">
-                                    <label for="dogName" class="form-label">Dog Name</label>
-                                    <input type="text" class="form-control" id="dogName" name="dogName" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="breed" class="form-label">Breed</label>
-                                    <input type="text" class="form-control" id="breed" name="breed" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="age" class="form-label">Age</label>
-                                    <input type="number" class="form-control" id="age" name="age" min="0" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" id="status" name="status" required>
-                                        <option value="">Select Status</option>
-                                        <option value="AVAILABLE">Available</option>
-                                        <option value="UNAVAILABLE">Unavailable</option>
-                                        <option value="PENDING">Pending</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2 d-flex align-items-end">
-                                    <button type="submit" class="btn btn-primary w-100">Add Dog</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Sidebar -->
+<div class="sidebar d-flex flex-column">
+  <h4>🐶 <strong>Bark Buddy</strong></h4>
+  <nav class="nav flex-column mt-4">
+    <a class="nav-link" href="/pages/dashboard.html">🏠 Dashboard</a>
+    <a class="nav-link active" href="#">🐕 My Dogs</a>
+    <a class="nav-link" href="#">💛 Adopt a Friend</a>
+    <a class="nav-link" href="#">📍 Lost & Found</a>
+    <a class="nav-link" href="#">📄 Listings & Requests</a>
+    <a class="nav-link mt-auto" href="#">⚙️ Settings</a>
+  </nav>
+</div>
 
-        <div class="row">
-            <div class="col-12">
-                <h5 class="mb-3">My Dogs</h5>
-                <div class="table-responsive dog-table">
-                    <table class="table table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Name</th>
-                                <th>Breed</th>
-                                <th>Age</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dogsList">
-                            <!-- Dog rows will be inserted here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Main Content -->
+<div class="main">
+  <h3 class="mb-4">🐕 My Dogs</h3>
 
-    <div id="notification" class="notification"></div>
+  <!-- Add/Edit Dog Form -->
+  <div class="card mb-4 p-3">
+    <form id="dogForm" class="row g-3">
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="dogName" placeholder="Dog Name" required>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="breed" placeholder="Breed" required>
+      </div>
+      <div class="col-md-2">
+        <input type="number" class="form-control" id="age" placeholder="Age" min="0" required>
+      </div>
+      <div class="col-md-2">
+        <select class="form-select" id="status" required>
+          <option value="">Status</option>
+          <option value="AVAILABLE">Available</option>
+          <option value="ADOPTED">Adopted</option>
+          <option value="PENDING">Pending</option>
+        </select>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button type="submit" class="btn btn-primary">Add Dog</button>
+      </div>
+    </form>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Base URL for API - adjust according to your backend
-        const API_BASE_URL = 'http://localhost:8080/api/dogs';
-        
-        // DOM Elements
-        const dogForm = document.getElementById('dogForm');
-        const dogsList = document.getElementById('dogsList');
-        const notification = document.getElementById('notification');
-        
-        // Current JWT token - automatically retrieved from localStorage
-        let jwtToken = localStorage.getItem('jwtToken') || '';
-        
-        // Load dogs when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            loadDogs();
-        });
-        
-        // Add new dog
-        dogForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            if (!jwtToken) {
-                showNotification('Please log in first', 'error');
-                return;
-            }
-            
-            const formData = new FormData(dogForm);
-            const dogData = {
-                dogName: formData.get('dogName'),
-                breed: formData.get('breed'),
-                age: parseInt(formData.get('age')),
-                status: formData.get('status')
-            };
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/saveDog`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${jwtToken}`
-                    },
-                    body: JSON.stringify(dogData)
-                });
-                
-                if (response.ok) {
-                    showNotification('Dog saved successfully!', 'success');
-                    dogForm.reset();
-                    
-                    // Refresh the dogs list
-                    loadDogs();
-                } else if (response.status === 400) {
-                    showNotification('Please fill all required fields', 'error');
-                } else if (response.status === 401 || response.status === 403) {
-                    showNotification('Authentication error. Please log in again.', 'error');
-                } else {
-                    showNotification('Error saving dog', 'error');
-                }
-            } catch (error) {
-                showNotification('Network error. Please try again.', 'error');
-                console.error('Error:', error);
-            }
-        });
-        
-        // Load dogs
-        async function loadDogs() {
-            if (!jwtToken) {
-                showNotification('Please log in first', 'error');
-                return;
-            }
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}`, {
-                    headers: {
-                        'Authorization': `Bearer ${jwtToken}`
-                    }
-                });
-                
-                if (response.ok) {
-                    const dogs = await response.json();
-                    displayDogs(dogs);
-                } else if (response.status === 401 || response.status === 403) {
-                    showNotification('Authentication error. Please log in again.', 'error');
-                } else {
-                    showNotification('Error loading dogs', 'error');
-                }
-            } catch (error) {
-                showNotification('Network error. Please try again.', 'error');
-                console.error('Error:', error);
-            }
-        }
-        
-        // Display dogs in the UI
-        function displayDogs(dogs) {
-            if (!dogs || dogs.length === 0) {
-                dogsList.innerHTML = '<tr><td colspan="5" class="text-center py-4">No dogs found</td></tr>';
-                return;
-            }
-            
-            dogsList.innerHTML = '';
-            dogs.forEach(dog => {
-                const statusClass = 
-                    dog.status === 'AVAILABLE' ? 'status-available' :
-                    dog.status === 'UNAVAILABLE' ? 'status-unavailable' : 'status-pending';
-                
-                const html = `
-                    <tr>
-                        <td>${dog.dogName}</td>
-                        <td>${dog.breed}</td>
-                        <td>${dog.age}</td>
-                        <td><span class="status-badge ${statusClass}">${dog.status}</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-warning me-1" onclick="editDog(${dog.id})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteDog(${dog.id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-                
-                dogsList.innerHTML += html;
-            });
-        }
-        
-        // Edit dog function
-        async function editDog(dogId) {
-            if (!jwtToken) {
-                showNotification('Please log in first', 'error');
-                return;
-            }
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/${dogId}`, {
-                    headers: {
-                        'Authorization': `Bearer ${jwtToken}`
-                    }
-                });
-                
-                if (response.ok) {
-                    const dog = await response.json();
-                    
-                    // Fill form with dog data
-                    document.getElementById('dogName').value = dog.dogName;
-                    document.getElementById('breed').value = dog.breed;
-                    document.getElementById('age').value = dog.age;
-                    document.getElementById('status').value = dog.status;
-                    
-                    // Change form to update mode
-                    dogForm.setAttribute('data-edit-id', dogId);
-                    dogForm.querySelector('button[type="submit"]').textContent = 'Update Dog';
-                    
-                    showNotification('Dog data loaded for editing', 'success');
-                } else {
-                    showNotification('Error loading dog data', 'error');
-                }
-            } catch (error) {
-                showNotification('Network error. Please try again.', 'error');
-                console.error('Error:', error);
-            }
-        }
-        
-        // Delete dog function
-        async function deleteDog(dogId) {
-            if (!confirm('Are you sure you want to delete this dog?')) return;
-            
-            if (!jwtToken) {
-                showNotification('Please log in first', 'error');
-                return;
-            }
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/${dogId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${jwtToken}`
-                    }
-                });
-                
-                if (response.ok) {
-                    showNotification('Dog deleted successfully', 'success');
-                    // Reload the list
-                    loadDogs();
-                } else if (response.status === 401 || response.status === 403) {
-                    showNotification('Authentication error. Please log in again.', 'error');
-                } else {
-                    showNotification('Error deleting dog', 'error');
-                }
-            } catch (error) {
-                showNotification('Network error. Please try again.', 'error');
-                console.error('Error:', error);
-            }
-        }
-        
-        // Show notification
-        function showNotification(message, type) {
-            notification.textContent = message;
-            notification.className = 'notification ' + type;
-            
-            setTimeout(() => {
-                notification.className = 'notification';
-            }, 3000);
-        }
-    </script>
+  <!-- Dogs Table -->
+  <div class="table-responsive dog-table">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Breed</th>
+          <th>Age</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="dogsList">
+        <tr><td colspan="5" class="text-center py-4">Loading dogs...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="notification" class="notification"></div>
+
+<script>
+const dogForm = document.getElementById('dogForm');
+const dogsList = document.getElementById('dogsList');
+const notification = document.getElementById('notification');
+let editDogId = null;
+let dogsData = [];
+
+// ✅ Fetch token saved by login.js
+const token = localStorage.getItem('accessToken') || localStorage.getItem('jwtToken');
+
+function showNotification(msg, type='success') {
+  notification.textContent = msg;
+  notification.className = 'notification show ' + type;
+  setTimeout(()=>{notification.className='notification';},3000);
+}
+
+// Load all dogs from backend
+async function loadDogs() {
+  try {
+    const res = await fetch('http://localhost:8080/api/dogs', {
+      headers:{ 'Authorization':'Bearer '+token }
+    });
+    if(!res.ok) throw new Error('Failed to fetch');
+    dogsData = await res.json();
+    renderDogs(dogsData);
+  } catch(err){
+    showNotification('Failed to load dogs','error');
+    dogsList.innerHTML='<tr><td colspan="5" class="text-center py-4">No dogs found.</td></tr>';
+  }
+}
+
+function renderDogs(dogs) {
+  if(dogs.length===0){
+    dogsList.innerHTML='<tr><td colspan="5" class="text-center py-4">No dogs added yet.</td></tr>';
+    return;
+  }
+  dogsList.innerHTML='';
+  dogs.forEach(dog=>{
+    const statusClass='status-'+dog.status;
+    dogsList.innerHTML+=`
+      <tr>
+        <td>${dog.dogName}</td>
+        <td>${dog.breed}</td>
+        <td>${dog.age}</td>
+        <td><span class="status-badge ${statusClass}">${dog.status}</span></td>
+        <td>
+          <button class="btn btn-sm btn-warning me-1" onclick="startEdit(${dog.id})"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-sm btn-danger" onclick="deleteDog(${dog.id})"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+// Add or update dog
+dogForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const dogName=document.getElementById('dogName').value.trim();
+  const breed=document.getElementById('breed').value.trim();
+  const age=parseInt(document.getElementById('age').value);
+  const status=document.getElementById('status').value;
+
+  if(!dogName||!breed||isNaN(age)||!status){ showNotification('Please fill all fields','error'); return; }
+
+  const dogData={dogName,breed,age,status};
+
+  try{
+    if(editDogId){
+      await fetch(`http://localhost:8080/api/dogs/${editDogId}`,{
+        method:'PUT',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body:JSON.stringify(dogData)
+      });
+      showNotification('Dog updated!');
+      editDogId=null;
+      dogForm.querySelector('button').textContent='Add Dog';
+    }else{
+      await fetch('http://localhost:8080/api/dogs/saveDog',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body:JSON.stringify(dogData)
+      });
+      showNotification('Dog added!');
+    }
+    dogForm.reset();
+    loadDogs();
+  }catch(err){
+    showNotification('Failed to save dog','error');
+  }
+});
+
+// Start edit
+function startEdit(id){
+  const dog=dogsData.find(d=>d.id===id);
+  if(!dog){ showNotification('Dog not found','error'); return; }
+  document.getElementById('dogName').value=dog.dogName;
+  document.getElementById('breed').value=dog.breed;
+  document.getElementById('age').value=dog.age;
+  document.getElementById('status').value=dog.status;
+  editDogId=id;
+  dogForm.querySelector('button').textContent='Update Dog';
+  showNotification('Edit dog details');
+}
+
+// Delete dog
+function deleteDog(id){
+  if(confirm('Are you sure you want to delete this dog?')){
+    fetch(`http://localhost:8080/api/dogs/${id}`,{
+      method:'DELETE',
+      headers:{'Authorization':'Bearer '+token}
+    })
+    .then(()=>{ showNotification('Dog deleted'); loadDogs(); })
+    .catch(()=>showNotification('Failed to delete dog','error'));
+  }
+}
+
+// Initial load
+loadDogs();
+</script>
+
 </body>
 </html>

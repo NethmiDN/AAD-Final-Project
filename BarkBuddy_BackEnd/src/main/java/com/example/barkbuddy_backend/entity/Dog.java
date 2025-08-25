@@ -26,7 +26,7 @@ public class Dog {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Dog_Status status;
+    private Dog_Status status; //    AVAILABLE, ADOPTED, PENDING
 
     @Column(nullable = false)
     private Long ownerId;
