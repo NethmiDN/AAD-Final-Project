@@ -21,7 +21,7 @@ public class AdoptionApplications {
     private Long dogId;
 
     @Column(nullable = false)
-    private Long ownerId;
+    private Long adopterId;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

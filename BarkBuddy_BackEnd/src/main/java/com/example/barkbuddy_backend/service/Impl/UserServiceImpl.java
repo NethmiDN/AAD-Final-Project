@@ -19,18 +19,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserDetailsService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JWTUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
 
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserDetailsService {
                 .build();
     }
 
+    // Register user - always default role USER
     public AuthResponseDTO register(UserDTO registerDTO) {
         if (userRepository.existsByEmail(registerDTO.getEmail())) {
             return AuthResponseDTO.builder()
@@ -46,13 +48,11 @@ public class UserServiceImpl implements UserDetailsService {
                     .build();
         }
 
-        Role role = Role.valueOf(registerDTO.getRole().toUpperCase());
-
         User user = User.builder()
                 .username(registerDTO.getUsername())
                 .email(registerDTO.getEmail())
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
-                .role(role)
+                .role(Role.USER) // 🚨 always USER
                 .build();
 
         userRepository.save(user);
@@ -64,21 +64,19 @@ public class UserServiceImpl implements UserDetailsService {
                 .build();
     }
 
+    // Authenticate user
     public AuthResponseDTO authenticate(AuthDTO authDTO) {
         try {
-            // Use AuthenticationManager instead of manual password check
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authDTO.getEmail(), authDTO.getPassword())
             );
 
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
             User user = userRepository.findByEmail(authDTO.getEmail())
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-            // Generate token with userId and roles
-            List<String> roles = List.of(user.getRole().name());
-            String token = jwtUtil.generateToken(userDetails, user.getId(), roles);
+            String token = jwtUtil.generateToken((UserDetails) authentication.getPrincipal(),
+                    user.getId(),
+                    List.of(user.getRole().name()));
 
             return AuthResponseDTO.builder()
                     .token(token)

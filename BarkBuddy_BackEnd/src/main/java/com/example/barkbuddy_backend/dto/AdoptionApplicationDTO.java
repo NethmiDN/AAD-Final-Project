@@ -10,7 +10,7 @@ import lombok.*;
 public class AdoptionApplicationDTO {
     private Long id;
     private Long dogId;
-    private Long ownerId;
+    private Long adopterId;
     private String status;
     private Timestamp timestamp;
 }
