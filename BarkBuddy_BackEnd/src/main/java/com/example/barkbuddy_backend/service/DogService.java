@@ -5,7 +5,7 @@ import com.example.barkbuddy_backend.dto.DogDTO;
 import java.util.List;
 
 public interface DogService {
-    DogDTO createDog(DogDTO dogDTO, Long ownerId);
+    DogDTO createDog(DogDTO dogDTO, Long ownerId, byte[] imageBytes);
 
     // Get all dogs (admin or general)
     List<DogDTO> getAllDogs();
@@ -14,7 +14,7 @@ public interface DogService {
     List<DogDTO> getDogsByOwnerId(Long ownerId);
 
     // Update dog by id (must match ownerId)
-    DogDTO updateDog(Long dogId, DogDTO dogDTO, Long ownerId);
+    DogDTO updateDog(Long dogId, DogDTO dogDTO, Long ownerId, byte[] imageBytes);
 
     // Delete dog by id (must match ownerId)
     void deleteDog(Long dogId, Long ownerId);

@@ -26,8 +26,11 @@ public class Dog {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Dog_Status status; //    AVAILABLE, ADOPTED, PENDING
+    private Dog_Status status; // AVAILABLE, ADOPTED, PENDING
 
     @Column(nullable = false)
     private Long ownerId;
+
+    @Column(nullable = false)
+    private String imageUrl;  // saved after uploading to ImgBB
 }

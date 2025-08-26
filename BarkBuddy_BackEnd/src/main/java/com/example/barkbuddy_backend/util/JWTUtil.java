@@ -66,12 +66,6 @@ public class JWTUtil {
         return exp.before(new Date());
     }
 
-    /** Generate token including roles (without ROLE_ prefix) and userId. */
-    public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails.getUsername());
-    }
-
     /** Generate token with userId and roles - overloaded method */
     public String generateToken(UserDetails userDetails, Long userId, List<String> roles) {
         Map<String, Object> claims = new HashMap<>();

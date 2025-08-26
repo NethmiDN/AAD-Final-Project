@@ -13,4 +13,5 @@ public class DogDTO {
     private Integer age;
     private String status;
     private Long ownerId;
+    private String imageUrl;
 }

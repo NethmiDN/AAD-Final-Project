@@ -2,7 +2,6 @@ package com.example.barkbuddy_backend.dto;
 
 import lombok.*;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

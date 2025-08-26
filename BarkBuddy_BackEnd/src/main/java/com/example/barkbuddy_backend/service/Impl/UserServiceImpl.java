@@ -46,11 +46,13 @@ public class UserServiceImpl implements UserDetailsService {
                     .build();
         }
 
+        Role role = Role.valueOf(registerDTO.getRole().toUpperCase());
+
         User user = User.builder()
                 .username(registerDTO.getUsername())
                 .email(registerDTO.getEmail())
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
-                .role(Role.USER) // Default role as USER
+                .role(role)
                 .build();
 
         userRepository.save(user);
