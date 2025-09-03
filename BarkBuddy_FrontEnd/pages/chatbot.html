@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f8f9fa;
+    }
+    .chat-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+    }
+    .chat-box {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .message {
+      padding: 10px 15px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      max-width: 75%;
+    }
+    .user-msg {
+      background: #007bff;
+      color: white;
+      margin-left: auto;
+    }
+    .bot-msg {
+      background: #e9ecef;
+      margin-right: auto;
+    }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+      padding: 10px;
+    }
+    .chat-input input {
+      flex-grow: 1;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-box" id="chatBox"></div>
+
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type a message..." />
+      <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if(!message) return;
+
+    appendMessage("You", message, "user-msg");
+    input.value = "";
+
+    try {
+        const response = await fetch("http://localhost:8080/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(message)
+        });
+        const reply = await response.text();
+        appendMessage("Bot", reply, "bot-msg");
+    } catch(err) {
+        appendMessage("Bot", "Error connecting to server", "bot-msg");
+    }
+}
+  </script>
+</body>
+</html>

@@ -11,5 +11,4 @@ import java.util.List;
 public interface LostDogRepository extends JpaRepository<LostDog,Long> {
     LostDog save(LostDog lostDog);
     List<LostDog> findByDescription(LostStatus description);
-
 }

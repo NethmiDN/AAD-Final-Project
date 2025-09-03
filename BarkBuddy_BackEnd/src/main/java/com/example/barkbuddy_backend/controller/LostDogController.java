@@ -1,8 +1,11 @@
 package com.example.barkbuddy_backend.controller;
 
 import com.example.barkbuddy_backend.dto.LostDogDTO;
+import com.example.barkbuddy_backend.dto.LostDogDetailDTO;
+import com.example.barkbuddy_backend.entity.Dog;
 import com.example.barkbuddy_backend.entity.LostDog;
 import com.example.barkbuddy_backend.entity.LostStatus;
+import com.example.barkbuddy_backend.repo.DogRepository;
 import com.example.barkbuddy_backend.repo.LostDogRepository;
 import com.example.barkbuddy_backend.service.LostDogService;
 import com.example.barkbuddy_backend.util.JWTUtil;
@@ -10,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,6 +24,7 @@ public class LostDogController {
 
     private final LostDogService lostDogService;
     private final LostDogRepository lostDogRepository;
+    private final DogRepository dogRepository;
     private final JWTUtil jwtUtil;
 
     private Long getUserIdFromToken(String authHeader) {
@@ -44,8 +49,28 @@ public class LostDogController {
     }
 
     @GetMapping("/missing")
-    public List<LostDog> getMissingDogs() {
-        return lostDogRepository.findByDescription(LostStatus.MISSING);
-    }
+    public List<LostDogDetailDTO> getMissingDogs() {
+        List<LostDog> lostDogs = lostDogRepository.findByDescription(LostStatus.MISSING);
+        List<LostDogDetailDTO> result = new ArrayList<>();
 
+        for (LostDog lostDog : lostDogs) {
+            Dog dog = dogRepository.findById(lostDog.getDogId()).orElse(null);
+            if (dog != null) {
+                LostDogDetailDTO detailDTO = LostDogDetailDTO.builder()
+                        .id(lostDog.getId())
+                        .dogId(lostDog.getDogId())
+                        .userId(lostDog.getUserId())
+                        .lastSeenLocation(lostDog.getLastSeenLocation())
+                        .status(lostDog.getDescription().toString())
+                        .dogName(dog.getDogName())
+                        .breed(dog.getBreed())
+                        .age(dog.getAge())
+                        .imageUrl(dog.getImageUrl())
+                        .build();
+                result.add(detailDTO);
+            }
+        }
+
+        return result;
+    }
 }
