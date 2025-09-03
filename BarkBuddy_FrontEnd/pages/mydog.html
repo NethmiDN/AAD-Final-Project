@@ -50,21 +50,21 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <div class="sidebar d-flex flex-column">
-    <h4>� <strong>Bark Buddy</strong></h4>
+<!-- Sidebar -->
+<div class="sidebar d-flex flex-column">
+    <h4>🐶 <strong>Bark Buddy</strong></h4>
     <nav class="nav flex-column mt-4">
-      <a class="nav-link" href="#" data-page="" onclick="navigateToPage('')">🏠 Dashboard</a>
-      <a class="nav-link" href="#" data-page="adoptFriend.html">💛 Adopt a Friend</a>
-      <a class="nav-link" href="#" data-page="lostfound.html">📍 Lost & Found</a>
-      <a class="nav-link active" href="#" data-page="mydog.html">🐕 My Dogs</a>
-      <a class="nav-link" href="#" data-page="listings.html">📄 Listings & Requests</a>
-      <a class="nav-link mt-auto" href="#" data-page="setting.html">⚙️ Settings</a>
+    <a class="nav-link active" href="dashboard.html">🏠 Dashboard</a>
+    <a class="nav-link" href="adoptFriend.html">💛 Adopt a Friend</a>
+    <a class="nav-link" href="lostfound.html">📍 Lost & Found</a>
+    <a class="nav-link" href="mydog.html">🐕 My Dogs</a>
+    <a class="nav-link" href="listings.html">📄 Listings & Requests</a>
+    <a class="nav-link mt-auto" href="setting.html">⚙️ Settings</a>
     </nav>
   </div>
 
-  <!-- Main Content -->
-  <div class="main">
+<!-- Main Content -->
+<div class="main">
 
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h3>🐕 My Dogs</h3>
@@ -127,9 +127,33 @@
   </div>
 </div>
 
+<!-- Report Missing Modal -->
+<div class="modal fade" id="reportMissingModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="reportMissingForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Report Missing Dog</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="missingDogId">
+          <div class="mb-3">
+            <label class="form-label">Last Seen Location</label>
+            <input type="text" class="form-control" id="lastSeenLocation" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Report Missing</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div id="notification" class="notification"></div>
 
-  </div> <!-- End Main Content -->
+</div> <!-- End Main Content -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -139,8 +163,9 @@ const notification = document.getElementById('notification');
 const token = localStorage.getItem('accessToken');
 let editDogId = null;
 let dogModal = new bootstrap.Modal(document.getElementById('dogModal'));
+let reportModal = new bootstrap.Modal(document.getElementById('reportMissingModal'));
 
-// Check if user is logged in
+// Check login
 if (!token) {
   alert('Please log in first');
   window.location.href = 'login.html';
@@ -148,43 +173,23 @@ if (!token) {
 
 function navigateToPage(page) {
   if (page === '' || page === 'dashboard.html') {
-    // Get user role to determine which dashboard to return to
     const userRole = localStorage.getItem('userRole');
-    if (userRole === 'ADMIN') {
-      window.location.href = 'adminDashboard.html';
-    } else {
-      window.location.href = 'dashboard.html';
-    }
+    window.location.href = (userRole==='ADMIN')?'adminDashboard.html':'dashboard.html';
   } else {
-    // For other pages, navigate directly or show placeholder
     window.location.href = page;
   }
 }
 
-// Sidebar navigation functionality
+// Sidebar
 document.querySelectorAll('.sidebar .nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
-    
-    // Don't change active state if it's already active (current page)
     if (!this.classList.contains('active')) {
       const page = this.getAttribute('data-page');
-      if (page) {
-        navigateToPage(page);
-      }
+      if (page) navigateToPage(page);
     }
   });
 });
-
-function goBackToDashboard() {
-  // Get user role to determine which dashboard to return to
-  const userRole = localStorage.getItem('userRole');
-  if (userRole === 'ADMIN') {
-    window.location.href = 'adminDashboard.html';
-  } else {
-    window.location.href = 'dashboard.html';
-  }
-}
 
 function showNotification(msg, type='success'){
   notification.textContent = msg;
@@ -192,39 +197,26 @@ function showNotification(msg, type='success'){
   setTimeout(()=>{ notification.className = 'notification'; }, 3000);
 }
 
+// Load Dogs
 async function loadDogs(){
   try{
-    console.log('Loading dogs with token:', token ? 'Present' : 'Missing');
-    const res = await fetch('http://localhost:8080/api/dogs', {
-      headers: { 'Authorization':'Bearer ' + token }
-    });
-    
-    console.log('Load dogs response status:', res.status);
-    
-    if(!res.ok) {
-      const errorText = await res.text();
-      console.error('Load dogs error:', errorText);
-      throw new Error(`Failed to load dogs: ${res.status} ${errorText}`);
-    }
-    
+    const res = await fetch('http://localhost:8080/api/dogs', { headers:{'Authorization':'Bearer '+token} });
+    if(!res.ok) throw new Error(await res.text());
     const dogs = await res.json();
-    console.log('Loaded dogs:', dogs);
     renderDogs(dogs);
   }catch(e){
-    console.error('Load dogs error:', e);
+    console.error(e);
     dogsList.innerHTML = `<div class="text-center py-4">Failed to load dogs: ${e.message}</div>`;
   }
 }
 
+// Render Dogs
 function renderDogs(dogs){
-  dogsList.innerHTML = '';
-  if(!dogs || dogs.length===0){
-    dogsList.innerHTML = '<div class="text-center py-4">No dogs yet.</div>';
-    return;
-  }
+  dogsList.innerHTML='';
+  if(!dogs || dogs.length===0){ dogsList.innerHTML='<div class="text-center py-4">No dogs yet.</div>'; return; }
   dogs.forEach(dog=>{
     const statusClass='status-'+dog.status;
-    dogsList.innerHTML += `
+    dogsList.innerHTML+=`
       <div class="col-md-4">
         <div class="dog-card">
           <img src="${dog.imageUrl}" alt="${dog.dogName}">
@@ -234,7 +226,10 @@ function renderDogs(dogs){
           <span class="status-badge ${statusClass}">${dog.status}</span>
           <div class="mt-2">
             <button class="btn btn-sm btn-warning me-1" onclick="startEdit(${dog.id})"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-sm btn-danger" onclick="deleteDog(${dog.id})"><i class="fas fa-trash"></i></button>
+            <button class="btn btn-sm btn-danger me-1" onclick="deleteDog(${dog.id})"><i class="fas fa-trash"></i></button>
+            <button class="btn btn-sm btn-danger" onclick="openReportMissing(${dog.id})">
+              <i class="fas fa-exclamation-triangle"></i> Report Missing
+            </button>
           </div>
         </div>
       </div>
@@ -242,121 +237,85 @@ function renderDogs(dogs){
   });
 }
 
+// Dog Form Submit
 dogForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
-
   const dogData = {
     dogName: document.getElementById('dogName').value.trim(),
     breed: document.getElementById('breed').value.trim(),
     age: parseInt(document.getElementById('age').value, 10),
     status: document.getElementById('status').value
   };
-
-  // basic validation
   if(!dogData.dogName || !dogData.breed || isNaN(dogData.age) || !dogData.status){
-    showNotification('Please fill all fields', 'error');
-    return;
+    showNotification('Please fill all fields','error'); return;
   }
-
   const formData = new FormData();
-  // IMPORTANT: the JSON part MUST be called "dog"
-  formData.append('dog', new Blob([JSON.stringify(dogData)], { type: 'application/json' }));
-
-  const file = document.getElementById('dogImage').files[0];
-
-  if(!editDogId){
-    // CREATE requires image (your controller marks @RequestPart("image") as required)
-    if(!file){
-      showNotification('Please choose an image for the new dog', 'error');
-      return;
-    }
-  }
-  if(file){ 
-    formData.append('image', file); 
-    console.log('Image file added:', file.name, file.type, file.size);
-  }
+  formData.append('dog', new Blob([JSON.stringify(dogData)], {type:'application/json'}));
+  const file=document.getElementById('dogImage').files[0];
+  if(!editDogId && !file){ showNotification('Please choose an image','error'); return; }
+  if(file) formData.append('image',file);
 
   try{
-    const url = editDogId
-      ? `http://localhost:8080/api/dogs/${editDogId}`
-      : 'http://localhost:8080/api/dogs/saveDog';
-
-    const method = editDogId ? 'PUT' : 'POST';
-
-    console.log('Sending request to:', url);
-    console.log('Method:', method);
-    console.log('Token:', token ? 'Present' : 'Missing');
-    console.log('Dog data:', dogData);
-
-    const res = await fetch(url, {
-      method,
-      headers: { 
-        'Authorization': 'Bearer ' + token
-        // DO NOT set Content-Type - let browser set it with boundary for multipart
-      },
-      body: formData
-    });
-
-    console.log('Response status:', res.status);
-    console.log('Response headers:', res.headers);
-
-    if(!res.ok){
-      const errorText = await res.text();
-      console.error('Server error response:', errorText);
-      throw new Error(`Server error (${res.status}): ${errorText}`);
-    }
-
-    const result = await res.json();
-    console.log('Success response:', result);
-
-    showNotification(editDogId ? 'Dog updated!' : 'Dog added!');
-    dogForm.reset();
-    editDogId = null;
-    dogModal.hide();
+    const url = editDogId?`http://localhost:8080/api/dogs/${editDogId}`:'http://localhost:8080/api/dogs/saveDog';
+    const method = editDogId?'PUT':'POST';
+    const res = await fetch(url,{method,headers:{'Authorization':'Bearer '+token},body:formData});
+    if(!res.ok) throw new Error(await res.text());
+    showNotification(editDogId?'Dog updated!':'Dog added!');
+    dogForm.reset(); editDogId=null; dogModal.hide();
     loadDogs();
   }catch(err){
-    console.error('Error details:', err);
-    showNotification('Save failed: ' + err.message, 'error');
+    console.error(err);
+    showNotification('Save failed: '+err.message,'error');
   }
 });
 
-// Edit flow (prefill modal)
+// Edit Dog
 window.startEdit = async function(id){
   try{
-    const res = await fetch('http://localhost:8080/api/dogs', {
-      headers:{ 'Authorization':'Bearer ' + token }
-    });
+    const res = await fetch('http://localhost:8080/api/dogs',{headers:{'Authorization':'Bearer '+token}});
     const dogs = await res.json();
     const dog = dogs.find(d=>d.id===id);
     if(!dog) return;
-
-    editDogId = id;
-    document.getElementById('dogName').value = dog.dogName;
-    document.getElementById('breed').value = dog.breed;
-    document.getElementById('age').value = dog.age;
-    document.getElementById('status').value = dog.status;
-    // image optional on update; user can pick a new one
-
+    editDogId=id;
+    document.getElementById('dogName').value=dog.dogName;
+    document.getElementById('breed').value=dog.breed;
+    document.getElementById('age').value=dog.age;
+    document.getElementById('status').value=dog.status;
     dogModal.show();
-  }catch(e){
-    console.error(e);
-  }
+  }catch(e){ console.error(e); }
 }
 
+// Delete Dog
 window.deleteDog = function(id){
   if(confirm('Delete this dog?')){
-    fetch(`http://localhost:8080/api/dogs/${id}`, {
-      method:'DELETE',
-      headers:{ 'Authorization':'Bearer ' + token }
-    })
-    .then(res=>{
-      if(!res.ok) throw new Error();
-      showNotification('Dog deleted');
-      loadDogs();
-    })
-    .catch(()=> showNotification('Delete failed', 'error'));
+    fetch(`http://localhost:8080/api/dogs/${id}`,{method:'DELETE',headers:{'Authorization':'Bearer '+token}})
+    .then(res=>{if(!res.ok) throw new Error(); showNotification('Dog deleted'); loadDogs();})
+    .catch(()=>showNotification('Delete failed','error'));
   }
 }
+
+// Report Missing
+window.openReportMissing = function(dogId){
+  document.getElementById('missingDogId').value = dogId;
+  document.getElementById('lastSeenLocation').value = '';
+  reportModal.show();
+}
+
+document.getElementById('reportMissingForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const dogId = document.getElementById('missingDogId').value;
+  const lastSeenLocation = document.getElementById('lastSeenLocation').value.trim();
+  if(!lastSeenLocation){ showNotification('Please enter last seen location','error'); return; }
+
+  try{
+    const res = await fetch(`http://localhost:8080/api/lostdog/report?dogId=${dogId}&lastSeenLocation=${encodeURIComponent(lastSeenLocation)}`,{
+      method:'POST', headers:{'Authorization':'Bearer '+token}
+    });
+    if(!res.ok) throw new Error(await res.text());
+    showNotification('Dog reported missing successfully!','success');
+    reportModal.hide();
+  }catch(err){ console.error(err); showNotification('Error: '+err.message,'error'); }
+});
 
 loadDogs();
 </script>

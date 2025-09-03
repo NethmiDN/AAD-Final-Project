@@ -55,15 +55,15 @@
 <body>
 
   <!-- Sidebar -->
-  <div class="sidebar d-flex flex-column">
+<div class="sidebar d-flex flex-column">
     <h4>🐶 <strong>Bark Buddy</strong></h4>
     <nav class="nav flex-column mt-4">
-  <a class="nav-link active" href="#" data-page="">🏠 Dashboard</a>
-  <a class="nav-link" href="#" data-page="adoptFriend.html">💛 Adopt a Friend</a>
-  <a class="nav-link" href="#" data-page="lostfound.html">📍 Lost & Found</a>
-  <a class="nav-link" href="#" data-page="mydog.html">🐕 My Dogs</a>
-  <a class="nav-link" href="#" data-page="listings.html">📄 Listings & Requests</a>
-  <a class="nav-link mt-auto" href="#" data-page="setting.html">⚙️ Settings</a>
+    <a class="nav-link active" href="dashboard.html">🏠 Dashboard</a>
+    <a class="nav-link" href="adoptFriend.html">💛 Adopt a Friend</a>
+    <a class="nav-link" href="lostfound.html">📍 Lost & Found</a>
+    <a class="nav-link" href="mydog.html">🐕 My Dogs</a>
+    <a class="nav-link" href="listings.html">📄 Listings & Requests</a>
+    <a class="nav-link mt-auto" href="setting.html">⚙️ Settings</a>
     </nav>
   </div>
 
@@ -121,33 +121,7 @@
       alert('Please log in first');
       window.location.href = 'login.html';
     }
-
-    // Sidebar active state and navigation
-    document.querySelectorAll('.sidebar .nav-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        
-        const page = this.getAttribute('data-page');
-        if (page) {
-          // Navigate to the actual page instead of loading content via AJAX
-          if (page === 'mydog.html') {
-            window.location.href = 'mydog.html';
-          } else {
-            // For other pages, you can implement similar navigation
-            // For now, show a placeholder
-            document.getElementById('content-area').innerHTML = `
-              <div class="text-center py-5">
-                <h3>Coming Soon</h3>
-                <p>The ${page.replace('.html', '')} page will be available soon.</p>
-                <button class="btn btn-primary" onclick="location.reload()">Back to Dashboard</button>
-              </div>
-            `;
-          }
-        }
-      });
-    });
+    // No sidebar JS needed, links are now direct
   </script>
 </body>
 </html>

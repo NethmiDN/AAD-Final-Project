@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll() // Keep this for any future API auth endpoints
                         .requestMatchers("/auth/barkbuddy/**").permitAll() // Add this for the actual auth controller
                         .requestMatchers("/api/dogs/**").authenticated() // Require authentication for dog endpoints
+                        .requestMatchers("/api/lostdog/**").permitAll() // Require authentication for lost dog endpoints
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

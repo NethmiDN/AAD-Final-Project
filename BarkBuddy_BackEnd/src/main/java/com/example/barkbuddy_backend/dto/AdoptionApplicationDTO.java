@@ -1,6 +1,5 @@
 package com.example.barkbuddy_backend.dto;
 
-import com.example.barkbuddy_backend.entity.Adoption_Status;
 import java.sql.Timestamp;
 import lombok.*;
 
