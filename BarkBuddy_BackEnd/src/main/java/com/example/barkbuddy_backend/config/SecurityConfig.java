@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/dogs/*/image").permitAll() // Allow public access to dog images
                         .requestMatchers("/api/dogs/**").authenticated() // Require authentication for other dog operations
                         .requestMatchers("/api/lostdogs/**").permitAll() // Permit all for lost dogs endpoints
+                        .requestMatchers("/api/adoption/**").permitAll() // Permit all for adoption endpoints
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

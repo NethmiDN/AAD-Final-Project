@@ -8,78 +8,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link rel="stylesheet" href="../assets/css/navigation.css"/>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #FFDCA6, #FBB8E5);
-      min-height: 100vh;
-      margin: 0;
-    }
-    .main {
-      margin-left: 240px;
-      padding: 2rem;
-      min-height: 100vh;
-    }
-    .listing-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      padding: 20px;
-      margin-bottom: 20px;
-      transition: all 0.3s ease;
-    }
-    .listing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    }
-    .status-badge {
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-    .status-active {
-      background-color: rgba(28, 200, 138, 0.2);
-      color: #1cc88a;
-    }
-    .status-pending {
-      background-color: rgba(246, 194, 62, 0.2);
-      color: #f6c23e;
-    }
-    .status-closed {
-      background-color: rgba(231, 74, 59, 0.2);
-      color: #e74a3b;
-    }
-    .empty-state {
-      text-align: center;
-      padding: 3rem;
-      color: #666;
-    }
-    .empty-state i {
-      font-size: 4rem;
-      color: #FEC83C;
-      margin-bottom: 1rem;
-    }
-    .tab-link {
-      background: none !important;
-      border: none !important;
-      transition: all 0.3s ease !important;
-    }
-    .tab-link:hover {
-      background-color: rgba(254, 200, 60, 0.1) !important;
-      color: #FEC83C !important;
-    }
-    .tab-link.active {
-      background-color: #FEC83C !important;
-      color: #2C2A7B !important;
-      font-weight: bold !important;
-    }
-    @media (max-width: 768px) {
-      .main {
-        margin-left: 0;
-        padding: 1rem;
-      }
-    }
+    body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to bottom right, #FFDCA6, #FBB8E5); min-height: 100vh; margin: 0; }
+    .main { margin-left: 240px; padding: 2rem; min-height: 100vh; }
+    .listing-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); padding: 20px; margin-bottom: 20px; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center; }
+    .listing-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+    .status-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+    .status-active { background-color: rgba(28, 200, 138, 0.2); color: #1cc88a; }
+    .status-pending { background-color: rgba(246, 194, 62, 0.2); color: #f6c23e; }
+    .status-closed { background-color: rgba(231, 74, 59, 0.2); color: #e74a3b; }
+    .empty-state { text-align: center; padding: 3rem; color: #666; }
+    .empty-state i { font-size: 4rem; color: #FEC83C; margin-bottom: 1rem; }
+    .tab-link { background: none !important; border: none !important; transition: all 0.3s ease !important; }
+    .tab-link:hover { background-color: rgba(254, 200, 60, 0.1) !important; color: #FEC83C !important; }
+    .tab-link.active { background-color: #FEC83C !important; color: #2C2A7B !important; font-weight: bold !important; }
+    @media (max-width: 768px) { .main { margin-left: 0; padding: 1rem; } }
   </style>
 </head>
 <body>
@@ -138,6 +80,8 @@
 
     <!-- Tab Content -->
     <div class="tab-content" id="filterTabsContent">
+
+      <!-- All Listings Tab -->
       <div class="tab-pane fade show active" id="all" role="tabpanel">
         <div id="allListings">
           <div class="empty-state">
@@ -151,17 +95,12 @@
         </div>
       </div>
       
+      <!-- Adoption Requests Tab -->
       <div class="tab-pane fade" id="adoption" role="tabpanel">
-        <div class="empty-state">
-          <i class="fas fa-heart"></i>
-          <h4>No Adoption Requests</h4>
-          <p>No adoption requests found. Check the "Adopt a Friend" section to see available dogs.</p>
-          <button class="btn btn-warning" onclick="window.barkBuddyNav.navigateToAdopt()">
-            <i class="fas fa-paw"></i> View Available Dogs
-          </button>
-        </div>
+        <div id="adoptionRequestsContainer" class="mb-3"></div>
       </div>
       
+      <!-- Lost Dog Reports Tab -->
       <div class="tab-pane fade" id="lost" role="tabpanel">
         <div class="empty-state">
           <i class="fas fa-search"></i>
@@ -173,6 +112,7 @@
         </div>
       </div>
       
+      <!-- My Listings Tab -->
       <div class="tab-pane fade" id="my" role="tabpanel">
         <div class="empty-state">
           <i class="fas fa-user"></i>
@@ -202,7 +142,6 @@
             <i class="fas fa-tools fa-3x text-warning mb-3"></i>
             <h4>Feature Under Development</h4>
             <p>This feature is currently being developed and will be available soon!</p>
-            <p>In the meantime, you can:</p>
             <div class="d-grid gap-2">
               <button class="btn btn-primary" onclick="window.barkBuddyNav.navigateToAdopt()">
                 <i class="fas fa-heart"></i> Browse Dogs for Adoption
@@ -218,20 +157,18 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/navigation.js"></script>
   <script>
-    // Listings page functionality
     const comingSoonModal = new bootstrap.Modal(document.getElementById('comingSoonModal'));
 
-    function refreshListings() {
-      // Show loading state
-      const refreshBtn = event.target.closest('button');
+function refreshListings(event) {
+    const refreshBtn = event.target.closest('button');
       const originalText = refreshBtn.innerHTML;
       refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
-      
       setTimeout(() => {
         refreshBtn.innerHTML = originalText;
         showNotification('No new listings found. Feature coming soon!', 'info');
@@ -243,62 +180,75 @@
     }
 
     function showNotification(message, type = 'info') {
-      // Create notification
       const notification = document.createElement('div');
       notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        border-radius: 10px;
-        color: white;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all 0.3s ease;
-        z-index: 1001;
-        font-weight: 600;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        max-width: 300px;
-      `;
-      
-      const colors = {
-        success: '#1cc88a',
-        error: '#e74a3b',
-        info: '#36b9cc',
-        warning: '#f6c23e'
-      };
-      
+        position: fixed; top: 20px; right: 20px; padding: 15px 20px; border-radius: 10px;
+        color: white; opacity: 0; transform: translateY(-20px); transition: all 0.3s ease;
+        z-index: 1001; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.2); max-width: 300px;`;
+      const colors = { success: '#1cc88a', error: '#e74a3b', info: '#36b9cc', warning: '#f6c23e' };
       notification.style.backgroundColor = colors[type] || colors.info;
       notification.textContent = message;
       document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        notification.style.opacity = '1';
-        notification.style.transform = 'translateY(0)';
-      }, 100);
-      
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateY(-20px)';
-        setTimeout(() => notification.remove(), 300);
-      }, 3000);
+      setTimeout(() => { notification.style.opacity = '1'; notification.style.transform = 'translateY(0)'; }, 100);
+      setTimeout(() => { notification.style.opacity = '0'; notification.style.transform = 'translateY(-20px)'; setTimeout(() => notification.remove(), 300); }, 3000);
     }
 
-    // Initialize page
+    // Adoption Requests: load only requests for my dogs
+    async function loadAdoptionRequests() {
+      const container = document.getElementById('adoptionRequestsContainer');
+      container.innerHTML = '<p>Loading...</p>';
+      const token = localStorage.getItem('token'); 
+      try {
+        const res = await fetch('http://localhost:8080/api/adoption/my-dogs', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error(res.status);
+        const requests = await res.json();
+        if (requests.length === 0) {
+          container.innerHTML = `<div class="empty-state"><i class="fas fa-heart"></i><h4>No Adoption Requests</h4><p>No adoption requests for your dogs yet.</p></div>`;
+          return;
+        }
+        container.innerHTML = '';
+        requests.forEach(r => {
+          const card = document.createElement('div');
+          card.className = 'listing-card';
+          card.innerHTML = `
+            <div>
+              <strong>Dog:</strong> ${r.dogName} <br>
+              <strong>Adopter:</strong> ${r.adopterName} <br>
+              <strong>Status:</strong> <span class="badge ${
+                r.status === 'PENDING' ? 'bg-warning' :
+                r.status === 'APPROVED' ? 'bg-success' : 'bg-danger'
+              }">${r.status}</span>
+            </div>
+            <div>
+              ${r.status === 'PENDING' ? `
+                <button class="btn btn-success btn-sm me-2" onclick="updateRequestStatus(${r.requestId}, 'APPROVED')">Approve</button>
+                <button class="btn btn-danger btn-sm" onclick="updateRequestStatus(${r.requestId}, 'REJECTED')">Reject</button>
+              ` : ''}
+            </div>`;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        container.innerHTML = `<p class="text-danger">Failed to load requests (${err})</p>`;
+      }
+    }
+
+    async function updateRequestStatus(id, status) {
+      const token = localStorage.getItem('token');
+      try {
+        const res = await fetch(`http://localhost:8080/api/adoption/update-status/${id}?status=${status}`, {
+          method: 'PUT',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error(res.status);
+        loadAdoptionRequests(); // refresh after update
+      } catch(err) { alert('Failed to update status: ' + err); }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       console.log('Listings page loaded');
-      
-      // Add some interactive effects to cards (when they exist)
-      const cards = document.querySelectorAll('.listing-card');
-      cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-5px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
+      loadAdoptionRequests();
     });
   </script>
 </body>
