@@ -1,58 +1,76 @@
 package com.example.barkbuddy_backend.service;
 
-//import com.fasterxml.jackson.databind.JsonNode;
-//import com.theokanning.openai.service.OpenAiService;
-//import com.theokanning.openai.completion.chat.ChatCompletionRequest;
-//import com.theokanning.openai.completion.chat.ChatMessage;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.http.*;
-//import org.springframework.stereotype.Service;
-//import org.springframework.web.client.RestTemplate;
-//
-//import java.util.*;
-//
-//@Service
+import java.util.HashMap;
+import java.util.Map;
+
+@Service
 public class ChatBotService {
 
-//    private final String apiKey;
-//
-//    public ChatBotService(@Value("${openai.api.key}") String apiKey) {
-//        this.apiKey = apiKey;
-//    }
-//
-//    public String ask(String prompt) {
-//        String url = "https://api.openai.com/v1/chat/completions";
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//
-//        // Request body
-//        Map<String, Object> body = new HashMap<>();
-//        body.put("model", "gpt-3.5-turbo");
-//        body.put("max_tokens", 200);
-//        body.put("messages", new Object[]{Map.of("role", "user", "content", prompt)});
-//
-//        // Headers
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.setBearerAuth(apiKey);
-//
-//        HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
-//
-//        ResponseEntity<JsonNode> response = restTemplate.exchange(
-//                url,
-//                HttpMethod.POST,
-//                request,
-//                JsonNode.class
-//        );
-//
-//        if (response.getBody() != null) {
-//            JsonNode choices = response.getBody().get("choices");
-//            if (choices.isArray() && choices.size() > 0) {
-//                return choices.get(0).get("message").get("content").asText();
-//            }
-//        }
-//
-//        return "Sorry, no response from AI.";
-//    }
+    private static final Logger logger = LoggerFactory.getLogger(ChatBotService.class);
+    private final RestTemplate restTemplate;
+    private final String ollamaUrl;
+    private final String model;
+    private final ObjectMapper objectMapper;
+
+    public ChatBotService(@Value("${ollama.api.url:http://localhost:11434/api/generate}") String ollamaUrl,
+                         @Value("${ollama.model:llama3}") String model) {
+        this.restTemplate = new RestTemplate();
+        this.ollamaUrl = ollamaUrl;
+        this.model = model;
+        this.objectMapper = new ObjectMapper();
+        logger.info("ChatBotService initialized with Ollama URL: {} and model: {}", ollamaUrl, model);
+    }
+
+    public String ask(String prompt) {
+        logger.info("Received chat request with prompt: {}", prompt);
+
+        try {
+            // Create system context for BarkBuddy
+            String systemPrompt = "You are a helpful assistant for BarkBuddy, a dog adoption and care platform. " +
+                                "Provide helpful information about dog care, adoption, and related topics. " +
+                                "Keep responses concise and friendly. User question: " + prompt;
+
+            // Prepare request body for Ollama API
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("model", model);
+            requestBody.put("prompt", systemPrompt);
+            requestBody.put("stream", false); // Get complete response at once
+
+            // Set headers
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
+
+            logger.info("Sending request to Ollama at: {} with model: {}", ollamaUrl, model);
+
+            // Call Ollama API
+            ResponseEntity<String> response = restTemplate.postForEntity(ollamaUrl, entity, String.class);
+
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                // Parse response
+                JsonNode responseJson = objectMapper.readTree(response.getBody());
+                String aiResponse = responseJson.get("response").asText();
+
+                logger.info("Successfully received response from Ollama");
+                return aiResponse;
+            } else {
+                logger.error("Ollama API returned status: {}", response.getStatusCode());
+                return "I'm sorry, I'm having trouble connecting to the AI service. Please try again later.";
+            }
+
+        } catch (Exception e) {
+            logger.error("Error occurred while processing chat request: {}", e.getMessage(), e);
+            return "I'm sorry, I encountered an error while processing your request. Please make sure Ollama is running and try again.";
+        }
+    }
 }

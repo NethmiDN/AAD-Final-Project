@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Key Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        button { padding: 10px 20px; margin: 10px 0; }
+        .response { margin-top: 20px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9; }
+        .error { background-color: #ffe6e6; border-color: #ff9999; }
+        .success { background-color: #e6ffe6; border-color: #99ff99; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OpenAI API Key Test</h1>
+        <p>Use this page to test if your OpenAI API key is working correctly.</p>
+
+        <button onclick="testApiKey()">Test API Key</button>
+
+        <div id="response" class="response" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function testApiKey() {
+            const responseDiv = document.getElementById('response');
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = 'Testing API key...';
+            responseDiv.className = 'response';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: 'Hello, this is a test message'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    responseDiv.innerHTML = `<strong>✅ Success!</strong><br>Response: ${data.response}`;
+                    responseDiv.className = 'response success';
+                } else {
+                    responseDiv.innerHTML = `<strong>❌ Error!</strong><br>Status: ${response.status}<br>Error: ${data.error || 'Unknown error'}`;
+                    responseDiv.className = 'response error';
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<strong>❌ Network Error!</strong><br>Error: ${error.message}`;
+                responseDiv.className = 'response error';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -35,7 +35,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/hello/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll() // Keep this for any future API auth endpoints
                         .requestMatchers("/auth/barkbuddy/**").permitAll() // Add this for the actual auth controller
-                        .requestMatchers("/api/dogs/**").authenticated() // Require authentication for dog endpoints
+                        .requestMatchers("/api/chat/**").permitAll() // Allow chatbot access without authentication
+                        .requestMatchers("/api/dogs/all").permitAll() // Allow public access to view all dogs
+                        .requestMatchers("/api/dogs/*/image").permitAll() // Allow public access to dog images
+                        .requestMatchers("/api/dogs/**").authenticated() // Require authentication for other dog operations
                         .requestMatchers("/api/lostdogs/**").permitAll() // Permit all for lost dogs endpoints
                         .anyRequest().authenticated()
                 )

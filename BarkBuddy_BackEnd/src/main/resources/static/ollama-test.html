@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ollama Chatbot Test - BarkBuddy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .setup-steps {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .step {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: white;
+            border-left: 4px solid #007bff;
+            border-radius: 3px;
+        }
+        button {
+            padding: 12px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-success { background-color: #28a745; color: white; }
+        .btn-warning { background-color: #ffc107; color: black; }
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+        .error { background-color: #ffe6e6; border-color: #ff9999; }
+        .success { background-color: #e6ffe6; border-color: #99ff99; }
+        .loading { background-color: #fff3cd; border-color: #ffeaa7; }
+        .chat-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.online { background-color: #d4edda; color: #155724; }
+        .status.offline { background-color: #f8d7da; color: #721c24; }
+        .code-block {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 3px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Ollama Chatbot Test - BarkBuddy</h1>
+
+        <div class="setup-steps">
+            <h2>📋 Ollama Setup Guide</h2>
+            <div class="step">
+                <strong>Step 1:</strong> Download and install Ollama from <a href="https://ollama.com" target="_blank">https://ollama.com</a>
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Open Command Prompt/Terminal and run:
+                <div class="code-block">ollama pull llama3</div>
+                This will download the Llama 3 model (about 4.7GB)
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Start Ollama server:
+                <div class="code-block">ollama serve</div>
+                Keep this terminal window open while using the chatbot
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> Test if Ollama is working:
+                <div class="code-block">ollama run llama3</div>
+                You should be able to chat with the model directly
+            </div>
+        </div>
+
+        <div class="status" id="ollamaStatus">
+            🔄 Checking Ollama connection...
+        </div>
+
+        <div style="margin: 20px 0;">
+            <button class="btn-warning" onclick="checkOllamaStatus()">🔍 Check Ollama Status</button>
+            <button class="btn-primary" onclick="testDirectOllama()">🧪 Test Direct Ollama API</button>
+            <button class="btn-success" onclick="testChatbot()">💬 Test BarkBuddy Chatbot</button>
+        </div>
+
+        <div>
+            <h3>💬 Chat with BarkBuddy AI Assistant</h3>
+            <input type="text" id="chatInput" class="chat-input" placeholder="Ask something about dogs, adoption, or pet care..."
+                   onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="btn-primary" onclick="sendMessage()">Send Message</button>
+        </div>
+
+        <div id="response" class="response" style="display: none;"></div>
+    </div>
+
+    <script>
+        let isOllamaOnline = false;
+
+        async function checkOllamaStatus() {
+            const statusDiv = document.getElementById('ollamaStatus');
+            statusDiv.innerHTML = '🔄 Checking Ollama connection...';
+            statusDiv.className = 'status';
+
+            try {
+                const response = await fetch('http://localhost:11434/api/tags', {
+                    method: 'GET',
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    isOllamaOnline = true;
+                    statusDiv.innerHTML = '✅ Ollama is running! Available models: ' +
+                        data.models.map(m => m.name).join(', ');
+                    statusDiv.className = 'status online';
+                } else {
+                    throw new Error('Ollama not responding');
+                }
+            } catch (error) {
+                isOllamaOnline = false;
+                statusDiv.innerHTML = '❌ Ollama is not running. Please start Ollama server: <code>ollama serve</code>';
+                statusDiv.className = 'status offline';
+            }
+        }
+
+        async function testDirectOllama() {
+            const responseDiv = document.getElementById('response');
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = '🧪 Testing direct Ollama API...';
+            responseDiv.className = 'response loading';
+
+            try {
+                const response = await fetch('http://localhost:11434/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'llama3',
+                        prompt: 'Say hello and introduce yourself as a BarkBuddy AI assistant',
+                        stream: false
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    responseDiv.innerHTML = `<strong>✅ Direct Ollama API Test Success!</strong><br><br><strong>Response:</strong><br>${data.response}`;
+                    responseDiv.className = 'response success';
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<strong>❌ Direct Ollama API Test Failed!</strong><br>Error: ${error.message}<br><br>Make sure Ollama is running: <code>ollama serve</code>`;
+                responseDiv.className = 'response error';
+            }
+        }
+
+        async function testChatbot() {
+            const responseDiv = document.getElementById('response');
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = '🤖 Testing BarkBuddy chatbot integration...';
+            responseDiv.className = 'response loading';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'Hello! Can you help me with dog adoption advice?'
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    responseDiv.innerHTML = `<strong>✅ BarkBuddy Chatbot Test Success!</strong><br><br><strong>Response:</strong><br>${data.response}`;
+                    responseDiv.className = 'response success';
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP ${response.status}`);
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<strong>❌ BarkBuddy Chatbot Test Failed!</strong><br>Error: ${error.message}`;
+                responseDiv.className = 'response error';
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const responseDiv = document.getElementById('response');
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = `<strong>You:</strong> ${message}<br><br>🤖 BarkBuddy AI is thinking...`;
+            responseDiv.className = 'response loading';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    responseDiv.innerHTML = `<strong>You:</strong> ${message}<br><br><strong>🐕 BarkBuddy AI:</strong><br>${data.response}`;
+                    responseDiv.className = 'response success';
+                    input.value = '';
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP ${response.status}`);
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<strong>❌ Error!</strong><br>${error.message}`;
+                responseDiv.className = 'response error';
+            }
+        }
+
+        // Check Ollama status on page load
+        window.onload = function() {
+            checkOllamaStatus();
+        };
+    </script>
+</body>
+</html>

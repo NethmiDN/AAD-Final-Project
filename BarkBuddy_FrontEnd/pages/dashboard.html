@@ -57,6 +57,52 @@
       transform: scale(1.05);
     }
     
+    .dog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    .dog-card .badge {
+      font-size: 0.75rem;
+      border-radius: 15px;
+    }
+    
+    .spinner-border-custom {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    #loading-dogs {
+      color: #666;
+    }
+    
+    .alert-info {
+      background-color: rgba(13, 110, 253, 0.1);
+      border-color: rgba(13, 110, 253, 0.2);
+    }
+    
+    .alert-warning {
+      background-color: rgba(255, 193, 7, 0.1);
+      border-color: rgba(255, 193, 7, 0.2);
+    }
+    
+    /* Dog card hover effects */
+    .dog-card:hover .badge {
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+    
+    /* Status-specific styling */
+    .dog-card.pending {
+      border: 2px dashed #ffc107;
+    }
+    
+    .dog-card.available {
+      border: 2px solid #28a745;
+    }
+    
     /* Responsive improvements */
     @media (max-width: 768px) {
       .sidebar {
@@ -73,6 +119,14 @@
         margin-right: 0;
         margin-bottom: 1rem;
       }
+      
+      .dog-card {
+        margin-bottom: 2rem;
+      }
+      
+      #dogs-container {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -87,6 +141,7 @@
     <a class="nav-link" href="lostfound.html" data-page="lostfound">📍 Lost & Found</a>
     <a class="nav-link" href="mydog.html" data-page="mydog">🐕 My Dogs</a>
     <a class="nav-link" href="listings.html" data-page="listings">📄 Listings & Requests</a>
+    <a class="nav-link" href="setting.html" data-page="setting">⚙️ Setting</a>
     <a class="nav-link mt-auto" href="#" onclick="window.barkBuddyNav.logout(); return false;">🚪 Logout</a>
     </nav>
   </div>
@@ -104,33 +159,23 @@
       </div>
       <div>
         <h3 class="text-center fw-bold mb-4">🐾 Featured Dogs for Adoption</h3>
-        <div class="row justify-content-center g-4">
-          <!-- Dog 1 -->
-          <div class="col-md-3">
-            <div class="dog-card">
-              <img src="https://images.unsplash.com/photo-1601758174623-0c6f152c3b02" class="card-img-top rounded" alt="Buddy">
-              <h5 class="mt-3">Buddy</h5>
-              <p class="text-muted">Golden Retriever · 2 Years</p>
-              <button class="btn btn-warning" onclick="window.barkBuddyNav.navigateToAdopt()">Adopt Me!</button>
-            </div>
+        <div id="loading-dogs" class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading dogs...</span>
           </div>
-          <!-- Dog 2 -->
-          <div class="col-md-3">
-            <div class="dog-card">
-              <img src="https://images.unsplash.com/photo-1598133894009-c6f0a1efb5bb" class="card-img-top rounded" alt="Max">
-              <h5 class="mt-3">Max</h5>
-              <p class="text-muted">Labrador · 1.5 Years</p>
-              <button class="btn btn-warning" onclick="window.barkBuddyNav.navigateToAdopt()">Adopt Me!</button>
-            </div>
-          </div>
-          <!-- Dog 3 -->
-          <div class="col-md-3">
-            <div class="dog-card">
-              <img src="https://images.unsplash.com/photo-1603349206294-95e70dfe3d1c" class="card-img-top rounded" alt="Bella">
-              <h5 class="mt-3">Bella</h5>
-              <p class="text-muted">Beagle · 3 Years</p>
-              <button class="btn btn-warning" onclick="window.barkBuddyNav.navigateToAdopt()">Adopt Me!</button>
-            </div>
+          <p class="mt-3">Loading adorable dogs...</p>
+        </div>
+        <div id="dogs-container" class="row justify-content-center g-4" style="display: none;">
+          <!-- Dogs will be loaded dynamically here -->
+        </div>
+        <div id="no-dogs-message" class="text-center py-5" style="display: none;">
+          <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle"></i>
+            <h5>No Dogs Available</h5>
+            <p>There are currently no dogs available for adoption. Check back soon!</p>
+            <button class="btn btn-primary" onclick="location.reload()">
+              <i class="fas fa-refresh"></i> Refresh
+            </button>
           </div>
         </div>
       </div>
@@ -139,12 +184,311 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/navigation.js"></script>
+  <!-- BarkBuddy AI Chatbot Widget -->
+  <script src="../assets/js/chatbot-widget.js"></script>
   <script>
+    // Configuration
+    const API_BASE_URL = 'http://localhost:8080/api/dogs';
+    
     // Additional dashboard-specific functionality can go here
     document.addEventListener('DOMContentLoaded', function() {
       // Any dashboard-specific initialization
       console.log('Dashboard loaded successfully');
+      
+      // Load dogs data
+      loadFeaturedDogs();
+      
+      // Initialize chatbot with custom welcome message after a delay
+      setTimeout(() => {
+        if (window.barkBuddyChatbot && !localStorage.getItem('chatbot-welcomed')) {
+          // Show a subtle notification about the chatbot
+          showChatbotWelcome();
+          localStorage.setItem('chatbot-welcomed', 'true');
+        }
+      }, 3000);
     });
+
+    async function loadFeaturedDogs() {
+      const loadingElement = document.getElementById('loading-dogs');
+      const dogsContainer = document.getElementById('dogs-container');
+      const noDogsMessage = document.getElementById('no-dogs-message');
+      
+      try {
+        console.log('Fetching dogs from API...');
+        
+        const response = await fetch(`${API_BASE_URL}/all`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const allDogs = await response.json();
+        console.log('Fetched dogs:', allDogs);
+
+        // Filter dogs with AVAILABLE and PENDING status
+        const availableDogs = allDogs.filter(dog => 
+          dog.status === 'AVAILABLE' || dog.status === 'PENDING'
+        );
+
+        // Hide loading spinner
+        loadingElement.style.display = 'none';
+
+        if (availableDogs.length === 0) {
+          // Show no dogs message
+          noDogsMessage.style.display = 'block';
+        } else {
+          // Display dogs
+          displayDogs(availableDogs.slice(0, 6)); // Show first 6 dogs
+          dogsContainer.style.display = 'flex';
+        }
+
+      } catch (error) {
+        console.error('Error loading dogs:', error);
+        loadingElement.style.display = 'none';
+        
+        // Show error message with fallback data
+        showErrorWithFallback();
+      }
+    }
+
+    function displayDogs(dogs) {
+      const dogsContainer = document.getElementById('dogs-container');
+      dogsContainer.innerHTML = '';
+
+      dogs.forEach(dog => {
+        const dogCard = createDogCard(dog);
+        dogsContainer.appendChild(dogCard);
+      });
+    }
+
+    function createDogCard(dog) {
+      const colDiv = document.createElement('div');
+      colDiv.className = 'col-md-4 col-lg-3 mb-4';
+      
+      // Determine status badge and button text
+      const statusBadge = getStatusBadge(dog.status);
+      const buttonText = dog.status === 'PENDING' ? 'View Details' : 'Adopt Me!';
+      const buttonClass = dog.status === 'PENDING' ? 'btn btn-info' : 'btn btn-warning';
+      
+      // Handle missing image
+      const imageUrl = dog.imageUrl || 'https://images.unsplash.com/photo-1601758174623-0c6f152c3b02?w=300&h=200&fit=crop';
+      
+      colDiv.innerHTML = `
+        <div class="dog-card position-relative">
+          ${statusBadge}
+          <img src="${imageUrl}" 
+               class="card-img-top rounded" 
+               alt="${dog.dogName || 'Adorable Dog'}"
+               onerror="this.src='https://images.unsplash.com/photo-1601758174623-0c6f152c3b02?w=300&h=200&fit=crop'">
+          <h5 class="mt-3">${dog.dogName || 'Unknown Name'}</h5>
+          <p class="text-muted">
+            ${dog.breed || 'Mixed Breed'} · ${dog.age ? dog.age + ' Years' : 'Age Unknown'}
+          </p>
+          <button class="${buttonClass}" 
+                  onclick="handleDogAction(${dog.id}, '${dog.status}', '${dog.dogName || 'this dog'}')">
+            ${buttonText}
+          </button>
+        </div>
+      `;
+      
+      return colDiv;
+    }
+
+    function getStatusBadge(status) {
+      if (status === 'PENDING') {
+        return `
+          <span class="position-absolute top-0 end-0 badge bg-warning text-dark m-2">
+            <i class="fas fa-clock"></i> Pending
+          </span>
+        `;
+      } else if (status === 'AVAILABLE') {
+        return `
+          <span class="position-absolute top-0 end-0 badge bg-success m-2">
+            <i class="fas fa-heart"></i> Available
+          </span>
+        `;
+      }
+      return '';
+    }
+
+    function handleDogAction(dogId, status, dogName) {
+      if (status === 'PENDING') {
+        // Show pending message
+        showNotification(`${dogName} is currently pending adoption. Please check back later!`, 'info');
+        
+        // Ask chatbot about the dog if available
+        if (window.barkBuddyChatbot) {
+          setTimeout(() => {
+            window.barkBuddyChatbot.open();
+            setTimeout(() => {
+              window.barkBuddyChatbot.sendCustomMessage(`Tell me about ${dogName} who is pending adoption`);
+            }, 500);
+          }, 2000);
+        }
+      } else {
+        // Navigate to adoption page
+        showNotification(`Let's help you adopt ${dogName}! 🐕`, 'success');
+        setTimeout(() => {
+          window.barkBuddyNav.navigateToAdopt();
+        }, 1500);
+      }
+    }
+
+    function showErrorWithFallback() {
+      const dogsContainer = document.getElementById('dogs-container');
+      const noDogsMessage = document.getElementById('no-dogs-message');
+      
+      // Create error message with fallback dogs
+      dogsContainer.innerHTML = `
+        <div class="col-12">
+          <div class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Connection Issue</strong> - Unable to load live dog data. Showing sample dogs below.
+            <button class="btn btn-sm btn-outline-primary ms-2" onclick="loadFeaturedDogs()">
+              <i class="fas fa-refresh"></i> Try Again
+            </button>
+          </div>
+        </div>
+      `;
+      
+      // Add fallback dogs
+      const fallbackDogs = [
+        {
+          id: 1,
+          dogName: 'Buddy',
+          breed: 'Golden Retriever',
+          age: 2,
+          status: 'AVAILABLE',
+          imageUrl: 'https://images.unsplash.com/photo-1601758174623-0c6f152c3b02?w=300&h=200&fit=crop'
+        },
+        {
+          id: 2,
+          dogName: 'Max',
+          breed: 'Labrador',
+          age: 1,
+          status: 'PENDING',
+          imageUrl: 'https://images.unsplash.com/photo-1598133894009-c6f0a1efb5bb?w=300&h=200&fit=crop'
+        },
+        {
+          id: 3,
+          dogName: 'Bella',
+          breed: 'Beagle',
+          age: 3,
+          status: 'AVAILABLE',
+          imageUrl: 'https://images.unsplash.com/photo-1603349206294-95e70dfe3d1c?w=300&h=200&fit=crop'
+        }
+      ];
+      
+      fallbackDogs.forEach(dog => {
+        const dogCard = createDogCard(dog);
+        dogsContainer.appendChild(dogCard);
+      });
+      
+      dogsContainer.style.display = 'flex';
+    }
+
+    function showNotification(message, type = 'info') {
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = `alert alert-${type} position-fixed`;
+      notification.style.cssText = `
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        max-width: 400px;
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      `;
+      
+      notification.innerHTML = `
+        <div class="d-flex align-items-center">
+          <div class="flex-grow-1">${message}</div>
+          <button type="button" class="btn-close ms-2" onclick="this.parentElement.parentElement.remove()"></button>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Animate in
+      setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        if (notification.parentElement) {
+          notification.style.opacity = '0';
+          notification.style.transform = 'translateX(50px)';
+          setTimeout(() => {
+            if (notification.parentElement) {
+              notification.remove();
+            }
+          }, 300);
+        }
+      }, 5000);
+    }
+
+    function showChatbotWelcome() {
+      // Create a temporary notification
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        right: 90px;
+        background: linear-gradient(135deg, #2C2A7B, #FEC83C);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 9999;
+        animation: slideIn 0.5s ease-out;
+        max-width: 200px;
+        text-align: center;
+        cursor: pointer;
+      `;
+      
+      notification.innerHTML = `
+        <i class="fas fa-dog"></i> Hi! I'm your AI assistant. Click me for help! 
+        <div style="font-size: 11px; opacity: 0.8; margin-top: 5px;">Click to dismiss</div>
+      `;
+      
+      // Add animation keyframes
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateX(50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      document.body.appendChild(notification);
+      
+      // Remove notification when clicked or after 10 seconds
+      notification.addEventListener('click', () => {
+        notification.remove();
+        if (window.barkBuddyChatbot) {
+          window.barkBuddyChatbot.open();
+        }
+      });
+      
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.style.animation = 'slideIn 0.5s ease-out reverse';
+          setTimeout(() => notification.remove(), 500);
+        }
+      }, 10000);
+    }
   </script>
 </body>
 </html>

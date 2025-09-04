@@ -2,91 +2,463 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Chatbot</title>
+  <title>BarkBuddy AI Chatbot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- Navigation CSS -->
+  <link href="../assets/css/navigation.css" rel="stylesheet">
 
   <style>
     body {
-      background: #f8f9fa;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    
     .chat-container {
-      max-width: 600px;
-      margin: 40px auto;
+      max-width: 800px;
+      margin: 20px auto;
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      height: 80vh;
+      height: 85vh;
+      overflow: hidden;
     }
+    
+    .chat-header {
+      background: linear-gradient(135deg, #2C2A7B, #FEC83C);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .chat-header h2 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .chat-header .subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+    
     .chat-box {
       flex-grow: 1;
-      padding: 15px;
+      padding: 20px;
       overflow-y: auto;
+      background: #f8f9fa;
     }
+    
     .message {
-      padding: 10px 15px;
-      border-radius: 15px;
-      margin-bottom: 10px;
+      padding: 12px 18px;
+      border-radius: 18px;
+      margin-bottom: 15px;
       max-width: 75%;
+      position: relative;
+      animation: messageSlide 0.3s ease-out;
     }
+    
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     .user-msg {
-      background: #007bff;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
       margin-left: auto;
+      border-bottom-right-radius: 5px;
     }
+    
     .bot-msg {
-      background: #e9ecef;
+      background: white;
+      color: #333;
       margin-right: auto;
+      border: 1px solid #e0e0e0;
+      border-bottom-left-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
+    
+    .message-time {
+      font-size: 11px;
+      opacity: 0.7;
+      margin-top: 5px;
+    }
+    
     .chat-input {
       display: flex;
-      border-top: 1px solid #ddd;
-      padding: 10px;
+      border-top: 1px solid #e0e0e0;
+      padding: 15px 20px;
+      background: white;
+      border-radius: 0 0 15px 15px;
+      gap: 10px;
     }
+    
     .chat-input input {
       flex-grow: 1;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-right: 10px;
+      border-radius: 25px;
+      border: 2px solid #e0e0e0;
+      padding: 12px 20px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .chat-input input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .send-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .send-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .send-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .typing-indicator {
+      display: none;
+      padding: 12px 18px;
+      max-width: 75%;
+      margin-bottom: 15px;
+    }
+    
+    .typing-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .typing-dots span {
+      height: 8px;
+      width: 8px;
+      background: #999;
+      border-radius: 50%;
+      animation: typing 1.4s infinite ease-in-out;
+    }
+    
+    .typing-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      30% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    .welcome-message {
+      text-align: center;
+      color: #666;
+      padding: 40px 20px;
+      font-style: italic;
+    }
+    
+    .welcome-message i {
+      font-size: 48px;
+      color: #667eea;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    /* Scrollbar styling */
+    .chat-box::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .chat-box::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+    
+    .chat-box::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 3px;
+    }
+    
+    .chat-box::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .chat-container {
+        margin: 10px;
+        height: 90vh;
+        border-radius: 10px;
+      }
+      
+      .chat-header {
+        padding: 15px;
+        border-radius: 10px 10px 0 0;
+      }
+      
+      .chat-header h2 {
+        font-size: 1.3rem;
+      }
+      
+      .message {
+        max-width: 85%;
+      }
+      
+      .chat-input {
+        padding: 10px 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-box" id="chatBox"></div>
+  <!-- Navigation Sidebar -->
+  <div class="sidebar" id="navigationSidebar">
+    <!-- Navigation will be loaded here -->
+  </div>
 
-    <div class="chat-input">
-      <input type="text" id="userInput" placeholder="Type a message..." />
-      <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+  <div class="main">
+    <div class="chat-container">
+      <div class="chat-header">
+        <h2>
+          <i class="fas fa-dog"></i>
+          BarkBuddy AI Assistant
+        </h2>
+        <div class="subtitle">Your friendly AI companion for all dog-related questions!</div>
+      </div>
+
+      <div class="chat-box" id="chatBox">
+        <div class="welcome-message">
+          <i class="fas fa-paw"></i>
+          <h4>Woof! Welcome to BarkBuddy AI!</h4>
+          <p>I'm here to help you with all your dog-related questions. Ask me about dog care, training, adoption, or anything else!</p>
+        </div>
+      </div>
+
+      <div class="typing-indicator" id="typingIndicator">
+        <div class="typing-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span style="margin-left: 10px; color: #666;">BarkBuddy is typing...</span>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Ask me anything about dogs..." />
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
     </div>
   </div>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Navigation JS -->
+  <script src="../assets/js/navigation.js"></script>
+
   <script>
-    async function sendMessage() {
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-    if(!message) return;
+    let isTyping = false;
+    const API_BASE_URL = 'http://localhost:8080/api/chat';
 
-    appendMessage("You", message, "user-msg");
-    input.value = "";
-
-    try {
-        const response = await fetch("http://localhost:8080/api/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(message)
-        });
-        const reply = await response.text();
-        appendMessage("Bot", reply, "bot-msg");
-    } catch(err) {
-        appendMessage("Bot", "Error connecting to server", "bot-msg");
+    // Load navigation sidebar
+    async function loadNavigation() {
+      try {
+        const response = await fetch('../assets/templates/sidebar.html');
+        const sidebarHtml = await response.text();
+        document.getElementById('navigationSidebar').innerHTML = sidebarHtml;
+        
+        // Initialize navigation after loading
+        if (window.barkBuddyNav) {
+          window.barkBuddyNav.refreshNavigation();
+        }
+      } catch (error) {
+        console.error('Error loading navigation:', error);
+      }
     }
-}
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      loadNavigation();
+      
+      // Add enter key listener
+      document.getElementById('userInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+
+      // Focus on input
+      document.getElementById('userInput').focus();
+    });
+
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      const sendBtn = document.getElementById('sendBtn');
+      
+      if (!message || isTyping) return;
+
+      // Disable input while processing
+      isTyping = true;
+      input.disabled = true;
+      sendBtn.disabled = true;
+
+      // Add user message
+      appendMessage('You', message, 'user-msg');
+      input.value = '';
+
+      // Show typing indicator
+      showTypingIndicator();
+
+      try {
+        const response = await fetch(API_BASE_URL, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ message: message })
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        // Simulate typing delay for better UX
+        setTimeout(() => {
+          hideTypingIndicator();
+          appendMessage('BarkBuddy AI', data.response || 'Sorry, I couldn\'t process that request.', 'bot-msg');
+          
+          // Re-enable input
+          isTyping = false;
+          input.disabled = false;
+          sendBtn.disabled = false;
+          input.focus();
+        }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+
+      } catch (error) {
+        console.error('Error:', error);
+        hideTypingIndicator();
+        
+        let errorMessage = 'Sorry, I\'m having trouble connecting to my brain right now. ';
+        
+        if (error.message.includes('Failed to fetch')) {
+          errorMessage += 'Please make sure the backend server is running on http://localhost:8080';
+        } else if (error.message.includes('500')) {
+          errorMessage += 'There seems to be a server error. Please try again later.';
+        } else {
+          errorMessage += 'Please try again in a moment.';
+        }
+        
+        appendMessage('BarkBuddy AI', errorMessage, 'bot-msg');
+        
+        // Re-enable input
+        isTyping = false;
+        input.disabled = false;
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+    function appendMessage(sender, message, className) {
+      const chatBox = document.getElementById('chatBox');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${className}`;
+      
+      const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      
+      messageDiv.innerHTML = `
+        <div><strong>${sender}:</strong> ${message}</div>
+        <div class="message-time">${time}</div>
+      `;
+
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Remove welcome message when first message is sent
+      const welcomeMessage = chatBox.querySelector('.welcome-message');
+      if (welcomeMessage && className === 'user-msg') {
+        welcomeMessage.remove();
+      }
+    }
+
+    function showTypingIndicator() {
+      const indicator = document.getElementById('typingIndicator');
+      indicator.style.display = 'block';
+      
+      const chatBox = document.getElementById('chatBox');
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+      const indicator = document.getElementById('typingIndicator');
+      indicator.style.display = 'none';
+    }
+
+    // Add some sample questions for users
+    function addSampleQuestion(question) {
+      const input = document.getElementById('userInput');
+      input.value = question;
+      input.focus();
+    }
+
+    // You can add sample questions as buttons if needed
+    function initializeSampleQuestions() {
+      const sampleQuestions = [
+        "How do I train my puppy?",
+        "What's the best food for a Golden Retriever?",
+        "How often should I walk my dog?",
+        "Signs of a healthy dog",
+        "Best dog breeds for families"
+      ];
+      
+      // This can be expanded to show sample questions in the UI
+    }
   </script>
 </body>
 </html>
