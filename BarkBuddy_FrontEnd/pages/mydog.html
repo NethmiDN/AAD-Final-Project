@@ -140,6 +140,8 @@
 </div> <!-- End Main Content -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- ✅ SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../assets/js/navigation.js"></script>
 <script>
 const dogsList = document.getElementById('dogsList');
@@ -251,13 +253,27 @@ window.startEdit = async function(id){
   }catch(e){ console.error(e); }
 }
 
-// Delete Dog
+// ✅ Delete Dog with SweetAlert2
 window.deleteDog = function(id){
-  if(confirm('Delete this dog?')){
-    fetch(`http://localhost:8080/api/dogs/${id}`,{method:'DELETE',headers:{'Authorization':'Bearer '+token}})
-    .then(res=>{if(!res.ok) throw new Error(); showNotification('Dog deleted'); loadDogs();})
-    .catch(()=>showNotification('Delete failed','error'));
-  }
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "This dog will be permanently deleted!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:8080/api/dogs/${id}`,{method:'DELETE',headers:{'Authorization':'Bearer '+token}})
+      .then(res=>{
+        if(!res.ok) throw new Error();
+        showNotification('Dog deleted');
+        loadDogs();
+      })
+      .catch(()=>showNotification('Delete failed','error'));
+    }
+  });
 }
 
 // Report Missing

@@ -76,6 +76,8 @@
 
 <!-- JWT Decode -->
 <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -83,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function extractRole(decoded) {
         if (!decoded) return "USER";
         if (decoded.roles && Array.isArray(decoded.roles)) {
-            return decoded.roles[0]; // your backend puts roles here
+            return decoded.roles[0]; // backend roles
         }
         return "USER";
     }
@@ -95,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (role === "USER") {
             window.location.href = "dashboard.html";
         } else {
-            alert("Unknown role: " + role);
+            Swal.fire("Unknown Role", "We couldn’t determine your role.", "warning");
         }
     }
 
@@ -126,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const password = document.getElementById('password').value.trim();
 
         if (!email || !password) {
-            alert('Please fill in all fields');
+            Swal.fire("Missing Fields", "Please fill in all fields", "warning");
             return;
         }
 
@@ -154,15 +156,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     exp: decoded.exp
                 }));
 
-                alert("Login successful!");
-                redirectByRole(role);
+                // ✅ Success alert
+                Swal.fire({
+                    title: "Login Successful!",
+                    text: "Redirecting to your dashboard...",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    redirectByRole(role);
+                });
 
             } else {
-                alert('Login failed: ' + (result.message || "Invalid credentials"));
+                // ❌ Error alert
+                Swal.fire("Login Failed", result.message || "Invalid credentials", "error");
             }
         } catch (err) {
             console.error("Login error:", err);
-            alert("Error connecting to server.");
+            Swal.fire("Server Error", "Error connecting to server.", "error");
         }
     });
 });

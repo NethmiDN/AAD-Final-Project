@@ -3739,3 +3739,504 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 2025-09-04T18:10:20.647+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2025-09-04T18:10:20.658+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 2.531 seconds (process running for 3234.208)
 2025-09-04T18:10:20.668+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-09-04T18:15:30.832+05:30  WARN 11888 --- [BarkBuddy_BackEnd] [HikariPool-3:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=1m11s167ms607µs500ns).
+2025-09-04T18:43:55.577+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-04T18:43:55.637+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-04T18:43:55.703+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-04T18:43:55.739+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-09-04T18:43:55.772+05:30  INFO 11888 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-09-04T18:44:01.223+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 17332 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project\BarkBuddy_BackEnd)
+2025-09-04T18:44:01.227+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-09-04T18:44:01.228+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-09-04T18:44:01.277+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-04T18:44:01.278+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-04T18:44:02.474+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-04T18:44:02.679+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 195 ms. Found 4 JPA repository interfaces.
+2025-09-04T18:44:03.704+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-04T18:44:03.754+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-04T18:44:03.755+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-09-04T18:44:03.834+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-04T18:44:03.835+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2556 ms
+2025-09-04T18:44:03.940+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.util.JWTAuthFilter                 : Filter 'JWTAuthFilter' configured for use
+2025-09-04T18:44:04.571+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-04T18:44:04.719+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-09-04T18:44:04.786+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-04T18:44:05.187+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-04T18:44:05.226+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-04T18:44:05.854+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@23c18efc
+2025-09-04T18:44:05.857+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-04T18:44:05.950+05:30  WARN 17332 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-04T18:44:05.964+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-04T18:44:08.537+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-04T18:44:08.803+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-04T18:44:10.270+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-09-04T18:44:10.272+05:30  WARN 17332 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-09-04T18:44:10.327+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.service.ChatBotService             : ChatBotService initialized with Ollama URL: http://localhost:11434/api/generate and model: gemma3:1b
+2025-09-04T18:44:10.629+05:30  WARN 17332 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-04T18:44:10.923+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 13 mappings in 'requestMappingHandlerMapping'
+2025-09-04T18:44:11.249+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-09-04T18:44:11.963+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-09-04T18:44:12.111+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-09-04T18:44:12.655+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-04T18:44:12.991+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-04T18:44:13.014+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 12.873 seconds (process running for 14.808)
+2025-09-04T18:44:33.282+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-04T18:44:33.282+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-04T18:44:33.282+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-09-04T18:44:33.282+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-09-04T18:44:33.284+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-09-04T18:44:33.284+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7d78ceb9
+2025-09-04T18:44:33.286+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@14ea37b
+2025-09-04T18:44:33.286+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-09-04T18:44:33.286+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-09-04T18:44:33.369+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T18:44:33.369+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T18:44:33.693+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmi123)]
+2025-09-04T18:44:35.538+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T18:44:35.543+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJV (truncated)...]
+2025-09-04T18:44:35.569+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T18:44:37.973+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T18:44:37.974+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T18:44:38.137+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T18:44:38.141+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T18:44:38.155+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T18:44:50.281+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/api/chat", parameters={}
+2025-09-04T18:44:50.281+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.ChatController#chat(Map)
+2025-09-04T18:44:50.295+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{message=Tell me about rower who is pending adoption}]
+2025-09-04T18:44:50.295+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] c.e.b.service.ChatBotService             : Received chat request with prompt: Tell me about rower who is pending adoption
+2025-09-04T18:44:50.295+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] c.e.b.service.ChatBotService             : Sending request to Ollama at: http://localhost:11434/api/generate with model: gemma3:1b
+2025-09-04T18:44:50.395+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.client.RestTemplate              : HTTP POST http://localhost:11434/api/generate
+2025-09-04T18:44:50.445+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/*+json, */*]
+2025-09-04T18:44:50.445+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.client.RestTemplate              : Writing [{stream=false, model=gemma3:1b, prompt=You are a helpful assistant for BarkBuddy, a dog adoption and care platform. Provide helpful information about dog care, adoption, and related topics. Keep responses concise and friendly. User question: Tell me about rower who is pending adoption}] as "application/json"
+2025-09-04T18:44:50.476+05:30 ERROR 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] c.e.b.service.ChatBotService             : Error occurred while processing chat request: I/O error on POST request for "http://localhost:11434/api/generate": Connection refused: connect
+
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:11434/api/generate": Connection refused: connect
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:801) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:549) ~[spring-web-6.2.9.jar:6.2.9]
+	at com.example.barkbuddy_backend.service.ChatBotService.ask(ChatBotService.java:57) ~[classes/:na]
+	at com.example.barkbuddy_backend.controller.ChatController.chat(ChatController.java:31) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.43.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.43.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at com.example.barkbuddy_backend.util.JWTAuthFilter.doFilterInternal(JWTAuthFilter.java:64) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.2.jar:6.5.2]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.2.jar:6.5.2]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.2.jar:6.5.2]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.43.jar:10.1.43]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:589) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:578) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:583) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:686) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:531) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:636) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:280) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1304) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1237) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1123) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1052) ~[na:na]
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81) ~[spring-web-6.2.9.jar:6.2.9]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900) ~[spring-web-6.2.9.jar:6.2.9]
+	... 111 common frames omitted
+
+2025-09-04T18:44:50.528+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T18:44:50.528+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{response=I'm sorry, I encountered an error while processing your request. Please make sure Ollama i (truncated)...]
+2025-09-04T18:44:50.528+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T18:45:25.898+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/api/chat", parameters={}
+2025-09-04T18:45:25.904+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.ChatController#chat(Map)
+2025-09-04T18:45:25.927+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{message=How do I train my puppy?}]
+2025-09-04T18:45:25.932+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] c.e.b.service.ChatBotService             : Received chat request with prompt: How do I train my puppy?
+2025-09-04T18:45:25.933+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] c.e.b.service.ChatBotService             : Sending request to Ollama at: http://localhost:11434/api/generate with model: gemma3:1b
+2025-09-04T18:45:25.936+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.client.RestTemplate              : HTTP POST http://localhost:11434/api/generate
+2025-09-04T18:45:25.939+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/*+json, */*]
+2025-09-04T18:45:25.941+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.client.RestTemplate              : Writing [{stream=false, model=gemma3:1b, prompt=You are a helpful assistant for BarkBuddy, a dog adoption and care platform. Provide helpful information about dog care, adoption, and related topics. Keep responses concise and friendly. User question: How do I train my puppy?}] as "application/json"
+2025-09-04T18:45:50.594+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.client.RestTemplate              : Response 200 OK
+2025-09-04T18:45:50.613+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+2025-09-04T18:45:50.728+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] c.e.b.service.ChatBotService             : Successfully received response from Ollama
+2025-09-04T18:45:50.729+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T18:45:50.729+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{response=Okay, that’s a fantastic goal! Training a puppy is a rewarding experience. Here’s a breakd (truncated)...]
+2025-09-04T18:45:50.746+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T18:46:26.121+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/api/chat", parameters={}
+2025-09-04T18:46:26.121+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.ChatController#chat(Map)
+2025-09-04T18:46:26.121+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [{message=Tell me about rower who is pending adoption}]
+2025-09-04T18:46:26.121+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] c.e.b.service.ChatBotService             : Received chat request with prompt: Tell me about rower who is pending adoption
+2025-09-04T18:46:26.121+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] c.e.b.service.ChatBotService             : Sending request to Ollama at: http://localhost:11434/api/generate with model: gemma3:1b
+2025-09-04T18:46:26.121+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : HTTP POST http://localhost:11434/api/generate
+2025-09-04T18:46:26.121+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/*+json, */*]
+2025-09-04T18:46:26.121+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Writing [{stream=false, model=gemma3:1b, prompt=You are a helpful assistant for BarkBuddy, a dog adoption and care platform. Provide helpful information about dog care, adoption, and related topics. Keep responses concise and friendly. User question: Tell me about rower who is pending adoption}] as "application/json"
+2025-09-04T18:46:45.025+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Response 200 OK
+2025-09-04T18:46:45.025+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=utf-8"
+2025-09-04T18:46:45.025+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] c.e.b.service.ChatBotService             : Successfully received response from Ollama
+2025-09-04T18:46:45.028+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T18:46:45.031+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{response=Okay, let’s talk about Willow! 👋<EOL><EOL>Willow is a wonderful dog – she’s a [Breed] and about [ (truncated)...]
+2025-09-04T18:46:45.031+05:30 DEBUG 17332 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:07:53.239+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-04T19:07:53.295+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-04T19:07:53.495+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-04T19:07:53.502+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-04T19:07:53.540+05:30  INFO 17332 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-04T19:08:01.374+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Starting BarkBuddyBackEndApplication using Java 21.0.3 with PID 4104 (D:\Final_Project\BarkBuddy_BackEnd\target\classes started by Nethmi in D:\Final_Project\BarkBuddy_BackEnd)
+2025-09-04T19:08:01.375+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-09-04T19:08:01.376+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-09-04T19:08:01.420+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-04T19:08:01.420+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-04T19:08:02.496+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-04T19:08:02.777+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 258 ms. Found 4 JPA repository interfaces.
+2025-09-04T19:08:03.772+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-04T19:08:03.819+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-04T19:08:03.819+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-09-04T19:08:03.899+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-04T19:08:03.899+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2478 ms
+2025-09-04T19:08:04.001+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.util.JWTAuthFilter                 : Filter 'JWTAuthFilter' configured for use
+2025-09-04T19:08:04.212+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-04T19:08:04.291+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-09-04T19:08:04.354+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-04T19:08:04.783+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-04T19:08:04.831+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-04T19:08:05.489+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5bfe1459
+2025-09-04T19:08:05.489+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-04T19:08:05.652+05:30  WARN 4104 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-04T19:08:05.677+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-04T19:08:06.800+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-04T19:08:06.910+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-04T19:08:07.525+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-09-04T19:08:07.527+05:30  WARN 4104 --- [BarkBuddy_BackEnd] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-09-04T19:08:07.554+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.service.ChatBotService             : ChatBotService initialized with Ollama URL: http://localhost:11434/api/generate and model: gemma3:1b
+2025-09-04T19:08:07.732+05:30  WARN 4104 --- [BarkBuddy_BackEnd] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-04T19:08:07.954+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 13 mappings in 'requestMappingHandlerMapping'
+2025-09-04T19:08:08.268+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-09-04T19:08:08.841+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-09-04T19:08:08.984+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-09-04T19:08:09.285+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-04T19:08:09.448+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-04T19:08:09.465+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [restartedMain] c.e.b.BarkBuddyBackEndApplication        : Started BarkBuddyBackEndApplication in 8.964 seconds (process running for 10.406)
+2025-09-04T19:08:34.120+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-04T19:08:34.121+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-04T19:08:34.121+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-09-04T19:08:34.122+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-09-04T19:08:34.125+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-09-04T19:08:34.128+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1f940bea
+2025-09-04T19:08:34.129+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@4fd69e9e
+2025-09-04T19:08:34.129+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-09-04T19:08:34.130+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2025-09-04T19:08:34.267+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:08:34.273+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:08:34.473+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmi123)]
+2025-09-04T19:08:35.872+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:08:35.879+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJV (truncated)...]
+2025-09-04T19:08:35.899+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:08:40.491+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:08:40.492+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:08:40.607+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:08:40.609+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:08:40.618+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:11:41.078+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:11:41.078+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:11:41.078+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=asdfgg)]
+2025-09-04T19:11:41.320+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:11:41.322+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=null, message=Invalid email or passwo (truncated)...]
+2025-09-04T19:11:41.324+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:11:50.040+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:11:50.044+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:11:50.044+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmi123)]
+2025-09-04T19:11:50.268+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:11:50.268+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJV (truncated)...]
+2025-09-04T19:11:50.268+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:11:52.373+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:11:52.374+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:11:52.385+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:11:52.385+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:11:52.386+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:21:43.850+05:30  WARN 4104 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m8s67ms830µs300ns).
+2025-09-04T19:22:47.472+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:22:47.472+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:22:47.530+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmi123)]
+2025-09-04T19:22:47.812+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:22:47.818+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJV (truncated)...]
+2025-09-04T19:22:47.825+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:22:50.814+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:22:50.817+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:22:50.906+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:22:50.906+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:22:50.906+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:41:11.252+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:41:11.332+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:41:12.132+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:41:12.145+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:41:12.180+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:41:34.954+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:41:34.954+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:41:35.002+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmi123)]
+2025-09-04T19:41:36.034+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:41:36.036+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJV (truncated)...]
+2025-09-04T19:41:36.043+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:41:38.651+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:41:38.652+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:41:38.719+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:41:38.719+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:41:38.721+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:42:53.754+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:42:53.754+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:42:53.793+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:42:53.794+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:42:53.798+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:42:57.030+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:42:57.031+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:42:57.041+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:42:57.041+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:42:57.041+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:43:02.369+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:43:02.370+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:43:02.398+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:43:02.399+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:43:02.401+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:43:19.712+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:43:19.712+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:43:19.712+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmi123)]
+2025-09-04T19:43:19.983+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:43:19.983+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJV (truncated)...]
+2025-09-04T19:43:19.983+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:43:22.165+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:43:22.167+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:43:22.213+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:43:22.215+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:43:22.223+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:45:28.780+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:45:28.780+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:45:28.796+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmmi123)]
+2025-09-04T19:45:29.031+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:45:29.033+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=null, message=Invalid email or passwo (truncated)...]
+2025-09-04T19:45:29.047+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:45:35.747+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T19:45:35.749+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T19:45:35.751+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=nethminanayakkara277@gmail.com, password=nethmi123)]
+2025-09-04T19:45:36.011+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:45:36.011+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJV (truncated)...]
+2025-09-04T19:45:36.013+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:45:39.081+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T19:45:39.095+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T19:45:39.128+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T19:45:39.128+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T19:45:39.131+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:45:48.429+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs", parameters={}
+2025-09-04T19:45:48.429+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getMyDogs(String)
+2025-09-04T19:45:48.578+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:45:48.578+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=3, dogName=batti, breed=great dane, age=4, status=AVAILABLE, ownerId=3, imageUrl=https:// (truncated)...]
+2025-09-04T19:45:48.595+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T19:58:32.338+05:30  WARN 4104 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m17s903ms552µs700ns).
+2025-09-04T19:59:24.114+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs", parameters={}
+2025-09-04T19:59:24.127+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getMyDogs(String)
+2025-09-04T19:59:24.492+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T19:59:24.492+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=3, dogName=batti, breed=great dane, age=4, status=AVAILABLE, ownerId=3, imageUrl=https:// (truncated)...]
+2025-09-04T19:59:24.509+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:00:18.346+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs", parameters={}
+2025-09-04T20:00:18.346+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getMyDogs(String)
+2025-09-04T20:00:18.377+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:00:18.389+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=3, dogName=batti, breed=great dane, age=4, status=AVAILABLE, ownerId=3, imageUrl=https:// (truncated)...]
+2025-09-04T20:00:18.394+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:02:19.671+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:02:19.672+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:02:20.219+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:02:20.320+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:02:20.367+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:02:23.390+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T20:02:23.391+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T20:02:23.407+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:02:23.407+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T20:02:23.409+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:02:27.086+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:02:27.087+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:02:27.117+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:02:27.117+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:02:27.119+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:03:03.029+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:03:03.040+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:03:03.074+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:03:03.075+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:03:03.079+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:03:10.208+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:03:10.208+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:03:10.223+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:03:10.223+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:03:10.229+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:03:22.077+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:03:22.078+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:03:22.091+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:03:22.091+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:03:22.091+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:03:23.720+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:03:23.734+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:03:23.751+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:03:23.751+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:03:23.752+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:03:44.983+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:03:44.983+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:03:44.998+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:03:45.010+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:03:45.018+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:06:26.605+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:06:26.605+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:06:26.644+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:06:26.644+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:06:26.647+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:06:31.221+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T20:06:31.221+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T20:06:31.234+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T20:06:31.236+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T20:06:31.238+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:06:43.702+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/auth/barkbuddy/login", parameters={}
+2025-09-04T20:06:43.704+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.AuthController#login(AuthDTO)
+2025-09-04T20:06:43.704+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthDTO(email=admin1@gmail.com, password=admin123)]
+2025-09-04T20:06:44.176+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:06:44.176+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [APIResponse(status=200, message=OK, data=AuthResponseDTO(token=eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJB (truncated)...]
+2025-09-04T20:06:44.176+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:06:58.145+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T20:06:58.145+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T20:06:58.167+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:06:58.168+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T20:06:58.176+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:07:00.560+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs/all", parameters={}
+2025-09-04T20:07:00.560+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getAllDogs()
+2025-09-04T20:07:00.567+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-09-04T20:07:00.567+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[DogDTO(id=1, dogName=Toby, breed=Terrier, age=2, status=AVAILABLE, ownerId=1, imageUrl=https://i.ib (truncated)...]
+2025-09-04T20:07:00.567+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:07:04.843+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/dogs", parameters={}
+2025-09-04T20:07:04.844+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.DogController#getMyDogs(String)
+2025-09-04T20:07:04.855+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:07:04.855+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[]]
+2025-09-04T20:07:04.856+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:07:07.226+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/lostdog/missing", parameters={}
+2025-09-04T20:07:07.226+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.barkbuddy_backend.controller.LostDogController#getMissingDogs()
+2025-09-04T20:07:07.236+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-04T20:07:07.236+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [[LostDogDetailDTO(id=1, dogId=3, userId=3, lastSeenLocation=galle, status=MISSING, dogName=batti, br (truncated)...]
+2025-09-04T20:07:07.237+05:30 DEBUG 4104 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-04T20:16:22.819+05:30  WARN 4104 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m50s214ms210µs200ns).
+2025-09-04T21:40:01.402+05:30  WARN 4104 --- [BarkBuddy_BackEnd] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h20m38s392ms717µs).
+2025-09-04T21:45:30.233+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 53 class path changes (0 additions, 53 deletions, 0 modifications)
+2025-09-04T21:45:31.546+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-04T21:45:31.962+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-04T21:45:34.268+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-04T21:45:34.664+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-04T21:45:34.838+05:30  INFO 4104 --- [BarkBuddy_BackEnd] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

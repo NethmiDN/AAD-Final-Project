@@ -195,23 +195,38 @@ class BarkBuddyNavigation {
     }, 800);
   }
 
-  logout() {
-    if (confirm('Are you sure you want to logout? 🐕')) {
-      // Clear all stored data
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('userRole');
-      localStorage.removeItem('userEmail');
-      
-      // Show logout message
-      this.showNotification('Logged out successfully! See you later! 🐾', 'success');
-      
-      // Redirect after a short delay
-      setTimeout(() => {
-        window.location.href = 'login.html';
-      }, 1500);
-    }
+    logout() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will be logged out from the system!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Clear all stored data
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('userEmail');
+
+        // Show success alert
+        Swal.fire({
+          title: 'Logged Out!',
+          text: 'You have been logged out successfully. 🐾',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        }).then(() => {
+          // Redirect after alert closes
+          window.location.href = 'login.html';
+        });
+      }
+    });
   }
+
 
   showNotification(message, type = 'success') {
     // Create notification if it doesn't exist
