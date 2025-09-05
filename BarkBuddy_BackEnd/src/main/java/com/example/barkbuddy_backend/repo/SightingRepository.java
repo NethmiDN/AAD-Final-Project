@@ -1,4 +1,9 @@
 package com.example.barkbuddy_backend.repo;
 
-public interface SIghtingRepository {
+import com.example.barkbuddy_backend.entity.Sightings;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface SightingRepository extends JpaRepository<Sightings,Long> {
 }

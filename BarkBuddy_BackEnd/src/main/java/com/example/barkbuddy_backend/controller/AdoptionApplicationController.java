@@ -31,9 +31,35 @@ public class AdoptionApplicationController {
     public ResponseEntity<?> requestAdoption(@PathVariable Long dogId,
                                              @RequestBody Map<String,String> body,
                                              @RequestHeader("Authorization") String token) {
-        Long adopterId = getUserIdFromToken(token);
-        AdoptionApplications app = adoptionService.requestAdoption(dogId, adopterId);
-        return ResponseEntity.ok(app);
+        try {
+            Long adopterId = getUserIdFromToken(token);
+
+            // Check if the dog exists
+            Dog dog = dogRepository.findById(dogId)
+                    .orElseThrow(() -> new RuntimeException("Dog not found"));
+
+            // Prevent self-adoption: user cannot adopt their own pet
+            if (dog.getOwnerId().equals(adopterId)) {
+                Map<String, String> error = new HashMap<>();
+                error.put("message", "You cannot adopt your own pet!");
+                return ResponseEntity.badRequest().body(error);
+            }
+
+            // Check if user has already requested adoption for this dog
+            boolean alreadyRequested = adoptionRepo.findByAdopterIdAndDogId(adopterId, dogId).isPresent();
+            if (alreadyRequested) {
+                Map<String, String> error = new HashMap<>();
+                error.put("message", "You have already submitted an adoption request for this dog!");
+                return ResponseEntity.badRequest().body(error);
+            }
+
+            AdoptionApplications app = adoptionService.requestAdoption(dogId, adopterId);
+            return ResponseEntity.ok(app);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("message", "Failed to submit adoption request: " + e.getMessage());
+            return ResponseEntity.status(500).body(error);
+        }
     }
 
     @GetMapping("/all")

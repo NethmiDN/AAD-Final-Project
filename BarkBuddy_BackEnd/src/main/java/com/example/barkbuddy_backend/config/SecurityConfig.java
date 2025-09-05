@@ -32,7 +32,6 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/hello/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll() // Keep this for any future API auth endpoints
                         .requestMatchers("/auth/barkbuddy/**").permitAll() // Add this for the actual auth controller
                         .requestMatchers("/api/chat/**").permitAll() // Allow chatbot access without authentication
@@ -41,6 +40,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/dogs/**").authenticated() // Require authentication for other dog operations
                         .requestMatchers("/api/lostdogs/**").permitAll() // Permit all for lost dogs endpoints
                         .requestMatchers("/api/adoption/**").permitAll() // Permit all for adoption endpoints
+                        .requestMatchers("/api/listings/**").permitAll() // Permit all for listings endpoints
+                        .requestMatchers("/api/sightings/**").permitAll() // Permit all for sightings endpoints
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

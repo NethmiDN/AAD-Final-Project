@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Verification Code</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #c3dafe, #e0c3fc);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+    }
+    .verification-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .verification-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      max-width: 420px; /* smaller width */
+      width: 100%;
+      overflow: hidden;
+    }
+    .card-header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .verification-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-body {
+      padding: 1.8rem;
+    }
+    /* Step Indicator */
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 1rem;
+    }
+    .step {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .step.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 0 8px rgba(102,126,234,0.6);
+    }
+    .step.inactive {
+      background: #e9ecef;
+      color: #6c757d;
+    }
+    /* OTP Inputs */
+    .otp-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 1.2rem 0;
+    }
+    .otp-input {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      outline: none;
+    }
+    .otp-input:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
+    }
+    /* Buttons */
+    .btn-verify {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem;
+      font-weight: 600;
+      color: white;
+      width: 100%;
+      margin-bottom: 0.8rem;
+    }
+    .btn-back {
+      background: #f1f1f1;
+      border: none;
+      border-radius: 10px;
+      padding: 0.6rem;
+      font-weight: 500;
+      color: #333;
+      width: 100%;
+    }
+    .btn-back:hover {
+      background: #e2e2e2;
+    }
+    .timer-section {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #dc3545;
+    }
+    .resend-section {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    .resend-link.disabled {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="verification-container">
+    <div class="verification-card">
+      <div class="card-header">
+        <i class="fas fa-shield-alt verification-icon"></i>
+        <h3>Verification Required</h3>
+        <p class="mb-0">Secure your account with verification</p>
+      </div>
+
+      <div class="card-body">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+          <div class="step inactive" id="step1">1</div>
+          <div class="step active" id="step2">2</div>
+          <div class="step inactive" id="step3">3</div>
+        </div>
+
+        <h5 class="text-center mb-2">Enter Verification Code</h5>
+        <p class="text-center text-muted small">
+          We've sent a 4-digit verification code to your email address. Please enter it below to continue.
+        </p>
+
+        <form id="verificationForm">
+          <div class="otp-inputs">
+            <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+          </div>
+
+          <div class="timer-section">
+            <i class="fas fa-clock me-1"></i>
+            Code expires in: <span id="timeDisplay">05:00</span>
+          </div>
+
+          <div class="resend-section">
+            <p class="mb-1">Didn't receive the code?</p>
+            <a href="#" class="resend-link disabled" id="resendLink">
+              <i class="fas fa-sync-alt me-1"></i> Resend Code
+            </a>
+          </div>
+
+          <button type="submit" class="btn btn-verify">
+            <i class="fas fa-check me-2"></i>Verify Code
+          </button>
+
+          <button type="button" class="btn btn-back" onclick="window.location.href='forgetpassword.html'">
+            <i class="fas fa-arrow-left me-2"></i>Back to Previous Step
+        </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let timeRemaining = 300; // 5 minutes
+    let timerInterval;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      startTimer();
+      setupOTPInputs();
+    });
+
+    function setupOTPInputs() {
+      const inputs = document.querySelectorAll('.otp-input');
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', function() {
+          this.value = this.value.replace(/\D/g, '');
+          if (this.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+        input.addEventListener('keydown', function(e) {
+          if (e.key === "Backspace" && !this.value && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+    }
+
+    function startTimer() {
+      const timerDisplay = document.getElementById('timeDisplay');
+      const resendLink = document.getElementById('resendLink');
+
+      timerInterval = setInterval(() => {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerDisplay.textContent = 
+          `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        timeRemaining--;
+
+        if (timeRemaining < 0) {
+          clearInterval(timerInterval);
+          timerDisplay.textContent = 'EXPIRED';
+          resendLink.classList.remove('disabled');
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

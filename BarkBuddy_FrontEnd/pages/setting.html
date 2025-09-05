@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bark Buddy - Settings</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link rel="stylesheet" href="../assets/css/navigation.css"/>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to bottom right, #FFDCA6, #FBB8E5); margin:0; min-height:100vh;}
+  .main { 
+    margin-left:240px; 
+    display:flex; 
+    justify-content:center; 
+    align-items:center; 
+    min-height:100vh; 
+    padding:2rem;
+  }
+  .settings-card { 
+    background:white; 
+    border-radius:12px; 
+    box-shadow:0 2px 8px rgba(0,0,0,0.15); 
+    padding:24px; 
+    max-width:500px; 
+    width:100%;
+  }
+  .settings-card h3 { margin-bottom:1.5rem; text-align:center; }
+  .form-label { font-weight:600; }
+  .btn-save { width:100%; padding:0.75rem; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="sidebar d-flex flex-column">
+  <h4>🐶 <strong>Bark Buddy</strong></h4>
+  <nav class="nav flex-column mt-4">
+    <a class="nav-link" href="dashboard.html" data-page="dashboard">🏠 Dashboard</a>
+    <a class="nav-link" href="adoptFriend.html" data-page="adopt">💛 Adopt a Friend</a>
+    <a class="nav-link" href="lostfound.html" data-page="lostfound">📍 Lost & Found</a>
+    <a class="nav-link" href="mydog.html" data-page="mydog">🐕 My Dogs</a>
+    <a class="nav-link" href="listings.html" data-page="listings">📄 Listings & Requests</a>
+    <a class="nav-link" href="setting.html" data-page="setting">⚙️ Setting</a>
+    <a class="nav-link mt-auto" href="#" onclick="window.barkBuddyNav.logout(); return false;">🚪 Logout</a>
+  </nav>
+</div>
+
+<div class="main">
+  <div class="settings-card">
+    <h3>⚙️ Account Settings</h3>
+    <form id="settingsForm">
+      <div class="mb-3">
+        <label for="username" class="form-label"><i class="fas fa-user me-2"></i>Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label"><i class="fas fa-lock me-2"></i>Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter new password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-save"><i class="fas fa-save me-2"></i>Save Changes</button>
+    </form>
+  </div>
+</div>
+
+<div id="notification" class="notification"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../assets/js/navigation.js"></script>
+<script>
+const settingsForm = document.getElementById('settingsForm');
+const notification = document.getElementById('notification');
+const token = localStorage.getItem('accessToken');
+
+function showNotification(msg,type='success'){
+  notification.textContent = msg;
+  notification.className='notification show ' + type;
+  setTimeout(()=>{ notification.className='notification'; },3000);
+}
+
+if(!token){
+  alert('Please log in first');
+  window.location.href = 'login.html';
+}
+
+settingsForm.addEventListener('submit', async(e)=>{
+  e.preventDefault();
+  const username = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  if(!username || !email || !password){
+    return showNotification('All fields are required','error');
+  }
+
+  try{
+    const res = await fetch('http://localhost:8080/api/user/settings', {
+      method:'PUT',
+      headers:{
+        'Authorization':'Bearer '+token,
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({ username, email, password })
+    });
+
+    if(!res.ok) throw new Error('Failed to update settings');
+    showNotification('Settings updated successfully');
+  }catch(err){
+    console.error(err);
+    showNotification('Update failed','error');
+  }
+});
+</script>
+
+</body>
+</html>

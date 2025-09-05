@@ -41,9 +41,17 @@ public class AdoptionApplicationServiceImpl implements AdoptionApplicationServic
     // Get all adoption requests for dogs owned by the user
     @Override
     public List<AdoptionApplicationDTO> getRequestsForMyDogs(Long ownerId) {
-        // This is where the mapping happens
-        return adoptionRepo.findByAdopterId(ownerId)
+        // First, find all dogs owned by this user
+        List<Dog> myDogs = dogRepo.findByOwnerId(ownerId);
+
+        // Get all adoption requests for these dogs
+        List<AdoptionApplications> requestsForMyDogs = adoptionRepo.findAll()
                 .stream()
+                .filter(req -> myDogs.stream().anyMatch(dog -> dog.getId().equals(req.getDogId())))
+                .toList();
+
+        // Map to DTOs
+        return requestsForMyDogs.stream()
                 .map(req -> {
                     Dog dog = dogRepo.findById(req.getDogId()).orElseThrow(() ->
                             new RuntimeException("Dog not found for ID: " + req.getDogId())
