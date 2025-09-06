@@ -19,6 +19,7 @@
   .notification.show { opacity:1; transform:translateY(0); }
   .notification.success { background-color:#1cc88a; }
   .notification.error { background-color:#e74a3b; }
+  .sightings-box { background:#f8f9fa; border-radius:8px; padding:10px; margin-top:10px; font-size:0.9rem; text-align:left; }
 </style>
 </head>
 <body>
@@ -28,14 +29,13 @@
   <nav class="nav flex-column mt-4">
     <a class="nav-link" href="dashboard.html" data-page="dashboard">🏠 Dashboard</a>
     <a class="nav-link" href="adoptFriend.html" data-page="adopt">💛 Adopt a Friend</a>
-    <a class="nav-link" href="lostfound.html" data-page="lostfound">�📍 Lost & Found</a>
+    <a class="nav-link" href="lostfound.html" data-page="lostfound">📍 Lost & Found</a>
     <a class="nav-link" href="mydog.html" data-page="mydog">🐕 My Dogs</a>
     <a class="nav-link" href="listings.html" data-page="listings">📄 Listings & Requests</a>
     <a class="nav-link" href="setting.html" data-page="setting">⚙️ Setting</a>
     <a class="nav-link mt-auto" href="#" onclick="window.barkBuddyNav.logout(); return false;">🚪 Logout</a>
   </nav>
 </div>
-
 
 <div class="main">
   <h3>📍 Lost & Found</h3>
@@ -113,6 +113,12 @@ function renderLostDogs(dogs){
     return;
   }
   dogs.forEach(dog=>{
+    let sightingsHTML = "";
+    if(dog.sightings && dog.sightings.length>0){
+      sightingsHTML = `<div class="sightings-box"><strong>Recent Sightings:</strong><ul>`;
+      dog.sightings.forEach(s=>{ sightingsHTML += `<li>${s.location} (${new Date(s.reportedAt).toLocaleString()})</li>`; });
+      sightingsHTML += `</ul></div>`;
+    }
     lostDogsList.innerHTML += `
       <div class="col-md-4">
         <div class="dog-card">
@@ -125,6 +131,7 @@ function renderLostDogs(dogs){
               <i class="fas fa-eye"></i> Sighting
             </button>
           </div>
+          ${sightingsHTML}
         </div>
       </div>
     `;
@@ -152,6 +159,7 @@ sightingForm.addEventListener('submit', async(e)=>{
     if(!res.ok) throw new Error('Failed to submit sighting');
     showNotification('Sighting submitted!');
     sightingModal.hide();
+    loadLostDogs(); // refresh to show new sighting
   }catch(err){
     console.error(err);
     showNotification('Submit failed','error');

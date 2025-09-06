@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/adoption/**").permitAll() // Permit all for adoption endpoints
                         .requestMatchers("/api/listings/**").permitAll() // Permit all for listings endpoints
                         .requestMatchers("/api/sightings/**").permitAll() // Permit all for sightings endpoints
+                        .requestMatchers("/api/users/**").permitAll() // Permit all for user endpoints
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

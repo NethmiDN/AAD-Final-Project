@@ -28,6 +28,23 @@
   .settings-card h3 { margin-bottom:1.5rem; text-align:center; }
   .form-label { font-weight:600; }
   .btn-save { width:100%; padding:0.75rem; font-weight:600; }
+  .notification {
+    position: fixed;
+    top: 20px; right: 20px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    display: none;
+    z-index: 1000;
+  }
+  .notification.show { display: block; }
+  .notification.success { background-color: #28a745; }
+  .notification.error { background-color: #dc3545; }
+
+  #savebtn {
+    background-color: #2C2A7B;
+  }
 </style>
 </head>
 <body>
@@ -59,9 +76,9 @@
       </div>
       <div class="mb-3">
         <label for="password" class="form-label"><i class="fas fa-lock me-2"></i>Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Enter new password" required>
+        <input type="password" class="form-control" id="password" placeholder="Enter new password (leave blank to keep current)">
       </div>
-      <button type="submit" class="btn btn-primary btn-save"><i class="fas fa-save me-2"></i>Save Changes</button>
+      <button type="submit" class="btn btn-primary btn-save" id="savebtn"><i class="fas fa-save me-2"></i>Save Changes</button>
     </form>
   </div>
 </div>
@@ -87,18 +104,37 @@ if(!token){
   window.location.href = 'login.html';
 }
 
+// Load current user data on page load
+async function loadUserSettings(){
+  try{
+    const res = await fetch('http://localhost:8080/api/users/settings', {
+      headers: { 'Authorization':'Bearer '+token }
+    });
+    if(!res.ok) throw new Error('Failed to load user data');
+    const data = await res.json();
+    document.getElementById('username').value = data.username;
+    document.getElementById('email').value = data.email;
+    document.getElementById('password').value = ''; // always empty
+  }catch(err){
+    console.error(err);
+    showNotification('Could not load user data','error');
+  }
+}
+
+loadUserSettings();
+
 settingsForm.addEventListener('submit', async(e)=>{
   e.preventDefault();
   const username = document.getElementById('username').value.trim();
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
 
-  if(!username || !email || !password){
-    return showNotification('All fields are required','error');
+  if(!username || !email){
+    return showNotification('Username and email are required','error');
   }
 
   try{
-    const res = await fetch('http://localhost:8080/api/user/settings', {
+    const res = await fetch('http://localhost:8080/api/users/settings', {
       method:'PUT',
       headers:{
         'Authorization':'Bearer '+token,
@@ -107,8 +143,15 @@ settingsForm.addEventListener('submit', async(e)=>{
       body: JSON.stringify({ username, email, password })
     });
 
-    if(!res.ok) throw new Error('Failed to update settings');
+    const data = await res.json();
+
+    if(!res.ok){
+      showNotification(data.message || 'Update failed','error');
+      return;
+    }
+
     showNotification('Settings updated successfully');
+    document.getElementById('password').value = ''; // clear password
   }catch(err){
     console.error(err);
     showNotification('Update failed','error');

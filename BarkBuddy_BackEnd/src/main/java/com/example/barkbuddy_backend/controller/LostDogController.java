@@ -2,12 +2,15 @@ package com.example.barkbuddy_backend.controller;
 
 import com.example.barkbuddy_backend.dto.LostDogDTO;
 import com.example.barkbuddy_backend.dto.LostDogDetailDTO;
+import com.example.barkbuddy_backend.dto.SightingCreateRequest;
+import com.example.barkbuddy_backend.dto.SightingsDTO;
 import com.example.barkbuddy_backend.entity.Dog;
 import com.example.barkbuddy_backend.entity.LostDog;
 import com.example.barkbuddy_backend.entity.LostStatus;
 import com.example.barkbuddy_backend.repo.DogRepository;
 import com.example.barkbuddy_backend.repo.LostDogRepository;
 import com.example.barkbuddy_backend.service.LostDogService;
+import com.example.barkbuddy_backend.service.SightingService;
 import com.example.barkbuddy_backend.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,7 @@ public class LostDogController {
     private final LostDogRepository lostDogRepository;
     private final DogRepository dogRepository;
     private final JWTUtil jwtUtil;
+    private final SightingService sightingService;
 
     private Long getUserIdFromToken(String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -72,5 +76,29 @@ public class LostDogController {
         }
 
         return result;
+    }
+
+    @GetMapping("/{lostDogId}/sightings")
+    public ResponseEntity<List<SightingsDTO>> getSightings(@PathVariable Long lostDogId) {
+        return ResponseEntity.ok(sightingService.getSightingsForLostDog(lostDogId));
+    }
+
+    @PostMapping("/sighting/{lostDogId}")
+    public ResponseEntity<SightingsDTO> createSighting(
+            @PathVariable Long lostDogId,
+            @RequestBody SightingCreateRequest request,
+            @RequestHeader("Authorization") String authHeader
+    ) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).build();
+        }
+        String token = authHeader.substring(7);
+        Long userId = jwtUtil.extractUserId(token);
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        var dto = sightingService.createSighting(lostDogId, userId, request.getLocation());
+        return ResponseEntity.ok(dto);
     }
 }

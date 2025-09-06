@@ -8,8 +8,8 @@ import lombok.*;
 @Data
 public class SightingsDTO {
     private Long id;
-    private String lostId;
-    private String userId;
+    private String lostName;
+    private String userName;
     private String sightingLocation;
     private String sightingDate;
 }

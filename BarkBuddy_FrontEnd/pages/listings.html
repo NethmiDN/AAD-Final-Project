@@ -49,9 +49,6 @@
         <button class="btn btn-primary me-2" onclick="refreshListings()">
           <i class="fas fa-sync-alt"></i> Refresh
         </button>
-        <button class="btn btn-success" onclick="createNewListing()">
-          <i class="fas fa-plus"></i> New Listing
-        </button>
       </div>
     </div>
 
@@ -74,7 +71,7 @@
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link tab-link" id="my-tab" data-bs-toggle="tab" data-bs-target="#my" type="button" role="tab">
-          My Listings
+          My Cart
         </button>
       </li>
     </ul>
@@ -102,16 +99,13 @@
       </div>
       
       <!-- Lost Dog Reports Tab -->
-      <div class="tab-pane fade" id="lost" role="tabpanel">
-        <div class="empty-state">
-          <i class="fas fa-search"></i>
-          <h4>No Lost Dog Reports</h4>
-          <p>No lost dog reports found. Check the "Lost & Found" section for more information.</p>
-          <button class="btn btn-warning" onclick="window.barkBuddyNav.navigateToLostFound()">
-            <i class="fas fa-map-marker-alt"></i> View Lost & Found
-          </button>
-        </div>
-      </div>
+<div class="tab-pane fade" id="lost" role="tabpanel">
+  <div id="lostDogReportsContainer">
+    <div class="text-center py-4">
+      <i class="fas fa-spinner fa-spin"></i> Loading lost dog reports...
+    </div>
+  </div>
+</div>
       
       <!-- My Listings Tab -->
       <div class="tab-pane fade" id="my" role="tabpanel">
@@ -341,6 +335,106 @@ function refreshListings(event) {
       console.log('Listings page loaded');
       loadAdoptionRequests();
     });
+
+    async function loadLostDogReports() {
+  const container = document.getElementById('lostDogReportsContainer');
+  container.innerHTML = '<div class="text-center py-4"><i class="fas fa-spinner fa-spin"></i> Loading lost dog reports...</div>';
+  const token = localStorage.getItem('accessToken');
+  if (!token) {
+    container.innerHTML = '<div class="alert alert-warning">Please log in to view lost dog reports.</div>';
+    return;
+  }
+
+  try {
+    // Use existing /missing endpoint that returns LostDogDetailDTO list
+    const res = await fetch('http://localhost:8080/api/lostdog/missing', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`Failed to load reports: ${res.status}`);
+    const lostDogs = await res.json();
+
+    if (!lostDogs || lostDogs.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-search"></i>
+          <h4>No Lost Dog Reports</h4>
+          <p>No lost dog reports found. Check the "Lost & Found" section for more information.</p>
+          <button class="btn btn-warning" onclick="window.barkBuddyNav.navigateToLostFound()">
+            <i class="fas fa-map-marker-alt"></i> View Lost & Found
+          </button>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = '';
+    for (const dog of lostDogs) {
+      const card = document.createElement('div');
+      card.className = 'listing-card flex-column';
+      const dogName = dog.dogName || 'Unknown';
+      const breed = dog.breed || 'Unknown';
+      const lastSeen = dog.lastSeenLocation || 'Not provided';
+      const status = dog.status || 'MISSING';
+      const img = dog.imageUrl || '';
+
+      card.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start mb-2 w-100">
+          <div class="pe-3">
+            <h5><i class="fas fa-dog"></i> ${dogName}</h5>
+            <p class="mb-1"><strong>Breed:</strong> ${breed}</p>
+            <p class="mb-1"><strong>Last Seen:</strong> ${lastSeen}</p>
+            <span class="status-badge status-${status}">${status}</span>
+          </div>
+          ${img ? `<img src="${img}" alt="${dogName}" style="width:100px; height:100px; object-fit:cover; border-radius:10px;">` : ''}
+        </div>
+        <div class="sightings-list mt-2 w-100">
+          <strong>Sightings:</strong>
+          <div class="sightings-container"><p class="text-muted">Loading sightings...</p></div>
+        </div>`;
+
+      container.appendChild(card);
+
+      // load sightings for this lost-dog record
+      loadSightings(dog.id, card.querySelector('.sightings-container'));
+    }
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `<div class="alert alert-danger">Failed to load lost dog reports: ${err.message}</div>`;
+  }
+}
+
+async function loadSightings(lostDogId, target) {
+  const token = localStorage.getItem('accessToken');
+  try {
+    const res = await fetch(`http://localhost:8080/api/lostdog/${lostDogId}/sightings`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`Failed to load sightings: ${res.status}`);
+    const sightings = await res.json();
+
+    if (!sightings || sightings.length === 0) {
+      target.innerHTML = '<p class="text-muted">No sightings yet.</p>';
+      return;
+    }
+
+    target.innerHTML = '';
+    sightings.forEach(s => {
+      const el = document.createElement('div');
+      el.className = 'mb-2 p-2 border rounded';
+      const when = new Date(s.sightingDate).toLocaleString();
+      el.innerHTML = `
+        <p class="mb-1"><strong>${s.userName}</strong> spotted at <strong>${s.sightingLocation}</strong></p>
+        <p class="mb-0 text-muted" style="font-size:0.8rem;">${when}</p>`;
+      target.appendChild(el);
+    });
+  } catch (err) {
+    console.error(err);
+    target.innerHTML = `<p class="text-danger">Failed to load sightings</p>`;
+  }
+}
+
+// trigger load when tab is shown
+document.querySelector('button[data-bs-target="#lost"]')
+  .addEventListener('shown.bs.tab', loadLostDogReports);
   </script>
 </body>
 </html>
