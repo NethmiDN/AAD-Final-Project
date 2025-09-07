@@ -13,7 +13,9 @@ class BarkBuddyNavigation {
       'signup.html',
       'index.html',
       '404.html',
-      'setting.html'
+      'setting.html',
+      'adminSetting.html',
+      'adminListing.html'
     ];
     this.init();
   }
@@ -119,6 +121,8 @@ class BarkBuddyNavigation {
           (currentPage === 'mydog.html' && href === 'mydog.html') ||
           (currentPage === 'listings.html' && href === 'listings.html') ||
           (currentPage === 'setting.html' && href === 'setting.html') ||
+          (currentPage === 'adminSetting.html' && href === 'adminSetting.html') ||
+          (currentPage === 'adminListing.html' && href === 'adminListing.html') ||
           (currentPage === 'adminDashboard.html' && href === 'adminDashboard.html')) {
         link.classList.add('active');
       }
@@ -285,6 +289,10 @@ class BarkBuddyNavigation {
 
   navigateToSettings() {
     this.navigateToPage('setting.html');
+  }
+
+  navigateToAdminSettings() {
+    this.navigateToPage('adminSetting.html');
   }
 
   navigateToPage(page) {
