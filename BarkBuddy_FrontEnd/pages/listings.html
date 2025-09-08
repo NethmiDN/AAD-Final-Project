@@ -74,6 +74,11 @@
           My Cart
         </button>
       </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab-link" id="my-tab" data-bs-toggle="tab" data-bs-target="#request" type="button" role="tab">
+          My Requests
+        </button>
+      </li>
     </ul>
 
     <!-- Tab Content -->
@@ -124,6 +129,15 @@
         </div>
       </div>
     </div>
+
+    <!-- My Requests Tab -->
+<div class="tab-pane fade" id="request" role="tabpanel">
+  <div id="myRequestsContainer">
+    <div class="text-center py-4">
+      <i class="fas fa-spinner fa-spin"></i> Loading your adoption requests...
+    </div>
+  </div>
+</div>
 
     <!-- Coming Soon Modal -->
     <div class="modal fade" id="comingSoonModal" tabindex="-1">
@@ -435,6 +449,72 @@ async function loadSightings(lostDogId, target) {
 // trigger load when tab is shown
 document.querySelector('button[data-bs-target="#lost"]')
   .addEventListener('shown.bs.tab', loadLostDogReports);
+
+  document.querySelector('button[data-bs-target="#request"]')
+  .addEventListener('shown.bs.tab', loadMyRequests);
+
+
+  async function loadMyRequests() {
+  const container = document.getElementById('myRequestsContainer');
+  container.innerHTML = '<div class="text-center py-4"><i class="fas fa-spinner fa-spin"></i> Loading your adoption requests...</div>';
+  const token = localStorage.getItem('accessToken');
+  if (!token) {
+    container.innerHTML = '<div class="alert alert-warning">Please log in to view your requests.</div>';
+    return;
+  }
+
+  try {
+    const res = await fetch('http://localhost:8080/api/adoption/my-requests', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`Failed to load: ${res.status}`);
+    const requests = await res.json();
+
+    if (!requests || requests.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-heart"></i>
+          <h4>No Requests Made</h4>
+          <p>You haven't submitted any adoption requests yet. Browse dogs to adopt your new friend! 🐾</p>
+          <button class="btn btn-primary" onclick="window.barkBuddyNav.navigateToAdopt()">
+            <i class="fas fa-dog"></i> Browse Dogs
+          </button>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = '';
+    // For "My Requests" tab
+requests.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'listing-card';
+
+    // Get dog owner username safely
+    const ownerName = r.dog && r.dog.ownerUsername ? r.dog.ownerUsername : 'Unknown';
+
+    // Status badge class
+    const statusClass = r.status === 'PENDING' ? 'status-pending' :
+                        r.status === 'APPROVED' ? 'status-active' : 'status-closed';
+
+    card.innerHTML = `
+      <div>
+        <h5><i class="fas fa-dog"></i> ${r.dogName}</h5>
+        <p class="mb-1"><strong>Owner:</strong> ${ownerName}</p>
+        <p class="mb-1"><strong>Date:</strong> ${new Date(r.timestamp).toLocaleDateString()}</p>
+        <p class="mb-1"><strong>Status:</strong> <span class="status-badge ${statusClass}">${r.status}</span></p>
+      </div>
+    `;
+
+    container.appendChild(card);
+});
+
+
+  } catch (err) {
+    console.error('Error loading my requests:', err);
+    container.innerHTML = `<div class="alert alert-danger">Failed to load your requests: ${err.message}</div>`;
+  }
+}
+
   </script>
 </body>
 </html>

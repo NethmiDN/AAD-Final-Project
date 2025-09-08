@@ -75,8 +75,7 @@ public class AdoptionApplicationController {
                             .id(app.getId())
                             .dogId(app.getDogId())
                             .dogName(dogName)
-                            .adopterId(app.getAdopterId())
-                            .adopterName(adopterName)
+                            .ownerUsername(adopterName)
                             .status(app.getStatus().name())
                             .timestamp(app.getTimestamp())
                             .build();

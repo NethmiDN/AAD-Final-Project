@@ -63,7 +63,7 @@ public class AdoptionApplicationServiceImpl implements AdoptionApplicationServic
                             .id(req.getId())
                             .dogId(dog.getId())
                             .dogName(dog.getDogName())
-                            .adopterId(adopter.getId())
+                            .ownerUsername(adopter.getUsername())
                             .adopterName(adopter.getUsername())
                             .status(req.getStatus().name())
                             .timestamp(req.getTimestamp())
