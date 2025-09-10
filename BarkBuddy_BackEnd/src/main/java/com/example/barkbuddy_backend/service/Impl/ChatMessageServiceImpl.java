@@ -1,9 +1,9 @@
 package com.example.barkbuddy_backend.service.Impl;
 
+import com.example.barkbuddy_backend.dto.ChatConversationDTO;
 import com.example.barkbuddy_backend.entity.ChatMessage;
 import com.example.barkbuddy_backend.entity.Dog;
 import com.example.barkbuddy_backend.entity.User;
-import com.example.barkbuddy_backend.dto.ChatConversationDTO;
 import com.example.barkbuddy_backend.repo.ChatMessageRepository;
 import com.example.barkbuddy_backend.repo.DogRepository;
 import com.example.barkbuddy_backend.repo.UserRepository;

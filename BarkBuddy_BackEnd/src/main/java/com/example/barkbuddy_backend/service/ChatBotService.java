@@ -22,7 +22,7 @@ public class ChatBotService {
     private final ObjectMapper objectMapper;
 
     public ChatBotService(@Value("${ollama.api.url:http://localhost:11434/api/generate}") String ollamaUrl,
-                         @Value("${ollama.model:llama3}") String model) {
+                          @Value("${ollama.model:llama3}") String model) {
         this.restTemplate = new RestTemplate();
         this.ollamaUrl = ollamaUrl;
         this.model = model;
@@ -36,8 +36,8 @@ public class ChatBotService {
         try {
             // Create system context for BarkBuddy
             String systemPrompt = "You are a helpful assistant for BarkBuddy, a dog adoption and care platform. " +
-                                "Provide helpful information about dog care, adoption, and related topics. " +
-                                "Keep responses concise and friendly. User question: " + prompt;
+                    "Provide helpful information about dog care, adoption, and related topics. " +
+                    "Keep responses concise and friendly. User question: " + prompt;
 
             // Prepare request body for Ollama API
             Map<String, Object> requestBody = new HashMap<>();

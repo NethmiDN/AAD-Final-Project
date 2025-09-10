@@ -22,6 +22,12 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to botto
 .notification.show { opacity:1; transform:translateY(0); }
 .notification.success { background-color:#1cc88a; }
 .notification.error { background-color:#e74a3b; }
+/* Chat modal styles */
+.chat-messages { max-height:300px; overflow-y:auto; background:#f8f9fa; padding:10px; border:1px solid #ddd; border-radius:8px; }
+.chat-msg { padding:6px 10px; margin-bottom:6px; border-radius:12px; font-size:0.85rem; max-width:75%; }
+.chat-msg.me { background:#d1f7d9; margin-left:auto; text-align:right; }
+.chat-msg.other { background:#ffffff; border:1px solid #e1e1e1; }
+.chat-header small { font-size:0.75rem; color:#666; }
 </style>
 </head>
 <body>
@@ -35,6 +41,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to botto
     <a class="nav-link" href="lostfound.html" data-page="lostfound">📍 Lost & Found</a>
     <a class="nav-link" href="mydog.html" data-page="mydog">🐕 My Dogs</a>
     <a class="nav-link" href="listings.html" data-page="listings">📄 Listings & Requests</a>
+  <a class="nav-link" href="messages.html" data-page="messages">💬 Messages</a>
     <a class="nav-link" href="setting.html" data-page="setting">⚙️ Setting</a>
     <a class="nav-link mt-auto" href="#" onclick="window.barkBuddyNav.logout(); return false;">🚪 Logout</a>
     </nav>
@@ -125,17 +132,20 @@ function renderDogs(dogs){
           <p class="mb-1"><strong>Breed:</strong> ${dog.breed}</p>
           <p class="mb-1"><strong>Age:</strong> ${dog.age}</p>
           <span class="status-badge ${statusClass}">${dog.status}</span>
-          <div class="mt-2">
+      <div class="mt-2">
             ${isOwner?`
               <span class="badge bg-info">Your Pet</span><br>
               <button class="btn btn-sm btn-warning me-1 mt-2" onclick="startEdit(${dog.id})"><i class="fas fa-edit"></i> Edit</button>
               <button class="btn btn-sm btn-danger mt-2" onclick="deleteDog(${dog.id})"><i class="fas fa-trash"></i> Delete</button>
             `:dog.status==='AVAILABLE'?`
-              <button class="btn btn-sm btn-success" onclick='adoptDog(${JSON.stringify(dog)})'>💛 Adopt Me</button>
+        <button class="btn btn-sm btn-success me-1" onclick='adoptDog(${JSON.stringify(dog)})'>💛 Adopt Me</button>
+        <button class="btn btn-sm btn-outline-primary mt-2" onclick="openChat(${dog.id}, ${dog.ownerId}, '${dog.dogName.replace(/'/g,"\'")}')"><i class='fas fa-comments'></i> Chat with Owner</button>
             `:dog.status==='ADOPTED'?`
-              <button class="btn btn-sm btn-secondary" disabled>Already Adopted</button>
+        <button class="btn btn-sm btn-secondary mb-1" disabled>Already Adopted</button>
+        <button class="btn btn-sm btn-outline-primary" onclick="openChat(${dog.id}, ${dog.ownerId}, '${dog.dogName.replace(/'/g,"\'")}')"><i class='fas fa-comments'></i> Chat</button>
             `:`
-              <button class="btn btn-sm btn-warning" disabled>Adoption Pending</button>
+        <button class="btn btn-sm btn-warning mb-1" disabled>Adoption Pending</button>
+        <button class="btn btn-sm btn-outline-primary" onclick="openChat(${dog.id}, ${dog.ownerId}, '${dog.dogName.replace(/'/g,"\'")}')"><i class='fas fa-comments'></i> Chat</button>
             `}
           </div>
         </div>
@@ -213,6 +223,7 @@ adoptionForm.addEventListener('submit', async e=>{
 window.startEdit=window.deleteDog=function(id){ alert('Edit/Delete function here: '+id); }
 
 loadDogs();
+
 </script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.example.barkbuddy_backend.controller;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -66,6 +68,31 @@ public class UserController {
 
         UserDTO dto = new UserDTO(user.getUsername(), user.getEmail(), "");
         return ResponseEntity.ok(dto);
+    }
+
+    // Get all users (for testing purposes)
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers() {
+        List<User> users = userRepository.findAll();
+
+        // Return user data without passwords for security
+        List<Object> usersList = users.stream()
+                .map(user -> new Object() {
+                    public final Long id = user.getId();
+                    public final String username = user.getUsername();
+                    public final String email = user.getEmail();
+                    public final String role = user.getRole().name();
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(usersList);
+    }
+
+    // Get user count
+    @GetMapping("/count")
+    public ResponseEntity<?> getUserCount() {
+        long count = userRepository.count();
+        return ResponseEntity.ok(Map.of("totalUsers", count));
     }
 
 }

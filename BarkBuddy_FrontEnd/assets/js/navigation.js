@@ -8,6 +8,7 @@ class BarkBuddyNavigation {
       'lostfound.html',
       'mydog.html',
       'listings.html',
+  'messages.html',
       'adminDashboard.html',
       'login.html',
       'signup.html',
@@ -45,6 +46,13 @@ class BarkBuddyNavigation {
       this.setActiveNavItem();
       this.addNavigationEventListeners();
       this.addHoverEffects();
+      
+      // Don't inject global chat widget on messages page (since it has its own dedicated interface)
+      const currentPage = window.location.pathname.split('/').pop();
+      if (currentPage !== 'messages.html') {
+        this.injectGlobalChat();
+      }
+      
       console.log('BarkBuddy Navigation initialized successfully');
     } catch (error) {
       console.error('Error in navigation initialization:', error);
@@ -57,6 +65,23 @@ class BarkBuddyNavigation {
           this.handleNavigationError();
         }
       }, 500);
+    }
+  }
+
+  injectGlobalChat(){
+    // add chat css & script once
+    if(!document.getElementById('bb-chat-css')) {
+      const link = document.createElement('link');
+      link.id='bb-chat-css';
+      link.rel='stylesheet';
+      link.href='../assets/css/chat.css';
+      document.head.appendChild(link);
+    }
+    if(!document.getElementById('bb-chat-js')) {
+      const script = document.createElement('script');
+      script.id='bb-chat-js';
+      script.src='../assets/js/chat.js';
+      document.body.appendChild(script);
     }
   }
 
@@ -120,6 +145,7 @@ class BarkBuddyNavigation {
           (currentPage === 'lostfound.html' && href === 'lostfound.html') ||
           (currentPage === 'mydog.html' && href === 'mydog.html') ||
           (currentPage === 'listings.html' && href === 'listings.html') ||
+          (currentPage === 'messages.html' && href === 'messages.html') ||
           (currentPage === 'setting.html' && href === 'setting.html') ||
           (currentPage === 'adminSetting.html' && href === 'adminSetting.html') ||
           (currentPage === 'adminListing.html' && href === 'adminListing.html') ||

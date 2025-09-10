@@ -43,6 +43,12 @@
     </dependencyManagement>
     <dependencies>
 
+        <!-- Java Mail Sender -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!-- OpenAI Java client (service module provides OpenAiService) -->
         <dependency>
             <groupId>com.theokanning.openai-gpt3-java</groupId>

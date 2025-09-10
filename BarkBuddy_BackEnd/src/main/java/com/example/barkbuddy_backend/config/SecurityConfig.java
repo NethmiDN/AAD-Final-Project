@@ -5,9 +5,7 @@ import com.example.barkbuddy_backend.entity.User;
 import com.example.barkbuddy_backend.repo.UserRepository;
 import com.example.barkbuddy_backend.service.Impl.GoogleOAuth2Service;
 import com.example.barkbuddy_backend.util.JWTAuthFilter;
-import com.example.barkbuddy_backend.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,7 +39,6 @@ public class SecurityConfig {
     private final PasswordEncoder passwordEncoder;
     private final CorsConfigurationSource corsConfigurationSource;
     private final UserRepository userRepository;
-    private final JWTUtil jwtUtil;
 
     @Bean
     public GoogleOAuth2Service googleOAuth2Service() {
@@ -56,6 +53,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/barkbuddy/**").permitAll()
                         .requestMatchers("/api/chat/**").permitAll()
+                        .requestMatchers("/api/user-chat/**").authenticated()
                         .requestMatchers("/api/dogs/all").permitAll()
                         .requestMatchers("/api/dogs/*/image").permitAll()
                         .requestMatchers("/api/dogs/**").authenticated()

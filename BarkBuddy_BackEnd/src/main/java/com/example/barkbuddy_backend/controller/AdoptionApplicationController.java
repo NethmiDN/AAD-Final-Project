@@ -112,6 +112,13 @@ public class AdoptionApplicationController {
                 Dog dog = dogRepository.findById(r.getDogId()).orElse(null);
                 map.put("dogName", dog != null ? dog.getDogName() : "Unknown");
                 map.put("dogBreed", dog != null ? dog.getBreed() : "Unknown");
+                if(dog != null){
+                    // use helper service to get owner username
+                    String ownerUsername = adoptionService.getUserNameById(dog.getOwnerId());
+                    map.put("ownerUsername", ownerUsername);
+                } else {
+                    map.put("ownerUsername", "Unknown");
+                }
                 map.put("status", r.getStatus());
                 map.put("requestId", r.getId());
                 map.put("timestamp", r.getTimestamp());

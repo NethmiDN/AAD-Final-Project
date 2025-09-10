@@ -12,7 +12,7 @@ public class LostDogDetailDTO {
     private Long userId;
     private String lastSeenLocation;
     private String status; // MISSING, FOUND
-    
+
     // Dog details
     private String dogName;
     private String breed;

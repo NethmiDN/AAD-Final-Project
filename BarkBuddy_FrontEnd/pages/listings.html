@@ -36,6 +36,7 @@
       <a class="nav-link" href="lostfound.html" data-page="lostfound">📍 Lost & Found</a>
       <a class="nav-link" href="mydog.html" data-page="mydog">🐕 My Dogs</a>
       <a class="nav-link" href="listings.html" data-page="listings">📄 Listings & Requests</a>
+  <a class="nav-link" href="messages.html" data-page="messages">💬 Messages</a>
       <a class="nav-link" href="setting.html" data-page="setting">⚙️ Setting</a>
       <a class="nav-link mt-auto" href="#" onclick="window.barkBuddyNav.logout(); return false;">🚪 Logout</a>
     </nav>
@@ -485,28 +486,24 @@ document.querySelector('button[data-bs-target="#lost"]')
 
     container.innerHTML = '';
     // For "My Requests" tab
-requests.forEach(r => {
-    const card = document.createElement('div');
-    card.className = 'listing-card';
+    requests.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'listing-card';
 
-    // Get dog owner username safely
-    const ownerName = r.dog && r.dog.ownerUsername ? r.dog.ownerUsername : 'Unknown';
+        const ownerName = r.ownerUsername || 'Unknown';
+        const statusClass = r.status === 'PENDING' ? 'status-pending' :
+                            r.status === 'APPROVED' ? 'status-active' : 'status-closed';
 
-    // Status badge class
-    const statusClass = r.status === 'PENDING' ? 'status-pending' :
-                        r.status === 'APPROVED' ? 'status-active' : 'status-closed';
-
-    card.innerHTML = `
-      <div>
-        <h5><i class="fas fa-dog"></i> ${r.dogName}</h5>
-        <p class="mb-1"><strong>Owner:</strong> ${ownerName}</p>
-        <p class="mb-1"><strong>Date:</strong> ${new Date(r.timestamp).toLocaleDateString()}</p>
-        <p class="mb-1"><strong>Status:</strong> <span class="status-badge ${statusClass}">${r.status}</span></p>
-      </div>
-    `;
-
-    container.appendChild(card);
-});
+        card.innerHTML = `
+          <div>
+            <h5><i class="fas fa-dog"></i> ${r.dogName}</h5>
+            <p class="mb-1"><strong>Owner:</strong> ${ownerName}</p>
+            <p class="mb-1"><strong>Date:</strong> ${new Date(r.timestamp).toLocaleDateString()}</p>
+            <p class="mb-1"><strong>Status:</strong> <span class="status-badge ${statusClass}">${r.status}</span></p>
+          </div>
+        `;
+        container.appendChild(card);
+    });
 
 
   } catch (err) {
