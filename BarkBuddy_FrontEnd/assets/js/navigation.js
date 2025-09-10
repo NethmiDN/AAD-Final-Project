@@ -149,6 +149,7 @@ class BarkBuddyNavigation {
           (currentPage === 'setting.html' && href === 'setting.html') ||
           (currentPage === 'adminSetting.html' && href === 'adminSetting.html') ||
           (currentPage === 'adminListing.html' && href === 'adminListing.html') ||
+          (currentPage === 'messages.html' && href === 'messages.html') ||
           (currentPage === 'adminDashboard.html' && href === 'adminDashboard.html')) {
         link.classList.add('active');
       }
