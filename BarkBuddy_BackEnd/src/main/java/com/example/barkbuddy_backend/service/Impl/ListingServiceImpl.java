@@ -32,16 +32,23 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     public ListingDTO addEquipment(ListingDTO dto) {
-        Listings equipment = Listings.builder()
+    // Ensure imageUrl is not null to satisfy DB constraint
+    String imageUrl = dto.getImageUrl();
+    if (imageUrl == null || imageUrl.isBlank()) {
+        imageUrl = "https://via.placeholder.com/600x400?text=Listing";
+    }
+
+    Listings equipment = Listings.builder()
                 .listingName(dto.getListingName())
                 .listingDescription(dto.getListingDescription())
                 .price(dto.getPrice())
                 .quantity(dto.getQuantity())
-                .imageUrl(dto.getImageUrl())
+        .imageUrl(imageUrl)
                 .build();
         listingRepository.save(equipment);
         dto.setId(equipment.getId());
-        return dto;
+    dto.setImageUrl(equipment.getImageUrl());
+    return dto;
     }
 
     @Override
@@ -52,9 +59,13 @@ public class ListingServiceImpl implements ListingService {
         equipment.setListingDescription(dto.getListingDescription());
         equipment.setPrice(dto.getPrice());
         equipment.setQuantity(dto.getQuantity());
-        equipment.setImageUrl(dto.getImageUrl());
+        // Preserve existing image if none provided
+        if (dto.getImageUrl() != null && !dto.getImageUrl().isBlank()) {
+            equipment.setImageUrl(dto.getImageUrl());
+        }
         listingRepository.save(equipment);
         dto.setId(equipment.getId());
+        dto.setImageUrl(equipment.getImageUrl());
         return dto;
     }
 
@@ -66,4 +77,24 @@ public class ListingServiceImpl implements ListingService {
         listingRepository.deleteById(id);
     }
 
+    @Override
+    public ListingDTO purchaseEquipment(Long id, int qty) {
+        if (qty <= 0) throw new IllegalArgumentException("Quantity must be positive");
+        Listings equipment = listingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Equipment not found"));
+        int current = equipment.getQuantity() == null ? 0 : equipment.getQuantity();
+        if (current < qty) {
+            throw new RuntimeException("Insufficient stock");
+        }
+        equipment.setQuantity(current - qty);
+        listingRepository.save(equipment);
+        return ListingDTO.builder()
+                .id(equipment.getId())
+                .listingName(equipment.getListingName())
+                .listingDescription(equipment.getListingDescription())
+                .price(equipment.getPrice())
+                .quantity(equipment.getQuantity())
+                .imageUrl(equipment.getImageUrl())
+                .build();
+    }
 }

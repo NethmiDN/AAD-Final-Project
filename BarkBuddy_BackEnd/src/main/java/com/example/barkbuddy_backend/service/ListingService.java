@@ -9,4 +9,5 @@ public interface ListingService {
     ListingDTO addEquipment(ListingDTO listingDTO);
     ListingDTO updateEquipment(Long id, ListingDTO listingDTO);
     void deleteEquipment(Long id);
+    ListingDTO purchaseEquipment(Long id, int quantity);
 }

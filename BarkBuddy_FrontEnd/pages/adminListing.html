@@ -45,7 +45,7 @@
 <div class="main">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>📄 Pet Shop Listings</h2>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#listingModal">
+  <button id="openAddListingBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#listingModal">
       <i class="fas fa-plus me-2"></i>Add Listing
     </button>
   </div>
@@ -72,12 +72,12 @@
         <input type="text" class="form-control" id="listingName" required>
       </div>
       <div class="mb-3">
-        <label class="form-label">Description</label>
-        <textarea class="form-control" id="listingDescription" required></textarea>
+  <label class="form-label">Description</label>
+  <textarea class="form-control" id="listingDescription" required></textarea>
       </div>
       <div class="mb-3">
-        <label class="form-label">Price (Rs.)</label>
-        <input type="number" class="form-control" id="listingPrice" required>
+  <label class="form-label">Price (Rs.)</label>
+  <input type="number" class="form-control" id="listingPrice" required>
       </div>
       <div class="mb-3">
         <label class="form-label">Quantity</label>
@@ -106,20 +106,18 @@ const token = localStorage.getItem('accessToken');
 async function loadListings() {
   const container = document.getElementById('cardContainer');
   container.innerHTML = `<div class="col-12 text-center">Loading...</div>`;
-  const res = await fetch('http://localhost:8080/api/listings', {
-      headers: { 'Authorization': 'Bearer ' + token }
-  });
+  const res = await fetch('http://localhost:8080/api/listings');
   const data = await res.json();
   container.innerHTML = '';
   data.forEach(e => {
       container.innerHTML += `
       <div class="col-md-4 mb-4">
         <div class="card h-100">
-          <img src="${e.imageUrl}" class="card-img-top" alt="${e.name}">
+          <img src="${e.imageUrl}" class="card-img-top" alt="${e.listingName}">
           <div class="card-body">
-            <h5 class="card-title">${e.name}</h5>
-            <p class="card-text">${e.description}</p>
-            <p><strong>Price:</strong> $${e.price}</p>
+            <h5 class="card-title">${e.listingName}</h5>
+            <p class="card-text">${e.listingDescription}</p>
+            <p><strong>Price:</strong> Rs. ${e.price}</p>
             <p><strong>Quantity:</strong> ${e.quantity}</p>
             <button class="btn btn-warning btn-sm me-2" onclick="editListing(${e.id})">Edit</button>
             <button class="btn btn-danger btn-sm" onclick="deleteListing(${e.id})">Delete</button>
@@ -132,8 +130,8 @@ async function loadListings() {
 async function saveListing() {
   const id = document.getElementById('listingId').value;
   const formData = new FormData();
-  formData.append('name', document.getElementById('listingName').value);
-  formData.append('description', document.getElementById('listingDescription').value);
+  formData.append('listingName', document.getElementById('listingName').value);
+  formData.append('listingDescription', document.getElementById('listingDescription').value);
   formData.append('price', document.getElementById('listingPrice').value);
   formData.append('quantity', document.getElementById('listingQuantity').value);
 
@@ -147,7 +145,6 @@ async function saveListing() {
 
   const res = await fetch(url, {
     method,
-    headers: { 'Authorization': 'Bearer ' + token },
     body: formData
   });
 
@@ -160,19 +157,19 @@ async function saveListing() {
 }
 
 function editListing(id) {
-  fetch(`http://localhost:8080/api/listings`, { headers: { 'Authorization': 'Bearer ' + token } })
+  fetch(`http://localhost:8080/api/listings`)
     .then(res => res.json())
     .then(data => {
       const e = data.find(eq => eq.id === id);
       document.getElementById('listingId').value = e.id;
-      document.getElementById('listingName').value = e.name;
-      document.getElementById('listingDescription').value = e.description;
+      document.getElementById('listingName').value = e.listingName;
+      document.getElementById('listingDescription').value = e.listingDescription;
       document.getElementById('listingPrice').value = e.price;
       document.getElementById('listingQuantity').value = e.quantity;
 
       // Show current image preview
       const preview = document.getElementById('imagePreview');
-      preview.src = e.imageUrl;
+  preview.src = e.imageUrl;
       preview.style.display = "block";
 
       new bootstrap.Modal(document.getElementById('listingModal')).show();
@@ -183,7 +180,7 @@ async function deleteListing(id) {
   if (!confirm('Delete this listing?')) return;
   const res = await fetch(`http://localhost:8080/api/listings/${id}`, {
       method: 'DELETE',
-      headers: { 'Authorization': 'Bearer ' + token }
+      
   });
   if (res.ok) loadListings();
   else alert('Failed to delete');
@@ -191,6 +188,23 @@ async function deleteListing(id) {
 
 document.getElementById('saveListingBtn').addEventListener('click', saveListing);
 document.addEventListener('DOMContentLoaded', loadListings);
+
+// Reset form when opening for a new listing
+document.getElementById('openAddListingBtn').addEventListener('click', () => {
+  document.getElementById('listingForm').reset();
+  document.getElementById('listingId').value = '';
+  const preview = document.getElementById('imagePreview');
+  preview.src = '';
+  preview.style.display = 'none';
+});
+
+// Hide preview when modal closed
+document.getElementById('listingModal').addEventListener('hidden.bs.modal', () => {
+  const preview = document.getElementById('imagePreview');
+  preview.src = '';
+  preview.style.display = 'none';
+  document.getElementById('listingForm').reset();
+});
 </script>
 </body>
 </html>

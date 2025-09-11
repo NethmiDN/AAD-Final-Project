@@ -71,12 +71,12 @@
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link tab-link" id="my-tab" data-bs-toggle="tab" data-bs-target="#my" type="button" role="tab">
+        <button class="nav-link tab-link" id="cart-tab" data-bs-toggle="tab" data-bs-target="#myCart" type="button" role="tab">
           My Cart
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link tab-link" id="my-tab" data-bs-toggle="tab" data-bs-target="#request" type="button" role="tab">
+        <button class="nav-link tab-link" id="request-tab" data-bs-toggle="tab" data-bs-target="#request" type="button" role="tab">
           My Requests
         </button>
       </li>
@@ -87,14 +87,9 @@
 
       <!-- All Listings Tab -->
       <div class="tab-pane fade show active" id="all" role="tabpanel">
-        <div id="allListings">
-          <div class="empty-state">
-            <i class="fas fa-list-alt"></i>
-            <h4>No Listings Available</h4>
-            <p>This feature is coming soon! Check back later for listings and requests.</p>
-            <button class="btn btn-warning" onclick="window.barkBuddyNav.navigateToDashboard()">
-              <i class="fas fa-home"></i> Go to Dashboard
-            </button>
+        <div id="allListings" class="row g-3">
+          <div class="col-12 text-center py-4">
+            <i class="fas fa-spinner fa-spin"></i> Loading listings...
           </div>
         </div>
       </div>
@@ -129,6 +124,14 @@
           </div>
         </div>
       </div>
+        <!-- My Cart Tab -->
+        <div class="tab-pane fade" id="myCart" role="tabpanel">
+          <div id="myCartContainer" class="row g-3">
+            <div class="col-12 text-center py-4">
+              <i class="fas fa-shopping-cart"></i> Your cart is empty.
+            </div>
+          </div>
+        </div>
     </div>
 
     <!-- My Requests Tab -->
@@ -168,6 +171,56 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Payment Modal -->
+  <div class="modal fade" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-credit-card"></i> Secure Payment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <div class="d-flex align-items-center">
+              <img id="payItemImage" src="" alt="item" style="width:64px; height:64px; object-fit:cover; border-radius:8px; margin-right:12px;">
+              <div>
+                <div id="payItemName" class="fw-semibold"></div>
+                <div class="small text-muted">Unit: Rs. <span id="payItemPrice"></span> • Qty: <span id="payItemQty"></span></div>
+                <div class="fw-bold mt-1">Total: Rs. <span id="payItemTotal"></span></div>
+              </div>
+            </div>
+          </div>
+          <form id="paymentForm">
+            <div class="mb-3">
+              <label class="form-label">Card Number</label>
+              <input type="text" class="form-control" id="cardNumber" placeholder="4111 1111 1111 1111" maxlength="19" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Name on Card</label>
+              <input type="text" class="form-control" id="cardName" placeholder="J DOE" required>
+            </div>
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label">Expiry (MM/YY)</label>
+                <input type="text" class="form-control" id="cardExpiry" placeholder="12/27" maxlength="5" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label">CVV</label>
+                <input type="password" class="form-control" id="cardCvv" placeholder="123" maxlength="4" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="payNowBtn" class="btn btn-primary">
+            <i class="fas fa-lock"></i> Pay Now
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -348,8 +401,181 @@ function refreshListings(event) {
 
     document.addEventListener('DOMContentLoaded', function() {
       console.log('Listings page loaded');
+      loadAllListings();
       loadAdoptionRequests();
     });
+
+    async function loadAllListings() {
+      const container = document.getElementById('allListings');
+      container.innerHTML = `<div class="col-12 text-center py-4"><i class="fas fa-spinner fa-spin"></i> Loading listings...</div>`;
+      try {
+        const res = await fetch('http://localhost:8080/api/listings');
+        if (!res.ok) throw new Error('Failed to load listings');
+        const items = await res.json();
+        if (!items || items.length === 0) {
+          container.innerHTML = `<div class='col-12'><div class="empty-state"><i class="fas fa-list-alt"></i><h4>No Listings Available</h4><p>Please check back later.</p></div></div>`;
+          return;
+        }
+        container.innerHTML = '';
+        items.forEach(e => {
+          const disabled = !e.quantity || e.quantity <= 0;
+          container.innerHTML += `
+            <div class="col-md-4">
+              <div class="card h-100 shadow-sm">
+                <img src="${e.imageUrl || 'https://via.placeholder.com/600x400?text=Listing'}" class="card-img-top" alt="${e.listingName}">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">${e.listingName}</h5>
+                  <p class="card-text small">${e.listingDescription}</p>
+                  <div class="mt-auto d-flex justify-content-between align-items-center">
+                    <span class="fw-bold text-primary">Rs. ${e.price}</span>
+                    <span class=\"badge ${disabled ? 'bg-danger' : 'bg-success'}\">${disabled ? 'Sold out' : 'In stock: ' + e.quantity}</span>
+                  </div>
+                  <div class="input-group mt-2">
+                    <input type="number" min="1" value="1" class="form-control" id="qty-${e.id}" ${disabled ? 'disabled' : ''}>
+                    <button class=\"btn ${disabled ? 'btn-secondary' : 'btn-warning'}\" onclick=\"openPayment(this)\" data-id=\"${e.id}\" data-name=\"${e.listingName}\" data-price=\"${e.price}\" data-img=\"${e.imageUrl || ''}\" ${disabled ? 'disabled' : ''}>${disabled ? '<i class=\\"fas fa-ban\\"></i> Sold Out' : '<i class=\\"fas fa-shopping-cart\\"></i> Buy'}</button>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        });
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `<div class='col-12'><div class="alert alert-danger">${err.message}</div></div>`;
+      }
+    }
+
+    let currentPurchase = null;
+    const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+
+    function openPayment(btn) {
+      const id = parseInt(btn.dataset.id, 10);
+      const name = btn.dataset.name || '';
+      const price = btn.dataset.price || '0';
+      const img = btn.dataset.img || '';
+      const qty = parseInt(document.getElementById(`qty-${id}`)?.value || '1', 10);
+      if (!qty || qty <= 0) return showNotification('Invalid quantity', 'error');
+
+      currentPurchase = { id, name, price, img, qty };
+      // Fill modal UI
+      document.getElementById('payItemName').textContent = name;
+      document.getElementById('payItemPrice').textContent = price;
+      document.getElementById('payItemQty').textContent = qty;
+      document.getElementById('payItemImage').src = img || 'https://via.placeholder.com/100x100?text=Item';
+      const total = (() => { try { return (parseFloat(price) * qty).toFixed(2); } catch { return price; } })();
+      document.getElementById('payItemTotal').textContent = total;
+      // Reset form
+      document.getElementById('paymentForm').reset();
+      paymentModal.show();
+    }
+
+    async function processPayment() {
+      const token = localStorage.getItem('accessToken');
+      if (!token) { showNotification('Please log in to purchase', 'error'); return; }
+      if (!currentPurchase) { return; }
+
+      // Basic client-side validation (simulation)
+      const cardNumber = document.getElementById('cardNumber').value.trim();
+      const cardName = document.getElementById('cardName').value.trim();
+      const cardExpiry = document.getElementById('cardExpiry').value.trim();
+      const cardCvv = document.getElementById('cardCvv').value.trim();
+
+  // Only check for exactly 16 digits; do not verify if real/fake
+  const digits = cardNumber.replace(/\D/g, '');
+  if (digits.length !== 16) { showNotification('Card number must have 16 digits', 'error'); return; }
+      if (!cardName) { showNotification('Enter name on card', 'error'); return; }
+      if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) { showNotification('Invalid expiry (MM/YY)', 'error'); return; }
+      if (!/^\d{3,4}$/.test(cardCvv)) { showNotification('Invalid CVV', 'error'); return; }
+
+      // Simulate gateway processing… then call backend to create paid order
+      const payBtn = document.getElementById('payNowBtn');
+      const original = payBtn.innerHTML;
+      payBtn.disabled = true; payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      try {
+        const res = await fetch(`http://localhost:8080/api/orders/pay/${currentPurchase.id}?quantity=${currentPurchase.qty}` , {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) {
+          const t = await res.text();
+          throw new Error(t || 'Payment failed');
+        }
+        paymentModal.hide();
+        showNotification('Payment successful! Order added to your cart.', 'success');
+        // Refresh listings and cart
+        loadAllListings();
+        loadMyCart();
+      } catch (err) {
+        console.error(err);
+        showNotification(err.message || 'Payment failed', 'error');
+      } finally {
+        payBtn.disabled = false; payBtn.innerHTML = original;
+      }
+    }
+
+    document.getElementById('payNowBtn').addEventListener('click', processPayment);
+
+    async function loadMyCart() {
+      const container = document.getElementById('myCartContainer');
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        container.innerHTML = '<div class="col-12 text-center py-4"><div class="alert alert-warning">Please log in to view your cart.</div></div>';
+        return;
+      }
+      container.innerHTML = '<div class="col-12 text-center py-4"><i class="fas fa-spinner fa-spin"></i> Loading your orders...</div>';
+      try {
+        const res = await fetch('http://localhost:8080/api/orders/me', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error('Failed to load orders');
+        const orders = await res.json();
+        if (!orders || orders.length === 0) {
+          container.innerHTML = '<div class="col-12 text-center py-4"><i class="fas fa-shopping-cart"></i> Your cart is empty.</div>';
+          return;
+        }
+        container.innerHTML = '';
+        orders.forEach(o => {
+          container.innerHTML += `
+            <div class=\"col-md-6\">
+              <div class=\"card h-100\">
+                <div class=\"card-body d-flex\">
+                  <img src=\"${o.imageUrl || 'https://via.placeholder.com/100x100?text=Item'}\" style=\"width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:12px;\" alt=\"${o.listingName}\"/>
+                  <div class=\"flex-grow-1\">
+                    <h6 class=\"mb-1\">${o.listingName}</h6>
+                    <div class=\"small text-muted\">Qty: ${o.quantity} • Unit: Rs. ${o.unitPrice}</div>
+                    <div class=\"fw-bold\">Total: Rs. ${o.total}</div>
+                    <span class=\"badge bg-success mt-2\">${o.status}</span>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        });
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `<div class='col-12'><div class=\"alert alert-danger\">${err.message}</div></div>`;
+      }
+    }
+
+    // Load cart when the tab becomes visible
+    document.querySelector('button[data-bs-target="#myCart"]').addEventListener('shown.bs.tab', loadMyCart);
+
+    async function buyListing(id) {
+      const qtyInput = document.getElementById(`qty-${id}`);
+      const qty = parseInt(qtyInput?.value || '1', 10);
+      if (!qty || qty <= 0) return alert('Invalid quantity');
+      try {
+        const res = await fetch(`http://localhost:8080/api/listings/${id}/purchase?quantity=${qty}`, { method: 'POST' });
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(text || 'Purchase failed');
+        }
+        // success: reload listings to reflect updated stock
+        loadAllListings();
+        showNotification('Purchase successful!', 'success');
+      } catch (err) {
+        console.error(err);
+        showNotification(err.message || 'Purchase failed', 'error');
+      }
+    }
 
     async function loadLostDogReports() {
   const container = document.getElementById('lostDogReportsContainer');
