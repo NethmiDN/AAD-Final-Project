@@ -23,6 +23,17 @@
     .tab-link:hover { background-color: rgba(254, 200, 60, 0.1) !important; color: #FEC83C !important; }
     .tab-link.active { background-color: #FEC83C !important; color: #2C2A7B !important; font-weight: bold !important; }
     @media (max-width: 768px) { .main { margin-left: 0; padding: 1rem; } }
+    /* Payment modal styles */
+    .pay-brand { display: flex; align-items: center; gap: 8px; }
+    .pay-brand .lock { color: #198754; }
+    .pay-accepted img { height: 20px; margin-left: 6px; opacity: .8; }
+    .pay-summary { background: #f8f9fa; border-radius: 10px; padding: 12px; }
+    .pay-field .form-label { font-size: .9rem; color: #6c757d; }
+    .pay-field .input-group-text { background: #fff; }
+    .pay-help { font-size: .8rem; color: #6c757d; }
+    .pay-divider { border-top: 1px dashed #dee2e6; margin: 12px 0; }
+    .pay-badges img { height: 24px; opacity: .85; }
+    .pay-footer-note { font-size: .8rem; color: #6c757d; }
   </style>
 </head>
 <body>
@@ -175,49 +186,90 @@
 
   <!-- Payment Modal -->
   <div class="modal fade" id="paymentModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><i class="fas fa-credit-card"></i> Secure Payment</h5>
+          <div class="pay-brand">
+            <span class="badge bg-dark">BarkBuddy Pay</span>
+            <span class="text-muted">Secure Checkout</span>
+            <i class="fas fa-lock lock" title="SSL Secured"></i>
+            <span class="pay-accepted ms-2">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+            </span>
+          </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <div class="d-flex align-items-center">
-              <img id="payItemImage" src="" alt="item" style="width:64px; height:64px; object-fit:cover; border-radius:8px; margin-right:12px;">
-              <div>
-                <div id="payItemName" class="fw-semibold"></div>
-                <div class="small text-muted">Unit: Rs. <span id="payItemPrice"></span> • Qty: <span id="payItemQty"></span></div>
-                <div class="fw-bold mt-1">Total: Rs. <span id="payItemTotal"></span></div>
+          <div class="row g-3">
+            <div class="col-md-5">
+              <div class="pay-summary h-100">
+                <div class="d-flex align-items-center">
+                  <img id="payItemImage" src="" alt="item" style="width:64px; height:64px; object-fit:cover; border-radius:8px; margin-right:12px;">
+                  <div>
+                    <div id="payItemName" class="fw-semibold"></div>
+                    <div class="small text-muted">Unit: Rs. <span id="payItemPrice"></span> • Qty: <span id="payItemQty"></span></div>
+                  </div>
+                </div>
+                <div class="pay-divider"></div>
+                <div class="d-flex justify-content-between"><span>Subtotal</span><span>Rs. <span id="paySubtotal"></span></span></div>
+                <div class="d-flex justify-content-between"><span>Processing Fee</span><span>Rs. 0.00</span></div>
+                <div class="pay-divider"></div>
+                <div class="d-flex justify-content-between fw-bold"><span>Total</span><span>Rs. <span id="payItemTotal"></span></span></div>
+                <div class="pay-divider"></div>
+                <div class="pay-footer-note"><i class="fas fa-shield-alt"></i> We do not store your card details. PCI-DSS compliant.</div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <form id="paymentForm" class="needs-validation" novalidate>
+                <div class="pay-field mb-3">
+                  <label class="form-label">Email for receipt</label>
+                  <input type="email" class="form-control" id="payerEmail" placeholder="you@example.com">
+                </div>
+                <div class="pay-field mb-3">
+                  <label class="form-label">Card Number</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="far fa-credit-card"></i></span>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    <span class="input-group-text bg-white" id="cardBrandArea" title="Card brand">
+                      <i id="cardBrandIcon" class="fab fa-cc-visa text-primary" style="display:none"></i>
+                      <i id="cardBrandIconMc" class="fab fa-cc-mastercard text-danger" style="display:none"></i>
+                    </span>
+                  </div>
+                  <div class="pay-help">Card must have exactly 16 digits.</div>
+                </div>
+                <div class="row g-3">
+                  <div class="col-6">
+                    <div class="pay-field">
+                      <label class="form-label">Expiry (MM/YY)</label>
+                      <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="pay-field">
+                      <label class="form-label">CVV</label>
+                      <input type="password" class="form-control" id="cardCvv" placeholder="123" maxlength="4" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="pay-field mt-3">
+                  <label class="form-label">Name on Card</label>
+                  <input type="text" class="form-control" id="cardName" placeholder="J DOE" required>
+                </div>
+              </form>
+              <div class="d-flex align-items-center justify-content-between mt-3 pay-badges">
+                <div class="text-muted small"><i class="fas fa-lock"></i> SSL Secured • 3D Secure Ready</div>
               </div>
             </div>
           </div>
-          <form id="paymentForm">
-            <div class="mb-3">
-              <label class="form-label">Card Number</label>
-              <input type="text" class="form-control" id="cardNumber" placeholder="4111 1111 1111 1111" maxlength="19" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Name on Card</label>
-              <input type="text" class="form-control" id="cardName" placeholder="J DOE" required>
-            </div>
-            <div class="row g-2">
-              <div class="col-6">
-                <label class="form-label">Expiry (MM/YY)</label>
-                <input type="text" class="form-control" id="cardExpiry" placeholder="12/27" maxlength="5" required>
-              </div>
-              <div class="col-6">
-                <label class="form-label">CVV</label>
-                <input type="password" class="form-control" id="cardCvv" placeholder="123" maxlength="4" required>
-              </div>
-            </div>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id="payNowBtn" class="btn btn-primary">
-            <i class="fas fa-lock"></i> Pay Now
-          </button>
+        <div class="modal-footer d-block">
+          <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="payNowBtn" class="btn btn-primary btn-lg">
+              <i class="fas fa-shield-alt me-1"></i> Pay Rs. <span id="payBtnTotal">0.00</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -462,7 +514,9 @@ function refreshListings(event) {
       document.getElementById('payItemQty').textContent = qty;
       document.getElementById('payItemImage').src = img || 'https://via.placeholder.com/100x100?text=Item';
       const total = (() => { try { return (parseFloat(price) * qty).toFixed(2); } catch { return price; } })();
+      document.getElementById('paySubtotal').textContent = total;
       document.getElementById('payItemTotal').textContent = total;
+      document.getElementById('payBtnTotal').textContent = total;
       // Reset form
       document.getElementById('paymentForm').reset();
       paymentModal.show();
@@ -514,6 +568,36 @@ function refreshListings(event) {
 
     document.getElementById('payNowBtn').addEventListener('click', processPayment);
 
+    // Input masking & card brand hint
+    function detectBrand(digits) {
+      if (digits.startsWith('4')) return 'visa';
+      const prefix2 = parseInt(digits.substring(0, 2) || '0', 10);
+      if ((prefix2 >= 51 && prefix2 <= 55) || digits.startsWith('2221') || digits.startsWith('2222') || digits.startsWith('27')) return 'mc';
+      return null;
+    }
+    const cardNumberEl = document.getElementById('cardNumber');
+    const cardExpiryEl = document.getElementById('cardExpiry');
+    const cardCvvEl = document.getElementById('cardCvv');
+    const brandVisa = document.getElementById('cardBrandIcon');
+    const brandMc = document.getElementById('cardBrandIconMc');
+    cardNumberEl.addEventListener('input', () => {
+      let digits = cardNumberEl.value.replace(/\D/g, '').slice(0, 16);
+      const parts = [];
+      for (let i = 0; i < digits.length; i += 4) parts.push(digits.substring(i, i + 4));
+      cardNumberEl.value = parts.join(' ');
+      const b = detectBrand(digits);
+      brandVisa.style.display = (b === 'visa') ? 'inline-block' : 'none';
+      brandMc.style.display = (b === 'mc') ? 'inline-block' : 'none';
+    });
+    cardExpiryEl.addEventListener('input', () => {
+      let v = cardExpiryEl.value.replace(/\D/g, '').slice(0, 4);
+      if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
+      cardExpiryEl.value = v;
+    });
+    cardCvvEl.addEventListener('input', () => {
+      cardCvvEl.value = cardCvvEl.value.replace(/\D/g, '').slice(0, 4);
+    });
+
     async function loadMyCart() {
       const container = document.getElementById('myCartContainer');
       const token = localStorage.getItem('accessToken');
@@ -555,8 +639,8 @@ function refreshListings(event) {
       }
     }
 
-    // Load cart when the tab becomes visible
-    document.querySelector('button[data-bs-target="#myCart"]').addEventListener('shown.bs.tab', loadMyCart);
+  // Load cart when the tab becomes visible
+  document.querySelector('button[data-bs-target="#myCart"]').addEventListener('shown.bs.tab', loadMyCart);
 
     async function buyListing(id) {
       const qtyInput = document.getElementById(`qty-${id}`);
