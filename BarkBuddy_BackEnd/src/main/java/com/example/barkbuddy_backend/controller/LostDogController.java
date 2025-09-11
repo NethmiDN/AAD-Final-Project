@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/lostdog")
-@CrossOrigin(origins = "http://localhost:5500")
+@CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500"})
 @RequiredArgsConstructor
 public class LostDogController {
 

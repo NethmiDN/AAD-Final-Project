@@ -8,6 +8,7 @@ import com.example.barkbuddy_backend.entity.User;
 import com.example.barkbuddy_backend.repo.DogRepository;
 import com.example.barkbuddy_backend.repo.UserRepository;
 import com.example.barkbuddy_backend.service.AdoptionApplicationService;
+import com.example.barkbuddy_backend.service.EmailService;
 import com.example.barkbuddy_backend.repo.AdoptionApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class AdoptionApplicationServiceImpl implements AdoptionApplicationServic
     private final AdoptionApplicationRepository adoptionRepo;
     private final DogRepository dogRepo;
     private final UserRepository userRepo;
+        private final EmailService emailService;
 
     @Override
     public AdoptionApplications requestAdoption(Long dogId, Long adopterId) {
@@ -30,7 +32,32 @@ public class AdoptionApplicationServiceImpl implements AdoptionApplicationServic
                 .status(Adoption_Status.PENDING)
                 .timestamp(new Timestamp(System.currentTimeMillis()))
                 .build();
-        return adoptionRepo.save(app);
+        AdoptionApplications saved = adoptionRepo.save(app);
+
+        // After saving, send an email to the dog's owner
+        Dog dog = dogRepo.findById(dogId)
+                .orElseThrow(() -> new RuntimeException("Dog not found for ID: " + dogId));
+        User owner = userRepo.findById(dog.getOwnerId())
+                .orElseThrow(() -> new RuntimeException("Owner not found for ID: " + dog.getOwnerId()));
+        User adopter = userRepo.findById(adopterId)
+                .orElseThrow(() -> new RuntimeException("Adopter not found for ID: " + adopterId));
+
+        String subject = "New Adoption Request for " + dog.getDogName();
+        String body = "Hello " + owner.getUsername() + ",\n\n" +
+                "You have a new adoption request for your dog '" + dog.getDogName() + "'.\n" +
+                "Adopter: " + adopter.getUsername() + " (" + adopter.getEmail() + ")\n" +
+                "Requested at: " + saved.getTimestamp() + "\n\n" +
+                "Please log in to BarkBuddy to review and update the request status.\n\n" +
+                "Thanks,\nBarkBuddy Team";
+
+        try {
+            emailService.sendEmail(owner.getEmail(), subject, body);
+        } catch (Exception e) {
+            // Log and continue; email failures shouldn't break the main flow
+            System.err.println("Failed to send adoption email: " + e.getMessage());
+        }
+
+        return saved;
     }
 
     @Override
@@ -81,14 +108,16 @@ public class AdoptionApplicationServiceImpl implements AdoptionApplicationServic
     }
 
     // Helper method to get dog name by dog ID
-    public String getDogNameById(Long dogId) {
+        @Override
+        public String getDogNameById(Long dogId) {
         return dogRepo.findById(dogId)
                 .map(Dog::getDogName)
                 .orElse("Unknown Dog");
     }
 
     // Helper method to get user name by user ID
-    public String getUserNameById(Long userId) {
+        @Override
+        public String getUserNameById(Long userId) {
         return userRepo.findById(userId)
                 .map(User::getUsername)
                 .orElse("Unknown User");
