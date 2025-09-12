@@ -25,7 +25,7 @@ public class ChatController {
             String message = request.get("message");
             if (message == null || message.trim().isEmpty()) {
                 return ResponseEntity.badRequest()
-                    .body(Map.of("error", "Message cannot be empty"));
+                        .body(Map.of("error", "Message cannot be empty"));
             }
 
             String response = chatBotService.ask(message);
@@ -33,7 +33,7 @@ public class ChatController {
 
         } catch (Exception e) {
             return ResponseEntity.internalServerError()
-                .body(Map.of("error", "Failed to process your request"));
+                    .body(Map.of("error", "Failed to process your request"));
         }
     }
 }

@@ -563,16 +563,62 @@
       }
     }
 
-    // Auto-refresh while on page
-    setInterval(() => {
-      if(currentChat.dogId) {
-        loadMessages();
+    // Smart auto-refresh with better performance
+    let autoRefreshEnabled = true;
+    let refreshInterval;
+    
+    function startMessageRefresh() {
+      if (refreshInterval) clearInterval(refreshInterval);
+      
+      refreshInterval = setInterval(() => {
+        if (autoRefreshEnabled && document.visibilityState === 'visible') {
+          if(currentChat.dogId) {
+            loadMessages();
+          }
+          loadConversations();
+        }
+      }, 10000); // Reduced frequency to 10 seconds for better performance
+    }
+    
+    // Pause refresh when page is not visible to save resources
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'visible' && autoRefreshEnabled) {
+        startMessageRefresh();
+      } else if (document.visibilityState === 'hidden') {
+        clearInterval(refreshInterval);
       }
+    });
+    
+    // Add manual refresh control
+    document.addEventListener('DOMContentLoaded', function() {
       loadConversations();
-    }, 5000);
-
-    // Load conversations on page load
-    document.addEventListener('DOMContentLoaded', loadConversations);
+      
+      // Add refresh toggle button
+      const refreshControl = document.createElement('div');
+      refreshControl.innerHTML = `
+        <div class="position-fixed" style="top: 80px; right: 20px; z-index: 1000;">
+          <button id="messageRefreshToggle" class="btn btn-sm btn-outline-primary" onclick="toggleMessageRefresh()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+      `;
+      document.body.appendChild(refreshControl);
+      
+      startMessageRefresh();
+    });
+    
+    // Global function for refresh toggle
+    window.toggleMessageRefresh = function() {
+      autoRefreshEnabled = !autoRefreshEnabled;
+      const btn = document.getElementById('messageRefreshToggle');
+      if (autoRefreshEnabled) {
+        btn.className = 'btn btn-sm btn-success';
+        startMessageRefresh();
+      } else {
+        btn.className = 'btn btn-sm btn-outline-secondary';
+        clearInterval(refreshInterval);
+      }
+    };
   </script>
 </body>
 </html>

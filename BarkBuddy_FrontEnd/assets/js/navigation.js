@@ -16,7 +16,10 @@ class BarkBuddyNavigation {
       '404.html',
       'setting.html',
       'adminSetting.html',
-      'adminListing.html'
+      'adminListing.html',
+      'forgetpassword.html',
+      'otpConfirm.html',
+      'resetPassword.html'
     ];
     this.init();
   }
@@ -36,6 +39,7 @@ class BarkBuddyNavigation {
       }
     } catch (error) {
       console.error('Error initializing navigation:', error);
+      // Don't retry automatically to prevent endless loops
       this.handleNavigationError();
     }
   }
@@ -120,12 +124,15 @@ class BarkBuddyNavigation {
   checkAuthentication() {
     const token = localStorage.getItem('accessToken');
     const currentPage = window.location.pathname.split('/').pop();
-    const publicPages = ['login.html', 'signup.html', 'index.html', '404.html'];
+    const publicPages = ['login.html', 'signup.html', 'index.html', '404.html', 'forgetpassword.html', 'forgetpasswordNew.html', 'otpConfirm.html', 'otpConfirmNew.html', 'resetPassword.html'];
     
     if (!token && !publicPages.includes(currentPage)) {
       this.showNotification('Please log in first', 'error');
+      // Use a more gentle approach instead of immediate redirect
       setTimeout(() => {
-        window.location.href = 'login.html';
+        if (!localStorage.getItem('accessToken')) { // Double check before redirect
+          window.location.href = 'login.html';
+        }
       }, 2000);
     }
   }
@@ -150,6 +157,13 @@ class BarkBuddyNavigation {
           (currentPage === 'adminSetting.html' && href === 'adminSetting.html') ||
           (currentPage === 'adminListing.html' && href === 'adminListing.html') ||
           (currentPage === 'messages.html' && href === 'messages.html') ||
+          (currentPage === 'login.html' && href === 'login.html') ||
+          (currentPage === 'signup.html' && href === 'signup.html') ||
+          (currentPage === 'index.html' && href === 'index.html') ||
+          (currentPage === '404.html' && href === '404.html') ||
+          (currentPage === 'forgetpassword.html' && href === 'forgetpassword.html') ||
+          (currentPage === 'otpConfirm.html' && href === 'otpConfirm.html') ||
+          (currentPage === 'resetPassword.html' && href === 'resetPassword.html') ||
           (currentPage === 'adminDashboard.html' && href === 'adminDashboard.html')) {
         link.classList.add('active');
       }
@@ -192,9 +206,8 @@ class BarkBuddyNavigation {
         if (href && href !== '#' && !this.validPages.includes(href)) {
           e.preventDefault();
           this.showNotification('Page not found', 'error');
-          setTimeout(() => {
-            window.location.href = '404.html';
-          }, 1000);
+          // Don't auto-redirect to prevent navigation loops
+          console.warn('Invalid page navigation blocked:', href);
           return;
         }
       });

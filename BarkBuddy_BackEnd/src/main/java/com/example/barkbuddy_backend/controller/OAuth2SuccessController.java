@@ -21,28 +21,28 @@ import com.example.barkbuddy_backend.entity.Role;
 public class OAuth2SuccessController {
 
     private final UserRepository userRepository;
-        private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final JWTUtil jwtUtil;
 
     @GetMapping("/oauth2/success")
     public RedirectView oauth2LoginSuccess(@AuthenticationPrincipal OAuth2User oauth2User) {
         String email = oauth2User.getAttribute("email");
-                String name = oauth2User.getAttribute("name");
-                if (email == null || email.isBlank()) {
-                        throw new RuntimeException("Email not provided by OAuth2 provider");
-                }
+        String name = oauth2User.getAttribute("name");
+        if (email == null || email.isBlank()) {
+            throw new RuntimeException("Email not provided by OAuth2 provider");
+        }
 
-                // Ensure user exists (idempotent upsert in case OAuth2UserService wasn’t invoked)
-                User user = userRepository.findByEmail(email).orElseGet(() ->
-                                userRepository.save(
-                                                User.builder()
-                                                                .username(name != null && !name.isBlank() ? name : email)
-                                                                .email(email)
-                                                                .password(passwordEncoder.encode("oauth2user"))
-                                                                .role(Role.USER)
-                                                                .build()
-                                )
-                );
+        // Ensure user exists (idempotent upsert in case OAuth2UserService wasn’t invoked)
+        User user = userRepository.findByEmail(email).orElseGet(() ->
+                userRepository.save(
+                        User.builder()
+                                .username(name != null && !name.isBlank() ? name : email)
+                                .email(email)
+                                .password(passwordEncoder.encode("oauth2user"))
+                                .role(Role.USER)
+                                .build()
+                )
+        );
 
         // Build Spring Security UserDetails (not your entity)
         UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(user.getEmail())

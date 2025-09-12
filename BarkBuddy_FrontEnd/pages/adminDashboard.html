@@ -441,11 +441,57 @@
       loadStats();
       loadAdmins();
       
-      // Auto-refresh every 30 seconds
-      setInterval(() => {
-        loadStats();
-        loadAdmins();
-      }, 30000);
+      // Auto-refresh with better performance and user control
+      let autoRefreshEnabled = true;
+      let refreshInterval;
+      
+      function startAutoRefresh() {
+        if (refreshInterval) clearInterval(refreshInterval);
+        
+        refreshInterval = setInterval(() => {
+          if (autoRefreshEnabled && document.visibilityState === 'visible') {
+            loadStats();
+            loadAdmins();
+          }
+        }, 60000); // Increased to 60 seconds to reduce server load
+      }
+      
+      // Add refresh control button
+      const refreshControl = document.createElement('div');
+      refreshControl.innerHTML = `
+        <div class="position-fixed" style="top: 80px; right: 20px; z-index: 1000;">
+          <button id="refreshToggle" class="btn btn-sm btn-outline-secondary" onclick="toggleAutoRefresh()">
+            <i class="fas fa-sync-alt"></i> Auto-refresh: ON
+          </button>
+        </div>
+      `;
+      document.body.appendChild(refreshControl);
+      
+      // Global function for refresh toggle
+      window.toggleAutoRefresh = function() {
+        autoRefreshEnabled = !autoRefreshEnabled;
+        const btn = document.getElementById('refreshToggle');
+        if (autoRefreshEnabled) {
+          btn.innerHTML = '<i class="fas fa-sync-alt"></i> Auto-refresh: ON';
+          btn.className = 'btn btn-sm btn-outline-success';
+          startAutoRefresh();
+        } else {
+          btn.innerHTML = '<i class="fas fa-sync-alt"></i> Auto-refresh: OFF';
+          btn.className = 'btn btn-sm btn-outline-secondary';
+          clearInterval(refreshInterval);
+        }
+      };
+      
+      // Pause auto-refresh when page is not visible
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible' && autoRefreshEnabled) {
+          startAutoRefresh();
+        } else if (document.visibilityState === 'hidden') {
+          clearInterval(refreshInterval);
+        }
+      });
+      
+      startAutoRefresh();
     });
 
     // Make functions global for onclick handlers

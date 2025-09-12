@@ -32,24 +32,24 @@ public class AdminController {
             // Verify admin access
             String email = jwtUtil.extractUsername(token.substring(7));
             Optional<User> adminUser = userRepository.findByEmail(email);
-            
+
             if (adminUser.isEmpty() || adminUser.get().getRole() != Role.ADMIN) {
                 return ResponseEntity.status(403).body(Collections.singletonMap("message", "Access denied"));
             }
 
             List<User> admins = userRepository.findByRole(Role.ADMIN);
-            
+
             // Return admin data without passwords
             List<Map<String, Object>> adminList = admins.stream()
-                .map(admin -> {
-                    Map<String, Object> adminMap = new HashMap<>();
-                    adminMap.put("id", admin.getId());
-                    adminMap.put("username", admin.getUsername());
-                    adminMap.put("email", admin.getEmail());
-                    adminMap.put("role", admin.getRole().toString());
-                    return adminMap;
-                })
-                .toList();
+                    .map(admin -> {
+                        Map<String, Object> adminMap = new HashMap<>();
+                        adminMap.put("id", admin.getId());
+                        adminMap.put("username", admin.getUsername());
+                        adminMap.put("email", admin.getEmail());
+                        adminMap.put("role", admin.getRole().toString());
+                        return adminMap;
+                    })
+                    .toList();
 
             return ResponseEntity.ok(adminList);
         } catch (Exception e) {
@@ -62,12 +62,12 @@ public class AdminController {
     @PostMapping("/admins")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addNewAdmin(@RequestHeader("Authorization") String token,
-                                        @RequestBody Map<String, String> adminData) {
+                                         @RequestBody Map<String, String> adminData) {
         try {
             // Verify admin access
             String email = jwtUtil.extractUsername(token.substring(7));
             Optional<User> adminUser = userRepository.findByEmail(email);
-            
+
             if (adminUser.isEmpty() || adminUser.get().getRole() != Role.ADMIN) {
                 return ResponseEntity.status(403).body(Collections.singletonMap("message", "Access denied"));
             }
@@ -133,12 +133,12 @@ public class AdminController {
     @DeleteMapping("/admins/{adminId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteAdmin(@RequestHeader("Authorization") String token,
-                                        @PathVariable Long adminId) {
+                                         @PathVariable Long adminId) {
         try {
             // Verify admin access
             String email = jwtUtil.extractUsername(token.substring(7));
             Optional<User> adminUser = userRepository.findByEmail(email);
-            
+
             if (adminUser.isEmpty() || adminUser.get().getRole() != Role.ADMIN) {
                 return ResponseEntity.status(403).body(Collections.singletonMap("message", "Access denied"));
             }
@@ -179,7 +179,7 @@ public class AdminController {
             // Verify admin access
             String email = jwtUtil.extractUsername(token.substring(7));
             Optional<User> adminUser = userRepository.findByEmail(email);
-            
+
             if (adminUser.isEmpty() || adminUser.get().getRole() != Role.ADMIN) {
                 return ResponseEntity.status(403).body(Collections.singletonMap("message", "Access denied"));
             }

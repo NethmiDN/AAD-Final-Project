@@ -8,6 +8,8 @@ import com.example.barkbuddy_backend.entity.User;
 import com.example.barkbuddy_backend.repo.PasswordResetOtpRepository;
 import com.example.barkbuddy_backend.repo.UserRepository;
 import com.example.barkbuddy_backend.service.PasswordResetService;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,8 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.Optional;

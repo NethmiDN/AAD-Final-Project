@@ -46,32 +46,32 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 
-                @Bean
-                @SuppressWarnings("deprecation")
-                public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService,
-                                                                                                                         PasswordEncoder passwordEncoder) {
-                                DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-                                provider.setUserDetailsService(userDetailsService);
-                                provider.setPasswordEncoder(passwordEncoder);
-                                return provider;
-                        }
+    @Bean
+    @SuppressWarnings("deprecation")
+    public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService,
+                                                         PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
+    }
 
-        @Bean
-        public CorsConfigurationSource corsConfigurationSource() {
-                CorsConfiguration configuration = new CorsConfiguration();
-                // Allow any localhost/127.0.0.1 port for local dev, plus OPTIONS, common headers
-                // Use patterns to support wildcard ports
-                configuration.setAllowedOriginPatterns(List.of(
-                                "http://localhost:*",
-                                "http://127.0.0.1:*"
-                ));
-                configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                configuration.setAllowedHeaders(List.of("*"));
-                configuration.setExposedHeaders(List.of("Authorization"));
-                configuration.setAllowCredentials(true);
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        // Allow any localhost/127.0.0.1 port for local dev, plus OPTIONS, common headers
+        // Use patterns to support wildcard ports
+        configuration.setAllowedOriginPatterns(List.of(
+                "http://localhost:*",
+                "http://127.0.0.1:*"
+        ));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(List.of("Authorization"));
+        configuration.setAllowCredentials(true);
 
-                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-                source.registerCorsConfiguration("/**", configuration);
-                return source;
-        }
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 }
