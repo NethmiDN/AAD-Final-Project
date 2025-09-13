@@ -14,6 +14,8 @@ import com.example.barkbuddy_backend.entity.User;
 import com.example.barkbuddy_backend.repo.ListingRepository;
 import com.example.barkbuddy_backend.repo.OrdersRepository;
 import com.example.barkbuddy_backend.repo.UserRepository;
+import com.example.barkbuddy_backend.repo.PaymentRepository;
+import com.example.barkbuddy_backend.entity.Payment;
 import com.example.barkbuddy_backend.service.ListingService;
 import com.example.barkbuddy_backend.service.OrderService;
 
@@ -25,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrdersRepository ordersRepository;
     private final UserRepository userRepository;
     private final ListingRepository listingRepository;
+    private final PaymentRepository paymentRepository;
     private final ListingService listingService;
 
     @Override
@@ -59,6 +62,13 @@ public class OrderServiceImpl implements OrderService {
                 .createdAt(LocalDateTime.now())
                 .build();
         ordersRepository.save(order);
+
+    // Save a corresponding Payment record for analytics/audit
+    paymentRepository.save(Payment.builder()
+        .listingName(listing.getListingName())
+        .quantity(quantity)
+        .price(unit)
+        .build());
 
         return OrderDTO.builder()
                 .id(order.getId())
