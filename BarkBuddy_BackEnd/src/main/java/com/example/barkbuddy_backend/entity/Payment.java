@@ -12,16 +12,15 @@ import lombok.*;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "payment_id")
     private Long paymentId; // Payment ID (auto-generated)
 
-    @Column(name = "listing_name", nullable = false)
+    @Column(nullable = false)
     private String listingName;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(nullable = false)
     private Integer quantity;
 
     // Keep as String for consistency with existing price representation
-    @Column(name = "price", nullable = false)
+    @Column( nullable = false)
     private String price;
 }
