@@ -50,6 +50,8 @@ class BarkBuddyNavigation {
       this.setActiveNavItem();
       this.addNavigationEventListeners();
       this.addHoverEffects();
+      this.ensureResponsiveStyles();
+      this.setupSidebarToggle();
       
       // Don't inject global chat widget on messages page (since it has its own dedicated interface)
       const currentPage = window.location.pathname.split('/').pop();
@@ -70,6 +72,113 @@ class BarkBuddyNavigation {
         }
       }, 500);
     }
+  }
+
+  ensureResponsiveStyles(){
+    // Ensure global responsive stylesheet is present
+    if(!document.querySelector('link[href$="/assets/css/responsive.css"], link[href*="assets/css/responsive.css"]')){
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      // Compute relative path from typical pages dir
+      const isInPages = /\/pages\//.test(window.location.pathname.replace(/\\/g,'/'));
+      link.href = isInPages ? '../assets/css/responsive.css' : 'assets/css/responsive.css';
+      document.head.appendChild(link);
+    }
+  }
+
+  setupSidebarToggle(){
+    const sidebar = document.querySelector('.sidebar');
+    if(!sidebar) return;
+
+    // Only add on small screens
+    const addToggle = () => {
+      const existingBtn = document.getElementById('bb-sidebar-toggle');
+      const existingOverlay = document.getElementById('bb-sidebar-overlay');
+      const isSmall = window.matchMedia('(max-width: 992px)').matches;
+
+      if(isSmall){
+        // Ensure overlay exists first so handlers can reference it
+        let overlay = existingOverlay;
+        if(!overlay){
+          overlay = document.createElement('div');
+          overlay.id = 'bb-sidebar-overlay';
+          overlay.className = 'sidebar-overlay';
+          overlay.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+            const btn = document.getElementById('bb-sidebar-toggle');
+            btn?.setAttribute('aria-expanded','false');
+          });
+          document.body.appendChild(overlay);
+        }
+
+        // Toggle button
+        if(!existingBtn){
+          const btn = document.createElement('button');
+          btn.id = 'bb-sidebar-toggle';
+          btn.className = 'bb-sidebar-toggle';
+          btn.setAttribute('aria-label','Open Menu');
+          btn.setAttribute('aria-expanded','false');
+          btn.innerHTML = '<i class="fas fa-bars"></i>';
+          btn.addEventListener('click', () => {
+            const willOpen = !sidebar.classList.contains('show');
+            if(willOpen){
+              sidebar.classList.add('show');
+              overlay.classList.add('show');
+              btn.setAttribute('aria-expanded','true');
+            } else {
+              sidebar.classList.remove('show');
+              overlay.classList.remove('show');
+              btn.setAttribute('aria-expanded','false');
+            }
+          });
+          document.body.appendChild(btn);
+        }
+
+        // Close sidebar with ESC key
+        if(!this._escHandler){
+          this._escHandler = (e) => {
+            if(e.key === 'Escape'){
+              const ov = document.getElementById('bb-sidebar-overlay');
+              if(ov && ov.classList.contains('show')){
+                sidebar.classList.remove('show');
+                ov.classList.remove('show');
+                const btn = document.getElementById('bb-sidebar-toggle');
+                btn?.setAttribute('aria-expanded','false');
+              }
+            }
+          };
+          document.addEventListener('keydown', this._escHandler);
+        }
+
+        // Close sidebar when navigating
+        document.querySelectorAll('.sidebar .nav-link').forEach(a => {
+          a.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            const ov = document.getElementById('bb-sidebar-overlay');
+            ov && ov.classList.remove('show');
+            const btn = document.getElementById('bb-sidebar-toggle');
+            btn?.setAttribute('aria-expanded','false');
+          });
+        });
+      } else {
+        // Cleanup on larger screens
+        sidebar.classList.remove('show');
+        existingBtn?.remove();
+        existingOverlay?.remove();
+        if(this._escHandler){
+          document.removeEventListener('keydown', this._escHandler);
+          this._escHandler = null;
+        }
+      }
+    };
+
+    addToggle();
+    window.addEventListener('resize', () => {
+      // debounce a bit
+      clearTimeout(this._resizeTimer);
+      this._resizeTimer = setTimeout(addToggle, 150);
+    });
   }
 
   injectGlobalChat(){
