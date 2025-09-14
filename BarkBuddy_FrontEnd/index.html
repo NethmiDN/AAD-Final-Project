@@ -1,868 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BarkBuddy - Your Perfect Pet Companion</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #ff6b6b;
-            --secondary-color: #4ecdc4;
-            --accent-color: #45b7d1;
-            --dark-color: #2c3e50;
-            --light-color: #f8f9fa;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Custom Animations */
-        @keyframes bounce-in {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes paw-print {
-            0%, 100% {
-                transform: rotate(0deg) scale(1);
-            }
-            25% {
-                transform: rotate(-10deg) scale(1.1);
-            }
-            75% {
-                transform: rotate(10deg) scale(1.1);
-            }
-        }
-
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .bounce-in {
-            animation: bounce-in 1s ease-out;
-        }
-
-        .paw-animation {
-            animation: paw-print 2s ease-in-out infinite;
-        }
-
-        /* Navigation Button Styles */
-        .btn-auth {
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 2px solid white;
-        }
-
-        .btn-auth:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .btn-outline-light.btn-auth {
-            color: white;
-            background: transparent;
-        }
-
-        .btn-outline-light.btn-auth:hover {
-            background: white; 
-            color: var(--primary-color);
-        }
-
-        .btn-light.btn-auth {
-            color: var(--primary-color);
-            background: white;
-            border-color: white;
-        }
-
-        .btn-light.btn-auth:hover {
-            background: rgba(255,255,255,0.9);
-            transform: translateY(-2px) scale(1.05);
-        }
-
-        /* Modal Styles */
-        .modal-content {
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 20px 20px 0 0;
-            border: none;
-        }
-
-        .modal-title {
-            font-weight: bold;
-        }
-
-        .btn-close {
-            filter: invert(1);
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
-        }
-
-        .btn-modal {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-modal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-        }
-
-        .text-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .text-link:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand {
-            font-size: 2rem;
-            font-weight: bold;
-            color: white !important;
-        }
-
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin: 0 15px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .navbar-nav .nav-link:hover {
-            transform: translateY(-2px);
-        }
-
-        .navbar-nav .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        .navbar-nav .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.3;0.1" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.4;0.1" dur="3s" repeatCount="indefinite"/></circle><circle cx="40" cy="70" r="1" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="2.5s" repeatCount="indefinite"/></circle></svg>') repeat;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 2rem;
-        }
-
-        .btn-custom {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary-custom {
-            background: linear-gradient(135deg, var(--primary-color), #ff5252);
-            border: none;
-            color: white;
-            box-shadow: 0 8px 25px rgba(255,107,107,0.4);
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255,107,107,0.6);
-            background: linear-gradient(135deg, #ff5252, var(--primary-color));
-        }
-
-        .btn-outline-custom {
-            border: 2px solid white;
-            color: white;
-            background: transparent;
-        }
-
-        .btn-outline-custom:hover {
-            background: white;
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 100px 0;
-            background: var(--light-color);
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: #666;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-            border: none;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        .feature-text {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Video Section */
-        .video-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            color: white;
-        }
-
-        .video-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .video-placeholder {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .video-placeholder:hover {
-            transform: scale(1.02);
-        }
-
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .play-button:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1);
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 80px 0;
-            background: var(--dark-color);
-            color: white;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 4rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.8);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-align: center;
-        }
-
-        .cta-title {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .cta-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-        }
-
-        .footer-link {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-link:hover {
-            color: var(--secondary-color);
-        }
-
-        .social-icons {
-            font-size: 1.5rem;
-            margin: 0 10px;
-            color: rgba(255,255,255,0.7);
-            transition: all 0.3s ease;
-        }
-
-        .social-icons:hover {
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .btn-custom {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in-up.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BarkBuddy • Find, Adopt, and Care</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root{
+      --bb-primary: #2C2A7B;
+      --bb-accent: #FEC83C;
+      --bb-bg: #f8f9fa;
+      --bb-dark: #1b1b3a;
+    }
+
+    *{ box-sizing: border-box; }
+    body{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+
+    /* Topbar */
+    .bb-navbar{
+      background: linear-gradient(135deg, var(--bb-primary), #5a58c6);
+      color:#fff;
+    }
+    .bb-navbar .navbar-brand{ color:#fff !important; font-weight:700; letter-spacing:.5px; }
+    .bb-navbar .nav-link{ color:#fff !important; opacity:.9; }
+    .bb-navbar .nav-link:hover{ opacity:1; }
+    .bb-btn-auth{ border-radius: 24px; padding: .5rem 1rem; border:2px solid #fff; color:#fff; background: transparent; }
+    .bb-btn-auth:hover{ color: var(--bb-primary); background:#fff; }
+    .bb-btn-dash{ border-radius:24px; padding:.5rem 1rem; background:#fff; color:var(--bb-primary); border:none; }
+
+    /* Hero */
+    .hero{
+      position: relative;
+      background: linear-gradient(135deg, var(--bb-primary), var(--bb-accent));
+      color: #fff;
+      min-height: 85vh;
+      display:flex; align-items:center; overflow:hidden;
+    }
+    .hero .lead{ opacity:.95; }
+    .hero-img{
+      border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,.25);
+    }
+    .hero-cta .btn{ border-radius:28px; padding:.9rem 1.4rem; font-weight:600; }
+    .btn-cta-primary{ background:#fff; color:var(--bb-primary); }
+    .btn-cta-outline{ border:2px solid #fff; color:#fff; }
+    .btn-cta-outline:hover{ color:var(--bb-primary); background:#fff; }
+
+    /* Key features */
+    .section{ padding: 80px 0; }
+    .features .card{ border:0; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,.08); height:100%; }
+    .features .icon{ font-size:2rem; color:var(--bb-primary); background: rgba(44,42,123,.08); width:56px; height:56px; display:grid; place-items:center; border-radius:12px; }
+
+    /* How it works */
+    .how-step{ display:flex; gap:14px; align-items:flex-start; margin-bottom:16px; }
+    .step-num{ background: var(--bb-primary); color:#fff; width:28px; height:28px; border-radius:50%; font-size:.9rem; display:grid; place-items:center; margin-top:2px; }
+
+    /* CTA band */
+    .cta{ background: linear-gradient(135deg, var(--bb-primary), #5a58c6); color:#fff; border-radius:16px; padding:32px; }
+
+    /* Footer */
+    footer{ background:#0f0f1f; color:#b9b9d0; }
+    footer a{ color:#d9d9ff; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+
+    @media (max-width: 992px){
+      .hero{ min-height: auto; padding-top: 100px; }
+      .hero-img{ margin-top: 24px; }
+    }
+  </style>
+  <link rel="preload" as="image" href="assets/images/im2.jpg">
+  <link rel="preload" as="image" href="assets/images/img1.jpg">
 </head>
 <body>
 
-
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg fixed-top">
+  <!-- Top Navigation -->
+  <nav class="navbar navbar-expand-lg bb-navbar fixed-top">
     <div class="container">
-        <a class="navbar-brand animate__animated animate__fadeInLeft" href="#">
-            <i class="fas fa-paw paw-animation"></i> BarkBuddy
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto animate__animated animate__fadeInRight">
-                <li class="nav-item">
-                    <button class="btn btn-outline-light me-2 btn-auth" onclick="window.location.href='pages/login.html'">
-                        <i class="fas fa-sign-in-alt me-1"></i>Sign In
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-light btn-auth" onclick="window.location.href='pages/signup.html'">
-                        <i class="fas fa-user-plus me-1"></i>Sign Up
-                    </button>
-                </li>
-            </ul>
-        </div>
+      <a class="navbar-brand" href="#"><i class="fa-solid fa-paw me-2"></i>BarkBuddy</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="topnav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item d-none" id="nav-dashboard-item">
+            <button class="bb-btn-dash" id="btnGoDashboard"><i class="fa-solid fa-gauge-high me-1"></i>Dashboard</button>
+          </li>
+          <li class="nav-item" id="nav-auth-item">
+            <div class="d-flex gap-2">
+              <button class="bb-btn-auth" id="btnLogin"><i class="fa-solid fa-right-to-bracket me-1"></i>Sign in</button>
+              <button class="bb-btn-auth" id="btnSignup"><i class="fa-solid fa-user-plus me-1"></i>Sign up</button>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
-<!-- Hero Section -->
-<section id="home" class="hero-section">
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold">Find your next best friend with BarkBuddy</h1>
+          <p class="lead mt-3">Adopt loving dogs, report and find lost pets, chat with owners, and get AI help—all in one place.</p>
+          <div class="hero-cta mt-4 d-flex flex-wrap gap-2">
+            <button class="btn btn-cta-primary" id="ctaAdopt"><i class="fa-solid fa-heart me-1"></i> Adopt a Friend</button>
+            <button class="btn btn-cta-outline" id="ctaLost"><i class="fa-solid fa-location-dot me-1"></i> Lost & Found</button>
+            <button class="btn btn-light" id="ctaListings" style="border-radius:28px;"><i class="fa-solid fa-list me-1"></i> Listings</button>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0 text-center">
+          <img src="assets/images/im2.jpg" class="img-fluid hero-img" alt="Happy dog and owner">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features aligned to project -->
+  <section id="features" class="section features bg-light">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="hero-content animate__animated animate__fadeInLeft">
-                    <h1 class="hero-title">Find Your Perfect <span style="color: var(--secondary-color);">Furry Friend</span></h1>
-                    <p class="hero-subtitle">Connect with loving pets looking for their forever homes. BarkBuddy makes pet adoption simple, safe, and joyful.</p>
-                    <div class="d-flex gap-3 flex-wrap">
-                        <button class="btn btn-custom btn-primary-custom">Start Searching</button>
-                        <button class="btn btn-custom btn-outline-custom">Learn More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="hero-image animate__animated animate__fadeInRight float-animation">
-                    <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=400&fit=crop&crop=face"
-                         alt="Happy Dog" class="img-fluid">
-                </div>
-            </div>
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Everything you need for a smooth adoption</h2>
+        <p class="text-muted">Built around BarkBuddy's core pages and workflows</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="icon mb-3"><i class="fa-solid fa-dog"></i></div>
+            <h5>Adopt a Friend</h5>
+            <p class="text-muted">Browse all dogs, view status, and send adoption requests.</p>
+            <button class="btn btn-sm btn-outline-primary mt-auto" id="featAdopt">Go to Adopt</button>
+          </div>
         </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="icon mb-3"><i class="fa-solid fa-location-dot"></i></div>
+            <h5>Lost & Found</h5>
+            <p class="text-muted">Report sightings and track missing dogs in your area.</p>
+            <button class="btn btn-sm btn-outline-primary mt-auto" id="featLost">Open Lost & Found</button>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="icon mb-3"><i class="fa-solid fa-comments"></i></div>
+            <h5>Messages</h5>
+            <p class="text-muted">Chat with dog owners in a WhatsApp-like interface.</p>
+            <button class="btn btn-sm btn-outline-primary mt-auto" id="featMessages">Open Messages</button>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="icon mb-3"><i class="fa-solid fa-robot"></i></div>
+            <h5>AI Assistant</h5>
+            <p class="text-muted">Ask questions about dog care, training, and adoption.</p>
+            <button class="btn btn-sm btn-outline-primary mt-auto" id="featChatbot">Try Chatbot</button>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Features Section -->
-<section id="features" class="features-section">
+  <!-- How it works -->
+  <section id="how" class="section">
     <div class="container">
-        <div class="fade-in-up">
-            <h2 class="section-title">Why Choose BarkBuddy?</h2>
-            <p class="section-subtitle">We make pet adoption easier, safer, and more enjoyable for everyone involved</p>
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <img src="assets/images/img1.jpg" class="img-fluid rounded-4 shadow" alt="App preview">
         </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card bounce-in">
-                    <div class="text-center">
-                        <i class="fas fa-heart feature-icon"></i>
-                        <h3 class="feature-title">Verified Shelters</h3>
-                        <p class="feature-text">All our partner shelters are thoroughly verified to ensure the highest standards of pet care and ethical practices.</p>
-                    </div>
-                </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <h3 class="fw-bold">Start in minutes</h3>
+          <div class="mt-3">
+            <div class="how-step">
+              <div class="step-num">1</div>
+              <div>
+                <strong>Create your account</strong>
+                <div class="text-muted">Sign up or use Google auth, then jump to your dashboard.</div>
+              </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card bounce-in" style="animation-delay: 0.2s;">
-                    <div class="text-center">
-                        <i class="fas fa-search feature-icon"></i>
-                        <h3 class="feature-title">Smart Matching</h3>
-                        <p class="feature-text">Our advanced algorithm matches you with pets based on your lifestyle, preferences, and living situation.</p>
-                    </div>
-                </div>
+            <div class="how-step">
+              <div class="step-num">2</div>
+              <div>
+                <strong>Browse and connect</strong>
+                <div class="text-muted">Explore dogs, chat with owners, or submit adoption requests.</div>
+              </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card bounce-in" style="animation-delay: 0.4s;">
-                    <div class="text-center">
-                        <i class="fas fa-mobile-alt feature-icon"></i>
-                        <h3 class="feature-title">Mobile First</h3>
-                        <p class="feature-text">Browse, chat, and connect with pets on the go. Our mobile-optimized platform works seamlessly on any device.</p>
-                    </div>
-                </div>
+            <div class="how-step">
+              <div class="step-num">3</div>
+              <div>
+                <strong>Help the community</strong>
+                <div class="text-muted">Report lost dog sightings and keep pets safe together.</div>
+              </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card bounce-in" style="animation-delay: 0.6s;">
-                    <div class="text-center">
-                        <i class="fas fa-shield-alt feature-icon"></i>
-                        <h3 class="feature-title">Safe & Secure</h3>
-                        <p class="feature-text">Your privacy and security are our top priorities. All communications are encrypted and monitored.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card bounce-in" style="animation-delay: 0.8s;">
-                    <div class="text-center">
-                        <i class="fas fa-users feature-icon"></i>
-                        <h3 class="feature-title">Community Support</h3>
-                        <p class="feature-text">Join our vibrant community of pet lovers. Get advice, share experiences, and celebrate new adoptions together.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card bounce-in" style="animation-delay: 1s;">
-                    <div class="text-center">
-                        <i class="fas fa-clock feature-icon"></i>
-                        <h3 class="feature-title">24/7 Support</h3>
-                        <p class="feature-text">Our dedicated support team is always here to help you through your adoption journey, day or night.</p>
-                    </div>
-                </div>
-            </div>
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-warning me-2" id="btnGetStarted"><i class="fa-solid fa-paw me-1"></i> Get Started</button>
+            <button class="btn btn-outline-secondary" id="btnToDashboard"><i class="fa-solid fa-gauge-high me-1"></i> Go to Dashboard</button>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Video Section -->
-<section class="video-section">
+  <!-- Call to action band -->
+  <section class="section py-0">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="fade-in-up">
-                    <h2 class="display-4 fw-bold mb-4">See BarkBuddy in Action</h2>
-                    <p class="lead mb-4">Watch how easily you can find and connect with your perfect pet companion using our intuitive platform.</p>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Browse thousands of pets</li>
-                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Chat with shelters instantly</li>
-                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Schedule meet & greets</li>
-                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Complete adoption online</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="video-container fade-in-up">
-                    <div class="video-placeholder" onclick="playVideo()">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div style="position: absolute; bottom: 20px; left: 20px; color: white;">
-                            <h5>BarkBuddy Demo</h5>
-                            <small>2:30 minutes</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="cta d-flex flex-column flex-lg-row align-items-center justify-content-between">
+        <div>
+          <h4 class="mb-1">Ready to meet your BarkBuddy?</h4>
+          <div class="opacity-75">Join thousands of happy pet parents today.</div>
         </div>
+        <div class="mt-3 mt-lg-0">
+          <button class="btn btn-light me-2" id="ctaSignup"><i class="fa-solid fa-user-plus me-1"></i> Create account</button>
+          <button class="btn btn-outline-light" id="ctaLogin"><i class="fa-solid fa-right-to-bracket me-1"></i> Sign in</button>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Stats Section -->
-<section class="stats-section">
+  <!-- Footer -->
+  <footer class="mt-5 pt-5 pb-4">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="stat-item fade-in-up">
-                    <span class="stat-number" data-target="50000">0</span>
-                    <span class="stat-label">Happy Adoptions</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="stat-item fade-in-up">
-                    <span class="stat-number" data-target="500">0</span>
-                    <span class="stat-label">Partner Shelters</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="stat-item fade-in-up">
-                    <span class="stat-number" data-target="1000">0</span>
-                    <span class="stat-label">Cities Covered</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="stat-item fade-in-up">
-                    <span class="stat-number" data-target="100000">0</span>
-                    <span class="stat-label">Active Users</span>
-                </div>
-            </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <h5 class="text-white"><i class="fa-solid fa-paw me-2"></i>BarkBuddy</h5>
+          <p class="mt-2">Connecting loving pets with their perfect families. One paw at a time.</p>
         </div>
+        <div class="col-md-6 col-lg-2">
+          <h6 class="text-white">Explore</h6>
+          <ul class="list-unstyled small">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="pages/chatbot.html">AI Chatbot</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3" id="contact">
+          <h6 class="text-white">Contact</h6>
+          <ul class="list-unstyled small">
+            <li>Email: barkbuddyinf@gmail.com</li>
+            <li>Community: <a href="#">Join us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3 text-md-end">
+          <div class="small">&copy; 2025 BarkBuddy • All rights reserved</div>
+        </div>
+      </div>
     </div>
-</section>
+  </footer>
 
-<!-- CTA Section -->
-<section class="cta-section">
-    <div class="container text-center">
-        <div class="fade-in-up">
-            <h2 class="cta-title">Ready to Find Your Perfect Match?</h2>
-            <p class="cta-subtitle">Join thousands of happy pet parents who found their furry friends through BarkBuddy</p>
-            <div class="d-flex gap-3 justify-content-center flex-wrap">
-                <button class="btn btn-light btn-custom">Download App</button>
-                <button class="btn btn-outline-light btn-custom">Browse Pets</button>
-            </div>
-        </div>
-    </div>
-</section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  <!-- Optional AI chatbot floating widget -->
+  <script src="assets/js/chatbot-widget.js"></script>
+  <script>
+    // Simple auth-aware navigation: if logged in, go to pages; else go to login/signup
+    const hasToken = !!localStorage.getItem('accessToken');
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <h5 class="footer-title">
-                    <i class="fas fa-paw me-2"></i>BarkBuddy
-                </h5>
-                <p class="text-muted">Connecting loving pets with their perfect families. Making adoption easier, one paw at a time.</p>
-                <div class="mt-3">
-                    <a href="#" class="social-icons"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-icons"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icons"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icons"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-                <h6 class="footer-title">Quick Links</h6>
-                <a href="#" class="footer-link">Find Pets</a>
-                <a href="#" class="footer-link">List a Pet</a>
-                <a href="#" class="footer-link">Shelters</a>
-                <a href="#" class="footer-link">Success Stories</a>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-                <h6 class="footer-title">Support</h6>
-                <a href="#" class="footer-link">Help Center</a>
-                <a href="#" class="footer-link">Safety Tips</a>
-                <a href="#" class="footer-link">Contact Us</a>
-                <a href="#" class="footer-link">Report Issue</a>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-                <h6 class="footer-title">Company</h6>
-                <a href="#" class="footer-link">About Us</a>
-                <a href="#" class="footer-link">Careers</a>
-                <a href="#" class="footer-link">Press</a>
-                <a href="#" class="footer-link">Blog</a>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-                <h6 class="footer-title">Legal</h6>
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms of Service</a>
-                <a href="#" class="footer-link">Cookie Policy</a>
-                <a href="#" class="footer-link">Disclaimer</a>
-            </div>
-        </div>
-        <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-        <div class="text-center">
-            <p class="text-muted">&copy; 2025 BarkBuddy. All rights reserved. Made with <i class="fas fa-heart" style="color: var(--primary-color);"></i> for pets everywhere.</p>
-        </div>
-    </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in-up').forEach(el => {
-        observer.observe(el);
-    });
-
-    // Counter animation
-    function animateCounter(el) {
-        const target = parseInt(el.getAttribute('data-target'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-
-        const updateCounter = () => {
-            if (current < target) {
-                current += increment;
-                el.textContent = Math.floor(current).toLocaleString();
-                requestAnimationFrame(updateCounter);
-            } else {
-                el.textContent = target.toLocaleString();
-            }
-        };
-
-        updateCounter();
+    // Toggle top-right items
+    const navDashItem = document.getElementById('nav-dashboard-item');
+    const navAuthItem = document.getElementById('nav-auth-item');
+    if (hasToken) {
+      navDashItem?.classList.remove('d-none');
+      navAuthItem?.classList.add('d-none');
+    } else {
+      navDashItem?.classList.add('d-none');
+      navAuthItem?.classList.remove('d-none');
     }
 
-    // Stats counter observer
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target.querySelector('.stat-number');
-                if (counter && !counter.classList.contains('animated')) {
-                    counter.classList.add('animated');
-                    animateCounter(counter);
-                }
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stat-item').forEach(el => {
-        statsObserver.observe(el);
-    });
-
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-
-
-    // Video play function
-    function playVideo() {
-        alert('Video would play here! In a real implementation, you would embed your actual video content.');
+    // Helper to route based on auth
+    function go(page){
+      if (hasToken) window.location.href = page; else window.location.href = 'pages/login.html';
     }
 
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 107, 107, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
-            navbar.style.backdropFilter = 'none';
-        }
-    });
+    // Header buttons
+    document.getElementById('btnLogin').onclick = () => window.location.href = 'pages/login.html';
+    document.getElementById('btnSignup').onclick = () => window.location.href = 'pages/signup.html';
+    document.getElementById('btnGoDashboard').onclick = () => window.location.href = 'pages/dashboard.html';
 
-    // Add some interactive hover effects
-    document.querySelectorAll('.feature-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-15px) scale(1.02)';
-        });
+    // Hero CTAs
+    document.getElementById('ctaAdopt').onclick = () => go('pages/adoptFriend.html');
+    document.getElementById('ctaLost').onclick = () => go('pages/lostfound.html');
+    document.getElementById('ctaListings').onclick = () => go('pages/listings.html');
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-</script>
+    // Feature buttons
+    document.getElementById('featAdopt').onclick = () => go('pages/adoptFriend.html');
+    document.getElementById('featLost').onclick = () => go('pages/lostfound.html');
+    document.getElementById('featMessages').onclick = () => go('pages/messages.html');
+    document.getElementById('featChatbot').onclick = () => window.location.href = 'pages/chatbot.html';
+
+    // How it works buttons
+    document.getElementById('btnGetStarted').onclick = () => window.location.href = hasToken ? 'pages/dashboard.html' : 'pages/signup.html';
+    document.getElementById('btnToDashboard').onclick = () => window.location.href = hasToken ? 'pages/dashboard.html' : 'pages/login.html';
+
+    // CTA band buttons
+    document.getElementById('ctaSignup').onclick = () => window.location.href = 'pages/signup.html';
+    document.getElementById('ctaLogin').onclick = () => window.location.href = 'pages/login.html';
+
+    // Optional: redirect authenticated users straight to dashboard after a brief view
+    // Uncomment if you want auto-redirect
+    // if (hasToken) {
+    //   setTimeout(() => window.location.href = 'pages/dashboard.html', 1200);
+    // }
+  </script>
 </body>
 </html>
