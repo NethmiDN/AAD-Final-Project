@@ -19,7 +19,8 @@ class BarkBuddyNavigation {
       'adminListing.html',
       'forgetpassword.html',
       'otpConfirm.html',
-      'resetPassword.html'
+      'resetPassword.html',
+      'adminPayments.html'
     ];
     this.init();
   }
@@ -273,6 +274,7 @@ class BarkBuddyNavigation {
           (currentPage === 'forgetpassword.html' && href === 'forgetpassword.html') ||
           (currentPage === 'otpConfirm.html' && href === 'otpConfirm.html') ||
           (currentPage === 'resetPassword.html' && href === 'resetPassword.html') ||
+          (currentPage === 'adminPayments.html' && href === 'adminPayments.html') ||
           (currentPage === 'adminDashboard.html' && href === 'adminDashboard.html')) {
         link.classList.add('active');
       }
@@ -442,6 +444,10 @@ class BarkBuddyNavigation {
 
   navigateToAdminSettings() {
     this.navigateToPage('adminSetting.html');
+  }
+
+  navigateToAdminPayments() {
+    this.navigateToPage('adminPayments.html');
   }
 
   navigateToPage(page) {

@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build BarkBuddy backend (Maven)",
+			"type": "shell",
+			"command": "./mvnw.cmd -q -f BarkBuddy_BackEnd/pom.xml clean package",
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "build"
+		}
+	]
+}

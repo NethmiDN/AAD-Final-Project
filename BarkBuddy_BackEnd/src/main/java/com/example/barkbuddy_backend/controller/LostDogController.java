@@ -1,5 +1,20 @@
 package com.example.barkbuddy_backend.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.example.barkbuddy_backend.dto.LostDogDTO;
 import com.example.barkbuddy_backend.dto.LostDogDetailDTO;
 import com.example.barkbuddy_backend.dto.SightingCreateRequest;
@@ -12,12 +27,8 @@ import com.example.barkbuddy_backend.repo.LostDogRepository;
 import com.example.barkbuddy_backend.service.LostDogService;
 import com.example.barkbuddy_backend.service.SightingService;
 import com.example.barkbuddy_backend.util.JWTUtil;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/lostdog")
@@ -100,5 +111,21 @@ public class LostDogController {
 
         var dto = sightingService.createSighting(lostDogId, userId, request.getLocation());
         return ResponseEntity.ok(dto);
+    }
+
+    @PutMapping("/{lostDogId}/found")
+    public ResponseEntity<LostDogDTO> markFound(
+            @PathVariable Long lostDogId,
+            @RequestHeader("Authorization") String authHeader
+    ) {
+        try {
+            Long userId = getUserIdFromToken(authHeader);
+            LostDogDTO updated = lostDogService.markFound(lostDogId, userId);
+            return ResponseEntity.ok(updated);
+        } catch (SecurityException se) {
+            return ResponseEntity.status(403).build();
+        } catch (IllegalArgumentException iae) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
