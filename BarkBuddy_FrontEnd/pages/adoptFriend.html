@@ -67,10 +67,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to botto
             <input type="hidden" id="adoptDogId">
             <input type="hidden" id="adopterId">
             <p>You're requesting to adopt: <strong id="dogNameAdopt"></strong></p>
-            <div class="mb-3">
-              <label class="form-label">Message to current owner (optional)</label>
-              <textarea class="form-control" id="adoptionMessage" rows="3" placeholder="Write a short message..."></textarea>
-            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Submit Request</button>
@@ -160,14 +156,14 @@ window.adoptDog=function(dog){
   document.getElementById('adoptDogId').value=dog.id;
   document.getElementById('adopterId').value=localStorage.getItem('userId');
   document.getElementById('dogNameAdopt').textContent=dog.dogName;
-  document.getElementById('adoptionMessage').value='';
   adoptionModal.show();
 }
 
 adoptionForm.addEventListener('submit', async e=>{
   e.preventDefault();
   const dogId=document.getElementById('adoptDogId').value;
-  const message=document.getElementById('adoptionMessage').value;
+  // Message field removed from UI; keep contract by sending empty message
+  const message = '';
   
   // Show loading state
   const submitBtn = e.target.querySelector('button[type="submit"]');
