@@ -214,7 +214,7 @@ Content-Type: application/json
 
 Watch the walkthrough on YouTube:
 
-https://youtu.be/your-demo-video-id
+https://youtu.be/UgG_LaobCcs
 
 Naming convention: "AAD-Final-Project - BarkBuddy Demo".
 

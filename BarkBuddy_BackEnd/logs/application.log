@@ -5065,3 +5065,8 @@
 2025-09-18T15:02:08.792+05:30 DEBUG 25100 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [UserDTO(username=Admin, email=Admin@gmail.com, password=)]
 2025-09-18T15:02:08.793+05:30 TRACE 25100 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.s.w.header.writers.HstsHeaderWriter  : Not injecting HSTS header since it did not match request to [Is Secure]
 2025-09-18T15:02:08.798+05:30 DEBUG 25100 --- [BarkBuddy_BackEnd] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-18T15:29:46.267+05:30  INFO 25100 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-18T15:29:46.357+05:30  INFO 25100 --- [BarkBuddy_BackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-18T15:29:46.689+05:30  INFO 25100 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-18T15:29:46.740+05:30  INFO 25100 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-18T15:29:46.764+05:30  INFO 25100 --- [BarkBuddy_BackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
