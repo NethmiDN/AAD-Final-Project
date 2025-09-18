@@ -1,0 +1,19 @@
+{
+	// Serve only the front-end to avoid reloads from backend log/target updates
+	"liveServer.settings.root": "/BarkBuddy_FrontEnd",
+	// Keep default port 5500 so your existing URL works; you can change if needed
+	"liveServer.settings.port": 5500,
+	// Ignore noisy folders that can trigger reloads (logs, backend, build outputs)
+	"liveServer.settings.ignoreFiles": [
+		"**/.git/**",
+		"**/node_modules/**",
+		"**/*.map",
+		"**/BarkBuddy_BackEnd/**",
+		"**/logs/**",
+		"**/*.log",
+		"**/*.gz",
+		"**/target/**"
+	],
+	// Small debounce to avoid rapid reloads if multiple files write together
+	"liveServer.settings.wait": 300
+}

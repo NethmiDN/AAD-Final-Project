@@ -1,5 +1,7 @@
 # BarkBuddy - Final Project
 
+## Project Description
+
 A full-stack web application to help people find, adopt, and care for dogs. It includes user authentication (email/password + Google OAuth2), a Lost & Found flow, owner-to-user messaging, product listings with orders, email-based password resets, and an AI assistant powered by a local Ollama model.
 
 ## What's inside
@@ -14,6 +16,19 @@ Repository structure:
 - `BarkBuddy_BackEnd/` — Java Spring Boot service and API
 - `BarkBuddy_FrontEnd/` — static site with pages for login, signup, dashboard, adoption, listings, messaging, admin, etc.
 
+## Screenshots
+
+Below are a few key screens from the application (more pages are available under `BarkBuddy_FrontEnd/pages/`).
+
+![Home Page](BarkBuddy_FrontEnd/assets/images/Screenshot%202025-09-18%20124619.png)
+Home page with quick entry points to Adopt, Listings, Lost & Found, and Chatbot.
+
+![Discover/Listing Preview](BarkBuddy_FrontEnd/assets/images/Screenshot%202025-09-18%20130717.png)
+Discover and listings preview showcasing adoptable friends and products.
+
+![Onboarding Form – Signup](BarkBuddy_FrontEnd/assets/images/Screenshot%202025-09-18%20130840.png)
+Signup form with validation before accessing the dashboard.
+
 ## Prerequisites
 
 - Java 21 (JDK)
@@ -22,7 +37,9 @@ Repository structure:
 - VS Code (recommended) + Live Server extension (or any static file server)
 - Optional for AI: Ollama installed and a model pulled (e.g., `gemma3:1b`)
 
-## Quick start (local dev)
+## Setup Instructions
+
+Follow these steps to install, configure, and run both the backend and the frontend locally.
 
 ### 1) Configure backend
 
@@ -192,6 +209,14 @@ Content-Type: application/json
 - Java Mail (SMTP)
 - Ollama (local LLM)
 - Bootstrap 5, Font Awesome, Vanilla JS
+
+## Demo Video
+
+Watch the walkthrough on YouTube:
+
+https://youtu.be/your-demo-video-id
+
+Naming convention: "AAD-Final-Project - BarkBuddy Demo".
 
 ## Notes
 

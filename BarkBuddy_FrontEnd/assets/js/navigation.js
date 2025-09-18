@@ -50,6 +50,8 @@ class BarkBuddyNavigation {
       this.preventSidebarDuplication();
       this.setActiveNavItem();
       this.addNavigationEventListeners();
+      this.addFormGuards();
+      this.setupReloadUXGuards();
       this.addHoverEffects();
       this.ensureResponsiveStyles();
       this.setupSidebarToggle();
@@ -73,6 +75,175 @@ class BarkBuddyNavigation {
         }
       }, 500);
     }
+  }
+
+  // Prevent accidental page reloads caused by implicit form submits
+  addFormGuards() {
+    if (this._formGuardsInstalled) return;
+    this._formGuardsInstalled = true;
+
+    // Prevent default submit on all forms unless opted-in
+    //    Allow pages to opt-in to native submit by adding [data-allow-default] to the form
+    document.addEventListener('submit', (e) => {
+      const form = e.target;
+      if (form && form.matches && form.matches('[data-allow-default]')) {
+        return; // allow default
+      }
+      // Prevent full-page navigation
+      e.preventDefault();
+    }, true); // capture phase to catch early
+
+    // Prevent Enter key from triggering implicit submit in inputs (except textarea)
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const form = target.closest('form');
+      if (!form) return;
+      // Allow newlines in textarea
+      if (target.tagName && target.tagName.toLowerCase() === 'textarea') return;
+
+      // Stop the browser from submitting; instead, dispatch a submit event so page scripts can handle it
+      e.preventDefault();
+      const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
+      form.dispatchEvent(submitEvent);
+    }, true);
+  }
+
+  // Smart reload UX to avoid disruptive hard reloads
+  setupReloadUXGuards() {
+    if (this._reloadGuardsInstalled) return;
+    this._reloadGuardsInstalled = true;
+
+    // Internal state
+    this._appNavigating = false;        // set true when our code navigates
+    this._userTypingUntil = 0;          // timestamp until which we treat user as actively typing
+    this._recentInputTimer = null;      // timer to clear recent input flag
+    this._hasRecentInput = false;       // whether user recently interacted with inputs
+    this._reloadSnoozedUntil = 0;       // timestamp until which soft reloads are snoozed
+
+    // Track user activity in inputs and contenteditable fields
+    const markTyping = () => {
+      this._userTypingUntil = Date.now() + 4000; // 4s grace after last keystroke
+      this._hasRecentInput = true;
+      clearTimeout(this._recentInputTimer);
+      this._recentInputTimer = setTimeout(() => { this._hasRecentInput = false; }, 10000);
+    };
+
+    document.addEventListener('input', (e) => {
+      const el = e.target;
+      if (!(el instanceof Element)) return;
+      if (el.closest('form') || el.isContentEditable || /input|textarea|select/i.test(el.tagName)) {
+        markTyping();
+      }
+    }, true);
+    document.addEventListener('keydown', (e) => {
+      const el = e.target;
+      if (!(el instanceof Element)) return;
+      if (el.closest('form') || el.isContentEditable || /input|textarea|select/i.test(el.tagName)) {
+        markTyping();
+      }
+    }, true);
+
+    // Remove intrusive browser confirm; instead we rely on soft reload banner and autosave
+
+    // Autosave form inputs to sessionStorage and restore on load
+    const STORAGE_KEY = 'bb-autosave';
+    const saveState = () => {
+      try {
+        const data = {};
+        document.querySelectorAll('input, textarea, select').forEach((el) => {
+          if (!(el instanceof Element)) return;
+          const id = el.id || el.name;
+          if (!id) return;
+          if (el.type === 'password') return; // never persist passwords
+          if (el.type === 'checkbox' || el.type === 'radio') {
+            data[id] = { t: el.type, v: el.checked };
+          } else {
+            data[id] = { t: 'value', v: el.value };
+          }
+        });
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (_) { /* ignore */ }
+    };
+    const restoreState = () => {
+      try {
+        const raw = sessionStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        Object.keys(data || {}).forEach((key) => {
+          const entry = data[key];
+          const el = document.getElementById(key) || document.querySelector(`[name="${CSS.escape(key)}"]`);
+          if (!el) return;
+          if (entry.t === 'checkbox' || entry.t === 'radio') {
+            el.checked = !!entry.v;
+          } else if (entry.t === 'value') {
+            if (el.type !== 'password') el.value = entry.v ?? '';
+          }
+        });
+      } catch (_) { /* ignore */ }
+    };
+    // Restore soon after DOM ready (initializeNavigation already runs on DOMContentLoaded)
+    setTimeout(restoreState, 0);
+    // Save on changes and periodically
+    document.addEventListener('input', saveState, true);
+    document.addEventListener('change', saveState, true);
+    this._autosaveTimer = setInterval(saveState, 5000);
+
+    // Public soft-reload API with countdown banner and snooze
+    this.scheduleReload = (seconds = 5) => {
+      const now = Date.now();
+      if (now < this._reloadSnoozedUntil) return; // Respect snooze
+      // Create or reuse banner
+      let banner = document.getElementById('bb-soft-reload-banner');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'bb-soft-reload-banner';
+        banner.style.cssText = `
+          position: fixed; left: 50%; transform: translateX(-50%);
+          top: 10px; z-index: 2000; background: #2C2A7B; color: #fff;
+          padding: 10px 14px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2);
+          display: flex; align-items: center; gap: 10px; font-weight: 600;`;
+        banner.innerHTML = `
+          <span id="bb-soft-reload-text">Updating... Reloading in <span id="bb-soft-reload-count">${seconds}</span>s</span>
+          <button id="bb-soft-reload-now" class="btn btn-sm btn-light" style="color:#2C2A7B; font-weight:700;">Reload now</button>
+          <button id="bb-soft-reload-snooze" class="btn btn-sm btn-outline-light">Snooze</button>`;
+        document.body.appendChild(banner);
+        banner.querySelector('#bb-soft-reload-now').addEventListener('click', () => {
+          this._appNavigating = true;
+          location.reload();
+        });
+        banner.querySelector('#bb-soft-reload-snooze').addEventListener('click', () => {
+          // Snooze for 2 minutes by default
+          this._reloadSnoozedUntil = Date.now() + 2 * 60 * 1000;
+          banner.remove();
+        });
+      }
+
+      let remain = Math.max(1, Math.floor(seconds));
+      const countEl = banner.querySelector('#bb-soft-reload-count');
+      countEl.textContent = String(remain);
+      clearInterval(this._reloadTimer);
+      this._reloadTimer = setInterval(() => {
+        // If user is typing, keep resetting countdown gracefully
+        const typing = Date.now() < this._userTypingUntil;
+        if (typing) {
+          remain = Math.max(remain, 5); // keep at least 5s while typing
+          countEl.textContent = String(remain);
+          return;
+        }
+        remain -= 1;
+        countEl.textContent = String(Math.max(remain, 0));
+        if (remain <= 0) {
+          clearInterval(this._reloadTimer);
+          this._appNavigating = true;
+          location.reload();
+        }
+      }, 1000);
+    };
+
+    // Expose a way to bypass prompt for next navigation if needed
+    this.allowNextUnload = () => { this._appNavigating = true; setTimeout(() => this._appNavigating = false, 3000); };
   }
 
   ensureResponsiveStyles(){
@@ -452,10 +623,13 @@ class BarkBuddyNavigation {
 
   navigateToPage(page) {
     if (this.validPages.includes(page)) {
+      // Mark as app-driven navigation to avoid beforeunload prompt
+      this._appNavigating = true;
       window.location.href = page;
     } else {
       this.showNotification('Page not found', 'error');
       setTimeout(() => {
+        this._appNavigating = true;
         window.location.href = '404.html';
       }, 1000);
     }
