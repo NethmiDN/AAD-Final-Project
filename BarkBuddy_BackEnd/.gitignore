@@ -36,6 +36,7 @@ build/
 # Ignore Spring Boot application configuration files that often contain secrets
 src/main/resources/application.properties
 src/main/resources/application-*.properties
+!**/src/main/resources/application.properties
 
 # Allow committing a safe example file to document required properties
 !src/main/resources/application-example.properties
